@@ -1,0 +1,9 @@
+.head1{
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+}
+.main-logo{
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
