@@ -48,9 +48,7 @@
 									<i class="fa fa-search"></i>
 								</a>
 							</li>
-							<li class="nav-item">
-								<a data-toggle="modal" class="nav-link" href="#addRowModal">Đăng nhập</a>
-							</li>
+							{!!$nav!!}
 						</ul>
 					</div>
 				</nav>
@@ -62,28 +60,36 @@
                         <div class="modal-header no-bd">
                             <h5 class="modal-title">
                                 <span class="fw-mediumbold">
-                                Đăng nhập</span> 
+                                Đăng nhập</span>  <span id="loginFail" class="error invalid-feedback" >Tài khoản hoặc mật khẩu không đúng.</span>
                             </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form method="POST">
+                            <form method="POST" id="loginForm">
 								<div class="form-group">
 									<label for="largeInput">Tài khoản:</label>
-									<input type="text" class="form-control form-control" id="taiKhoan">
+									<input type="text" class="form-control form-control" name="taiKhoan" id="taiKhoan">
 								</div>
 								<div class="form-group">
 									<label for="largeInput">Mật khẩu:</label>
-									<input type="password" class="form-control form-control" id="matKhau">
+									<input type="password" class="form-control form-control" name="matKhau" id="matKhau">
 								</div>
+								<div class="form-check">
+									<label class="form-check-label">
+										<input class="form-check-input" type="checkbox" value="" id="remember">
+										<span class="form-check-sign">Lưu đăng nhập</span>
+									</label>
+								</div>
+								<div class="modal-footer no-bd">
+									<button type="submit" id="login" class="btn btn-primary">Đăng nhập</button>
+									<button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+								</div>
+								@csrf
                             </form>
                         </div>
-                        <div class="modal-footer no-bd">
-                            <button type="button" id="addRowButton" class="btn btn-primary">Đăng nhập</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -170,6 +176,12 @@
 			<script src="/template/Atlantis/js/plugin/sweetalert/sweetalert.min.js"></script>
 			<script src="/template/Atlantis/js/atlantis.min.js"></script>		
 
-			<script src="/js/login.js"></script>	
+			<!-- Validate -->
+			<script src="/js/jquery.validate.min.js"></script>
+
+			
+			<script src="/js/welcome/login.js"></script>	
+			<script src="/js/welcome/addEvenListener.js"></script>
+			<script src="/js/welcome/loginValidate.js"></script>
 	</body>
 </html>

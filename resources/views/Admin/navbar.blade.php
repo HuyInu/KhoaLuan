@@ -65,23 +65,27 @@
             <li class="nav-item dropdown hidden-caret">
                 <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
                     <div class="avatar-sm">
-                        <img src="/image/admin.jpg" alt="..." class="avatar-img rounded-circle">
+                        <img src="{{$avatar}}" alt="..." class="avatar-img rounded-circle">
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-user animated fadeIn">
                     <div class="dropdown-user-scroll scrollbar-outer">
                         <li>
                             <div class="user-box">
-                                <div class="avatar-lg"><img src="/image/admin.jpg" alt="image profile" class="avatar-img rounded"></div>
+                                <div class="avatar-lg">
+                                    <img src="{{$avatar}}" alt="image profile" class="avatar-img rounded">
+                                </div>
                                 <div class="u-text">
-                                    <h4>Hizrian</h4>
+                                    <h4>
+                                        {{$userInfor['Ho'].' '.$userInfor['Ten']}}
+                                    </h4>
                                     <p class="text-muted">hello@example.com</p><a href="profile.html" class="btn btn-xs btn-secondary btn-sm">Thông tin cá nhân</a>
                                 </div>
                             </div>
                         </li>
                         <li>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Đăng xuất</a>
+                            <a class="dropdown-item" href="{{route('home')}}">Đăng xuất</a>
                         </li>
                     </div>
                 </ul>

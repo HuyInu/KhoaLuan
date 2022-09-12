@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'NguoiDung',
+        'passwords' => 'NguoiDung',
     ],
 
     /*
@@ -45,6 +45,10 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+        'NguoiDung' => [
+            'driver' => 'session',
+            'provider' => 'NguoiDung',
+        ],
     ],
 
     /*
@@ -68,6 +72,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+        'NguoiDung' => [
+            'driver' => 'eloquent',
+            'model' => App\Model\NguoiDung::class,
         ],
 
         // 'users' => [
@@ -94,6 +102,11 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+        'NguoiDung' => [
+            'provider' => 'NguoiDung',
             'table' => 'password_resets',
             'expire' => 60,
         ],
