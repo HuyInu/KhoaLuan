@@ -2,15 +2,38 @@ body, html {
     height: 100%;
   }
   
-  .bg {
-    /* The image used */
-    background-image: url(http://khoaluan.vn/);
-  
-    /* Full height */
-    height: 100%;
-  
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+.bg {
+  /* The image used */
+  background-image: url("/image/background.png");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.btn_custom{
+  height: 169px;
+  width: 281px;
+  margin: 0 5px 0 5px;
+}
+.card-custom{
+  height: 200px;
+}
+.space{
+  margin-bottom: 35px;
+}
+
+.card-href:hover{
+  text-decoration: none;
+}
+
+#setting{
+  position: absolute;
+    right: 80px;
+    bottom: 60px;
+    z-index: 3;
+    border-radius: 15px;
+}

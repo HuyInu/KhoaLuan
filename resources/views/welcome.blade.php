@@ -11,7 +11,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
     
-        <link rel="stylesheet" href="/image/css/welcome.css" />
+        
 
 		<!-- Fonts and icons -->
 		<script src="/template/Atlantis/js/plugin/webfont/webfont.min.js"></script>
@@ -31,12 +31,31 @@
 
 		<link rel="stylesheet" href="/template/Atlantis/css/atlantis.min.css">
 
+		<link rel="stylesheet" href="/css/welcome.css" />
+
     </head>
     <body>
 		<!-- Wrapper -->
 		<div id="wrapper" class="bg" >
+			<!-- Logo Header -->
 			<div class="main-header">
-
+				<div class="logo-header" data-background-color="blue">
+					<a href="{{route('home')}}" class="logo">
+						<img src="/image/main-logo.png" width="" alt="navbar brand" class="navbar-brand" style="width: 50px;height: 50px;">
+					</a>
+					<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon">
+							<i class="icon-menu"></i>
+						</span>
+					</button>
+					<button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
+					<div class="nav-toggle">
+						<button class="btn btn-toggle toggle-sidebar">
+							<i class="icon-menu"></i>
+						</button>
+					</div>
+				</div>
+				<!-- End Logo Header -->
 				<!-- Navbar Header -->
 				<nav class="navbar navbar-header navbar-expand-lg" data-background-color="blue2">
 					
@@ -103,37 +122,65 @@
 							</a>
 							<h1 style="color: white;">HỆ THỐNG THÔNG TIN ĐỊA LÝ THÀNH PHỐ MỸ THO</h1>
 							<h2 style="color: white;">QUẢN LÝ QUY HOẠCH VÀ HẠ TẦNG KỸ THUẬT</h2>
-							<p style="margin-top: 6rem;" class="demo">
-								<button class="btn btn-info btn_custom">
-									<span class="btn-label">
-										<i class="fas fa-search"></i>
-									</span>
-									<h5>TRA CỨU THÔNG TIN <br>QUY HOẠCH</h5>
-								</button>
-
-								<button class="btn btn-success btn_custom">
-									<span class="btn-label">
-										<i class="fas fa-map"></i>
-									</span>
-									<h5>THÔNG TIN DỰ ÁN <br>QUY HOẠCH</h5>
-								</button>
-
-								<button class="btn btn-warning btn_custom">
-									<span class="btn-label">
-										<i class="fas fa-search"></i>
-									</span>
-									<h5>TRA CỨU DỮ LIỆU<br> HẠ TẦNG KỸ THUẬT</h5>
-								</button>
-
-								<button class="btn btn-danger btn_custom">
-									<span class="btn-label">
-										<i class="fas fa-pen-alt"></i>
-									</span>
-									<h5>DỰ ÁN QUY HOẠCH</h5>
-								</button>
-							</p>
+							<p style="margin-top: 6rem;" class="demo"></p>
+							
+							<div class="row col-md-8 ml-auto mr-auto">
+								
+								<div class="col-sm-6 col-md-4">
+									<a href="" class="card-href">
+									<div class="card card-stats card-primary card-round card-custom">
+										<div class="card-body">
+											<p  class="space"></p>
+											<span class="btn-label">
+												<i class="fas fa-search"></i>
+											</span>
+											<h3>TRA CỨU THÔNG TIN <br>QUY HOẠCH</h3>
+										</div>
+									</div>
+									</a>
+								</div>
+								
+								<div class="col-sm-6 col-md-4">
+									<a href="" class="card-href">
+									<div class="card card-stats card-info card-round card-custom">
+										<div class="card-body">
+											<p  class="space"> </p>
+											<span class="btn-label">
+												<i class="fas fa-search"></i>
+											</span>
+											<h3>TRA CỨU DỮ LIỆU<br> HẠ TẦNG KỸ THUẬT</h3>
+										</div>
+									</div>
+									</a>
+								</div>
+								<div class="col-sm-6 col-md-4">
+									<a href="{{route('duAnQuyHoach')}}" class="card-href">
+									<div class="card card-stats card-success card-round card-custom">
+										<div class="card-body">
+											<p  class="space"></p>
+											<span class="btn-label">
+												<i class="fas fa-pen-alt"></i>
+											</span>
+											<h3>DỰ ÁN QUY HOẠCH</h3>
+										</div>
+									</div>
+									</a>
+								</div>
+							</div>
 						</div>
 					</div>
+				</div>
+			</div>
+			<div class="btn-group" id="setting">
+				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Action
+				</button>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="#">Action</a>
+					<a class="dropdown-item" href="#">Another action</a>
+					<a class="dropdown-item" href="#">Something else here</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">Separated link</a>
 				</div>
 			</div>
 		</div>

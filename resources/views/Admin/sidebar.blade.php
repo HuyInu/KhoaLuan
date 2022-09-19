@@ -3,12 +3,22 @@
         <div class="sidebar-content">
             <div class="user">
                 <div class="avatar-sm float-left mr-2">
-                    <img src="/image/admin.jpg" alt="..." class="avatar-img rounded-circle">
+                    @switch(Auth()->user()->MaLoaiNguoiDung)
+                        @case(1)
+                            <img src="/image/admin.jpg" alt="..." class="avatar-img rounded-circle">
+                            @break
+                        @case(2)
+                            <img src="/image/user-default.jpg" alt="..." class="avatar-img rounded-circle">
+                            @break
+                        @case(3)
+                            <img src="/image/user-default.jpg" alt="..." class="avatar-img rounded-circle">
+                            @break
+                    @endswitch
                 </div>
                 <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
                         <span>
-                            Ten admin
+                            {{Auth()->user()->Ho.' '.Auth()->user()->Ten}}
                             <span class="user-level">Administrator</span>
                             <span class="caret"></span>
                         </span>

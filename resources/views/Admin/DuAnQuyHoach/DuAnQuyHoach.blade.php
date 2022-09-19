@@ -45,13 +45,13 @@
                                     <div class="col-md-6 .col-4">
                                         <div class="form-group">
                                             <label for="largeInput">Mã dự án*:</label>
-                                            <input type="text" class="form-control form-control" id="maDuAn" placeholder="Mã dự án">
+                                            <input type="text" class="form-control form-control" id="MaDuAn" name="MaDuAn">
                                         </div>
                                     </div>
                                     <div class="col-md-6 .col-4">
                                         <div class="form-group">
                                             <label for="largeInput">Tên dự án*:</label>
-                                            <input type="text" class="form-control form-control" id="tenDuAn">
+                                            <input type="text" class="form-control form-control" id="TenDuAn" name="TenDuAn">
                                         </div>
                                     </div>
                                 </div>
@@ -59,22 +59,21 @@
                                     <div class="col-md-6 .col-4">
                                         <div class="form-group">
                                             <label for="defaultSelect">Loại quy hoạch:</label>
-                                            <select class="form-control form-control" id="loaiQuyHoach">
+                                            <select class="form-control form-control" id="MaLoaiQuyHoach" name="MaLoaiQuyHoach">
                                                 <option value="">Chọn loại quy hoạch</option>
-                                                <option value="QHCT">Quy hoạch chi tiết</option>
-                                                <option value="QHCDT">Quy hoạch chung đô thị</option>
-                                                <option value="QHCTT">Quy hoạch chung toàn tỉnh</option>
-                                                <option value="QHKCN">Quy hoạch khu công nghiệp</option>
-                                                <option value="QHNTM">Quy hoạch nông thôn mới</option>
-                                                <option value="QHPK">Quy hoạch phân khu</option>
+                                                @foreach($dataLoaiQuyHoach as $item)
+                                                <option value="{{$item['MaLoaiQuyHoach']}}">{{$item['TenLoaiQuyHoach']}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6 .col-4">
                                         <div class="form-group">
                                             <label for="defaultSelect">Tình trạng phê duyệt:</label>
-                                            <select class="form-control form-control" id="tinhTrangPheDuyet">
-                                                <option>1</option>
+                                            <select class="form-control form-control" id="TinhTrangPheDuyet" name="TinhTrangPheDuyet">
+                                                <option value="">Chọn tình trạng</option>
+                                                <option value="0">Chưa phê duyệt</option>
+                                                <option value="1">Đã phê duyệt</option>
                                             </select>
                                         </div>
                                     </div>
@@ -83,13 +82,13 @@
                                     <div class="col-md-6 .col-4">
                                         <div class="form-group">
                                             <label for="largeInput">Số quyết định phê duyệt:</label>
-                                            <input type="text" class="form-control form-control" id="soQDPD">
+                                            <input type="text" class="form-control form-control" id="SoQuyetDinhPheDuyet" name="SoQuyetDinhPheDuyet">
                                         </div>
                                     </div>
                                     <div class="col-md-6 .col-4">
                                         <div class="form-group">
                                             <label for="largeInput">Ngày ký quyết định:</label>
-                                            <input type="date" class="form-control form-control" id="ngayKyQuyetDinh" >
+                                            <input type="date" class="form-control form-control" id="NgayKyQuyetDinh" name="NgayKyQuyetDinh">
                                         </div>
                                     </div>
                                 </div>
@@ -97,13 +96,13 @@
                                     <div class="col-md-6 .col-4">
                                         <div class="form-group">
                                             <label for="largeInput">Quy mô dân số:</label>
-                                            <input type="text" class="form-control form-control" id="quyMoDanSo" placeholder="Default Input">
+                                            <input type="text" class="form-control form-control" id="QuyMoDanSo" name="QuyMoDanSo">
                                         </div>
                                     </div>
                                     <div class="col-md-6 .col-4">
                                         <div class="form-group">
                                             <label for="largeInput">Tỷ lệ bản vẻ:</label>
-                                            <input type="text" class="form-control form-control" id="tiLeBanVe">
+                                            <input type="text" class="form-control form-control" id="TyLeBanVe" name="TyLeBanVe">
                                         </div>
                                     </div>
                                 </div>
@@ -111,15 +110,18 @@
                                     <div class="col-md-6 .col-4">
                                         <div class="form-group">
                                             <label for="defaultSelect">Tiến độ dự án:</label>
-                                            <select class="form-control form-control" id="tienDoDuAn">
-                                                <option>1</option>
+                                            <select class="form-control form-control" id="MaTienDoDuAn" name="MaTienDoDuAn">
+                                                <option value="">Chọn tiến độ dự án</option>
+                                                @foreach($dataTienDoDuAn as $item)
+                                                <option value="{{$item['id']}}">{{$item['TenTienDoDuAn']}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6 .col-4">
                                         <div class="form-group">
                                             <label for="largeInput">Diện tích:</label>
-                                            <input type="text" class="form-control form-control" id="dienTich">
+                                            <input type="text" class="form-control form-control" id="DienTich" name="DienTich">
                                         </div>
                                     </div>
                                 </div>
@@ -127,15 +129,19 @@
                                     <div class="col-md-6 .col-4">
                                         <div class="form-group">
                                             <label for="defaultSelect">Loại dự án:</label>
-                                            <select class="form-control form-control" id="loaiDuAn">
-                                                <option>1</option>
+                                            <select class="form-control form-control" id="MaLoaiDuAn" name="MaLoaiDuAn">
+                                                <option value="">Chọn loại dự án</option>
+                                                @foreach($dataLoaiDuAn as $item)
+                                                <option value="{{$item['MaLoaiDuAn']}}">{{$item['TenLoaiDuAn']}}</option>
+                                                @endforeach
+                                                <option value="K">Loại khác</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6 .col-4">
                                         <div class="form-group">
                                             <label for="largeInput">Thời gian xin phê duyệt:</label>
-                                            <input type="date" class="form-control form-control" id="thoiGianXinPheDuyet" >
+                                            <input type="date" class="form-control form-control" id="ThoiGianXinPheDuyet" name="ThoiGianXinPheDuyet">
                                         </div>
                                     </div>
                                 </div>
@@ -143,13 +149,13 @@
                                     <div class="col-md-6 .col-4">
                                         <div class="form-group">
                                             <label for="largeInput">Thời gian quy hoạch:</label>
-                                            <input type="date" class="form-control form-control" id="thoiGianQuyHoach" >
+                                            <input type="date" class="form-control form-control" id="ThoiGianQuyHoach" name="ThoiGianQuyHoach">
                                         </div>
                                     </div>
                                     <div class="col-md-6 .col-4">
                                         <div class="form-group">
                                             <label for="largeInput">Thời gian lấy ý kiến:</label>
-                                            <input type="date" class="form-control form-control" id="thoiGianLayYKien" >
+                                            <input type="date" class="form-control form-control" id="ThoiGianLayYKien" name="ThoiGianLayYKien">
                                         </div>
                                     </div>
                                 </div>
@@ -157,13 +163,13 @@
                                     <div class="col-md-6 .col-4">
                                         <div class="form-group">
                                             <label for="largeInput">Thời gian công bố:</label>
-                                            <input type="date" class="form-control form-control" id="thoiGiangCongBo" value="{{date('Y-m-d')}}" >
+                                            <input type="date" class="form-control form-control" id="ThoiGianCongBo" name="ThoiGianCongBo" value="{{date('Y-m-d')}}" >
                                         </div>
                                     </div>
                                     <div class="col-md-6 .col-4">
                                         <div class="form-group">
                                             <label for="largeInput">Đơn vị quản lý:</label>
-                                            <input type="text" class="form-control form-control" id="donViQuanLy">
+                                            <input type="text" class="form-control form-control" id="DonViQuanLy" name="DonViQuanLy">
                                         </div>
                                     </div>
                                 </div>
@@ -171,7 +177,7 @@
                                     <div class="col-md-6 .col-4">
                                         <div class="form-group">
                                             <label for="largeInput">Đơn vị cập nhật</label>
-                                            <input type="text" class="form-control form-control" id="donViCapNhat">
+                                            <input type="text" class="form-control form-control" id="DonViCapNhat" name="DonViCapNhat">
                                         </div>
                                     </div>
                                     <div class="col-md-6 .col-4">
@@ -189,9 +195,9 @@
             </div>
 
             <div class="table-responsive">
-                <table id="add-row" class="display table table-striped table-hover" >
+                <table id="DuAnQuyHoachTable" class="display table table-striped table-hover" >
                     <thead>
-                        <tr>
+                        <tr role="row">
                             <th>STT</th>
                             <th>Mã dự án</th>
                             <th>Tên dự án</th>
@@ -213,25 +219,26 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        <tr>
-                            <th>STT</th>
-                            <th>Mã dự án</th>
-                            <th>Tên dự án</th>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
+                        <@foreach($dataDuAnQuyHoach as $item)
+                        <tr role="row" class="odd">
+                            <th>{{$loop->index}}</th>
+                            <th>{{$item->MaDuAn}}</th>
+                            <th>{{$item->TenDuAn}}</th>
+                            <th>{{$item->LoaiQuyHoach->TenLoaiQuyHoach}}</th>
+                            <th>{{$item->MaDuAn}}</th>
+                            <th>{{$item->MaDuAn}}</th>
                             <td>
                                 <div class="form-button-action">
-                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
+                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Sửa">
                                         <i class="fa fa-edit"></i>
                                     </button>
-                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
+                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Xóa">
                                         <i class="fa fa-times"></i>
                                     </button>
                                 </div>
                             </td>
                         </tr>
-                        
+                        @endforeach
                     </tbody>
                 </table>
             </div>

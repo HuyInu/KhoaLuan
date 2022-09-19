@@ -1,11 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Trang chủ | HỆ THỐNG GIS QUẢN LÝ HẠ TẦNG KỸ THUẬT ĐÔ THỊ MỸ THO</title>
-
         @include('Admin.head')
         @yield('head')
 
@@ -16,7 +11,7 @@
                 <!-- Logo Header -->
                 <div class="logo-header" data-background-color="blue">
                     
-                    <a href="index.html" class="logo">
+                    <a href="{{route('home')}}" class="logo">
                         <img class="main-logo" src="/image/main-logo.png" alt="navbar brand" class="navbar-brand" style="width: 50px;height: 50px;">
                     </a>
                     <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,7 +56,10 @@
                 </div>
             </div>
         </div>
-		@include('Admin.foot')
-        @yield('footer')
+		
 	</body>
+    <footer>
+        @include('Admin.foot')
+        @yield('footer')
+    </footer>
 </html>

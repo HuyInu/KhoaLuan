@@ -65,7 +65,17 @@
             <li class="nav-item dropdown hidden-caret">
                 <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
                     <div class="avatar-sm">
-                        <img src="{{$avatar}}" alt="..." class="avatar-img rounded-circle">
+                        @switch(Auth()->user()->MaLoaiNguoiDung)
+                            @case(1)
+                                <img src="/image/admin.jpg" alt="..." class="avatar-img rounded-circle">
+                                @break
+                            @case(2)
+                                <img src="/image/user-default.jpg" alt="..." class="avatar-img rounded-circle">
+                                @break
+                            @case(3)
+                                <img src="/image/user-default.jpg" alt="..." class="avatar-img rounded-circle">
+                                @break
+                        @endswitch
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -73,19 +83,30 @@
                         <li>
                             <div class="user-box">
                                 <div class="avatar-lg">
-                                    <img src="{{$avatar}}" alt="image profile" class="avatar-img rounded">
+                                @switch(Auth()->user()->MaLoaiNguoiDung)
+                                    @case(1)
+                                        <img src="/image/admin.jpg" alt="image profile" class="avatar-img rounded">
+                                        @break
+                                    @case(2)
+                                        <img src="/image/user-default.jpg" alt="image profile" class="avatar-img rounded">
+                                        @break
+                                    @case(3)
+                                        <img src="/image/user-default.jpg" alt="image profile" class="avatar-img rounded">
+                                        @break
+                                @endswitch
+                                    
                                 </div>
                                 <div class="u-text">
                                     <h4>
-                                        {{$userInfor['Ho'].' '.$userInfor['Ten']}}
+                                        {{Auth()->user()->Ho.' '.Auth()->user()->Ten}}
                                     </h4>
-                                    <p class="text-muted">hello@example.com</p><a href="profile.html" class="btn btn-xs btn-secondary btn-sm">Thông tin cá nhân</a>
+                                    <p class="text-muted">{{Auth()->user()->Email ?? ''}}</p><a href="{{route('profile')}}" class="btn btn-xs btn-secondary btn-sm">Thông tin cá nhân</a>
                                 </div>
                             </div>
                         </li>
                         <li>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{route('home')}}">Đăng xuất</a>
+                            <a class="dropdown-item" href="{{route('logout')}}">Đăng xuất</a>
                         </li>
                     </div>
                 </ul>
