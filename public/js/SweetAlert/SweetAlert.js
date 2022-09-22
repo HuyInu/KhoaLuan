@@ -32,3 +32,25 @@ function warningAlert($message)
         },
     });
 }
+
+
+function deleteAlert(itemID, itemType, callback){
+    swal({
+        title: 'Bạn có chắc xóa '+itemType+' mã "'+itemID+'" ?',
+        text: "Bạn sẽ không thể hoàn tác.",
+        icon: 'warning',
+        buttons:{
+            confirm: {
+                text : 'Xóa',
+                className : 'btn btn-success'
+            },
+            cancel: {
+                text : 'Quay lại',
+                visible: true,
+                className: 'btn btn-danger'
+            }
+        }
+    }).then((confirmed) => {
+        callback(confirmed);
+    });
+}

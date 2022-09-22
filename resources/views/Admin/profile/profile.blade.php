@@ -184,6 +184,7 @@
                             </button>
                         </a>
                     </div>
+                    @csrf
                 </form>
             </div>
         </div>

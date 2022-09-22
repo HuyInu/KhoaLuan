@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin\DuAnQuyHoach;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
+
 use App\Http\Service\DuAnQuyHoach\DuAnQuyHoachService;
 
 class DuAnQuyHoachController extends Controller
@@ -21,7 +24,6 @@ class DuAnQuyHoachController extends Controller
         $dataTienDoDuAn = $this->DuAnQuyHoachService->getTienDoDuAn_AscByName();
         $dataLoaiDuAn = $this->DuAnQuyHoachService->getLoaiDuAn_AscByName();
         $dataDuAnQuyHoach = $this->DuAnQuyHoachService->getAllDuAnQuyHoach();
-        //dd($dataDuAnQuyHoach);
 
         return view("Admin.DuAnQuyHoach.DuAnQuyHoach",[
             'dataLoaiQuyHoach'=> $dataLoaiQuyHoach,
@@ -29,5 +31,84 @@ class DuAnQuyHoachController extends Controller
             'dataLoaiDuAn' => $dataLoaiDuAn,
             'dataDuAnQuyHoach' => $dataDuAnQuyHoach
         ]);
+    }
+
+    public function edit(Request $req)
+    {
+        $data = (object)$this->DuAnQuyHoachService->unserialize_Ajax_Data($req->data);
+        try{
+            $validate_Result = $this->DuAnQuyHoachService->validate_Infor_Form($req->MaDuAn,$data);
+
+            if(is_array($validate_Result))
+            {
+                return response()->json([
+                    'error'=>false,
+                    'validateError'=>$validate_Result,
+                ]);
+            }
+            
+            $this->DuAnQuyHoachService->update_DuAnQuyHoach($req->MaDuAn,$data);
+
+            return response()->json([
+                'error'=>false,
+                'success'=>'Sửa thành công',
+            ]);
+        }catch(\Exceptions $err)
+        {
+            return response()->json([
+                'error'=>true,
+                'message'=>'Đã xảy ra lỗi.',
+            ]);
+        }
+    }
+
+    public function delete(Request $req)
+    {
+        try{
+            $this->DuAnQuyHoachService->delete_DuAnQuyHoach($req->MaDuAn);
+
+            return response()->json([
+                'error'=>false,
+                'success'=>'Xóa thành công',
+            ]);
+        }catch(\Exception $err)
+        {
+            return response()->json([
+                'error'=>true,
+                'message'=>'Đã xảy ra lỗi.',
+            ]);
+        }
+    }
+
+    public function insert(Request $req)
+    {
+        try{
+            $data = (object)$this->DuAnQuyHoachService->unserialize_Ajax_Data($req->data);
+            //dd($data);
+
+            $validator = $this->DuAnQuyHoachService->check_Add_Form_input($data);
+
+            if(is_array($validator))
+            {
+                return response()->json([
+                    'error'=>false,
+                    'validateError'=>$validator,
+                ]);
+            }
+
+            $this->DuAnQuyHoachService->insert_DuAnQuyHoach($data);
+
+            return response()->json([
+                'error'=>false,
+                'success'=>'Thêm thành công',
+            ]);
+
+        }catch(\Exception $err)
+        {
+            return response()->json([
+                'error'=>true,
+                'message'=>'Đã xảy ra lỗi.',
+            ]);
+        }
     }
 }

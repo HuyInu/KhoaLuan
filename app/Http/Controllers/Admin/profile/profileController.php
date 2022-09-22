@@ -40,11 +40,18 @@ class profileController extends Controller
         }
         
         $duLieuHuyen = $this->profileService->layDuLieuHuyen();
-        $XaById = $this->profileService->getXaById($userInfo['MaXa']);
-        $MaHuyen = $XaById[0]['MaHuyen'];
-        $duLieuMDXa = $this->profileService->getXaByMaHuyen($MaHuyen);
+        if($userInfo['MaXa'])
+        {
+            $XaById = $this->profileService->getXaById($userInfo['MaXa']);
+            $MaHuyen = $XaById[0]['MaHuyen'];
+            $duLieuMDXa = $this->profileService->getXaByMaHuyen($MaHuyen);
+        }
+        else
+        {
+            $MaHuyen = null;
+            $duLieuMDXa = null;
+        }
         $duLieuCoQuan = $this->profileService->getCoQuan();
-        
 
         return view('Admin.profile.profile',[
             'avatar'=>$avatarSrc,
@@ -59,7 +66,6 @@ class profileController extends Controller
     public function editProfile(Request $req)
     {
         $user = Auth::user();
-        
         $Validator = Validator::make($req->all(),[
             'Email'=>"unique:NguoiDung,Email,$user->id,id"
         ]);

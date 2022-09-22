@@ -127,7 +127,7 @@
 							<div class="row col-md-8 ml-auto mr-auto">
 								
 								<div class="col-sm-6 col-md-4">
-									<a href="" class="card-href">
+									<a href="{{route('ban-do-quy-hoach')}}" class="card-href">
 									<div class="card card-stats card-primary card-round card-custom">
 										<div class="card-body">
 											<p  class="space"></p>

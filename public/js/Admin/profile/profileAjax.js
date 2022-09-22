@@ -10,7 +10,7 @@ function editProfile()
     $.ajax({
         type: 'POST',
         datatype: 'JSON',
-        data:data,
+        data:{data},
         url: '/profile/edit',
         success: function (result) {
             

@@ -32,4 +32,83 @@ class DuAnQuyHoach extends Model
     {
         return $this::with(['LoaiQuyHoach'])->get();
     }
+
+    public function edit($MaDuAn,
+                        $TenDuAn,
+                        $TinhTrangPheDuyet,
+                        $NgayKyQuyetDinh,
+                        $SoQuyetDinhPheDuyet,
+                        $QuyMoDanSo,
+                        $TyLeBanVe,$DienTich,
+                        $ThoiGianXinPheDuyet,
+                        $ThoiGianQuyHoach,
+                        $ThoiGianLayYKien,
+                        $ThoiGianCongBo,
+                        $DonViQuanLy,
+                        $DonViCapNhat,
+                        $MaLoaiDuAn,
+                        $MaTienDoDuAn,
+                        $MaLoaiQuyHoach
+                        )
+    {
+        $this::where('MaDuAn','=',$MaDuAn)->update(['TenDuAn'=>$TenDuAn,
+                                                    'TinhTrangPheDuyet'=>$TinhTrangPheDuyet,
+                                                    'NgayKyQuyetDinh'=>$NgayKyQuyetDinh,
+                                                    'SoQuyetDinhPheDuyet'=>$SoQuyetDinhPheDuyet,
+                                                    'QuyMoDanSo'=>$QuyMoDanSo,
+                                                    'TyLeBanVe'=>$TyLeBanVe,
+                                                    'DienTich'=>$DienTich,
+                                                    'ThoiGianXinPheDuyet'=>$ThoiGianXinPheDuyet,
+                                                    'ThoiGianQuyHoach'=>$ThoiGianQuyHoach,
+                                                    'ThoiGianLayYKien'=>$ThoiGianLayYKien,
+                                                    'ThoiGianCongBo'=>$ThoiGianCongBo,
+                                                    'DonViQuanLy'=>$DonViQuanLy,
+                                                    'DonViCapNhat'=>$DonViCapNhat,
+                                                    'MaLoaiDuAn'=>$MaLoaiDuAn,
+                                                    'MaTienDoDuAn'=>$MaTienDoDuAn,
+                                                    'MaLoaiQuyHoach'=>$MaLoaiQuyHoach
+                                                ]);
+    }
+
+    public function xoa($MaDuAn){
+        $this::where('MaDuAn','=',$MaDuAn)->delete();
+    }
+
+    public function create($MaDuAn,
+                        $TenDuAn,
+                        $TinhTrangPheDuyet,
+                        $NgayKyQuyetDinh,
+                        $SoQuyetDinhPheDuyet,
+                        $QuyMoDanSo,
+                        $TyLeBanVe,$DienTich,
+                        $ThoiGianXinPheDuyet,
+                        $ThoiGianQuyHoach,
+                        $ThoiGianLayYKien,
+                        $ThoiGianCongBo,
+                        $DonViQuanLy,
+                        $DonViCapNhat,
+                        $MaLoaiDuAn,
+                        $MaTienDoDuAn,
+                        $MaLoaiQuyHoach)
+    {
+        $this::insert([
+                    'MaDuAn' => $MaDuAn,
+                    'TenDuAn'=>$TenDuAn,
+                    'TinhTrangPheDuyet'=>$TinhTrangPheDuyet,
+                    'NgayKyQuyetDinh'=>$NgayKyQuyetDinh,
+                    'SoQuyetDinhPheDuyet'=>$SoQuyetDinhPheDuyet,
+                    'QuyMoDanSo'=>$QuyMoDanSo,
+                    'TyLeBanVe'=>$TyLeBanVe,
+                    'DienTich'=>$DienTich,
+                    'ThoiGianXinPheDuyet'=>$ThoiGianXinPheDuyet,
+                    'ThoiGianQuyHoach'=>$ThoiGianQuyHoach,
+                    'ThoiGianLayYKien'=>$ThoiGianLayYKien,
+                    'ThoiGianCongBo'=>$ThoiGianCongBo,
+                    'DonViQuanLy'=>$DonViQuanLy,
+                    'DonViCapNhat'=>$DonViCapNhat,
+                    'MaLoaiDuAn'=>$MaLoaiDuAn,
+                    'MaTienDoDuAn'=>$MaTienDoDuAn,
+                    'MaLoaiQuyHoach'=>$MaLoaiQuyHoach
+                ]);
+    }
 }
