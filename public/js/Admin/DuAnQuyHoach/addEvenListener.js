@@ -4,7 +4,7 @@ $(document).on("click", '#edit', function(event) {
 });
 
 $(document).on("click", '#delete', function(event) { 
-
+    
     const MaDuAn = $(this).closest("tr").find(".MaDuAn").text()
     deleteAlert(MaDuAn, 'dự án', function (confirmed) {
         if (confirmed == true) {

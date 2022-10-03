@@ -67,7 +67,8 @@ class profileService{
                                             $req->MaCoQuan,
                                             $req->MaXa,
                                             $req->GioiTinh,
-                                            (string)$req->DiaChi);
+                                            (string)$req->DiaChi,
+                                            null);
             return true;
         }
         catch(\Exception $err)

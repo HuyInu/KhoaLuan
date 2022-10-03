@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Model\CoQuan;
 use App\Model\LoaiNguoiDung;
 use App\Model\DMXa;
+use App\Model\NhomQuyen;
 
 
 class NguoiDung extends Authenticatable
@@ -20,22 +21,84 @@ class NguoiDung extends Authenticatable
 
     public function CoQuan()
     {
-        return $this->belongTo(CoQuan::class,'MaCoQuan','MaCoQuan');
+        return $this->belongsTo(CoQuan::class,'MaCoQuan','MaCoQuan');
     }
 
     public function LoaiNguoiDung()
     {
-        return $this->belongTo(LoaiNguoiDung::class,'MaLoaiNguoiDung','MaLoai');
+        return $this->belongsTo(LoaiNguoiDung::class,'MaLoaiNguoiDung','MaLoai');
     }
 
     public function DMXa()
     {
-        return $this->belongTo(DMXa::class,'MaXa','MaXa');
+        return $this->belongsTo(DMXa::class,'MaXa','MaXa');
+    }
+
+    public function NhomQuyen()
+    {
+        return $this->belongsToMany(NhomQuyen::class,'id','id');
     }
     //----------//
-    public function updateNguoiDung($userId,$TenDangNhap, $Ho,$Ten,$Email,$DienThoai,$MaCoQuan,$MaXa,$GioiTinh,$DiaChi)
+    public function getAll()
     {
-        $user = $this::find(1);
+        return $this::with(['LoaiNguoiDung','CoQuan'])->get(['id','TenDangNhap','Ho','Ten','Email','GioiTinh','MaLoaiNguoiDung','MaCoQuan','DienThoai']);
+    }
+
+
+    public function getByID($id)
+    {
+        return $this::find($id);
+    }
+    public function getUserPassword($id)
+    {
+        $user = $this::find($id);
+        return $user->password;
+    }
+    public function them(
+                        $TenDangNhap = null,
+                        $Ho = null,
+                        $Ten = null,
+                        $Email = null,
+                        $DienThoai = null,
+                        $MaCoQuan = null,
+                        $MaXa = null,
+                        $GioiTinh = null,
+                        $DiaChi = null,
+                        $password = null,
+                        $MaLoaiNguoiDung = null
+                        )
+    {
+        $user = new $this;
+        $user->TenDangNhap = $TenDangNhap;
+        $user->Ho = $Ho;
+        $user->Ten = $Ten;
+        $user->Email = $Email;
+        $user->DienThoai = $DienThoai;
+        $user->MaCoQuan = $MaCoQuan;
+        $user->MaXa = $MaXa;
+        $user->GioiTinh = $GioiTinh;  
+        $user->DiaChi = $DiaChi;
+        $user->password = $password;
+        $user->MaLoaiNguoiDung = $MaLoaiNguoiDung;
+        $user->save();
+
+        return $user->id;
+    }
+
+    public function updateNguoiDung($userId,
+                                    $TenDangNhap,
+                                    $Ho,
+                                    $Ten,
+                                    $Email,
+                                    $DienThoai,
+                                    $MaCoQuan,
+                                    $MaXa,
+                                    $GioiTinh,
+                                    $DiaChi,
+                                    $MaLoaiNguoiDung,
+                                    $password=null)
+    {
+        $user = $this::find($userId);
 
         $user->TenDangNhap = $TenDangNhap;
         $user->Ho = $Ho;
@@ -46,6 +109,14 @@ class NguoiDung extends Authenticatable
         $user->MaXa = $MaXa;
         $user->GioiTinh = $GioiTinh;  
         $user->DiaChi = $DiaChi;
+
+        if($MaLoaiNguoiDung){
+            $user->MaLoaiNguoiDung = $MaLoaiNguoiDung;
+        }
+        if($password)
+        {
+            $user->password = $password;
+        }
         $user->save();
     }
 
@@ -54,6 +125,12 @@ class NguoiDung extends Authenticatable
         $this::where('id','=',$userId)->update([
             'password' =>Hash::make($newPassword)
         ]);
+    }
+
+    public function xoa($userId)
+    {
+        $user = $this::find($userId);
+        $user->delete();
     }
 
 }

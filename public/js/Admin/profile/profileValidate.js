@@ -47,7 +47,7 @@ $('#profile-form').validate({
         $(element).removeClass('is-invalid');
     },
     submitHandler: function (form) {
-        editProfile();
+       editProfile();
     }
 });
 

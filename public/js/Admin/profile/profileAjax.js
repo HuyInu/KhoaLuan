@@ -6,7 +6,7 @@ $.ajaxSetup({
 
 function editProfile()
 {
-    const data = $("#profile-form").serialize()
+    const data = $("#profile-form").serialize();
     $.ajax({
         type: 'POST',
         datatype: 'JSON',
@@ -34,12 +34,13 @@ function editProfile()
 
 function changePasswork()
 {
-    const data = $("#doiMatKhauForm").serialize()
+    const data = $("#doiMatKhauForm").serialize();
     $.ajax({
         type: 'POST',
         datatype: 'JSON',
         data:data,
         url: '/changePasswork',
+        processData: false,
         success: function (result) {
             if (result.error === false) 
             {

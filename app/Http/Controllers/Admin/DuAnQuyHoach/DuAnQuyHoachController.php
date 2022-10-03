@@ -29,7 +29,8 @@ class DuAnQuyHoachController extends Controller
             'dataLoaiQuyHoach'=> $dataLoaiQuyHoach,
             'dataTienDoDuAn'=>$dataTienDoDuAn,
             'dataLoaiDuAn' => $dataLoaiDuAn,
-            'dataDuAnQuyHoach' => $dataDuAnQuyHoach
+            'dataDuAnQuyHoach' => $dataDuAnQuyHoach,
+            'title'=> 'Dự án quy hoạch - HỆ THỐNG GIS QUẢN LÝ HẠ TẦNG KỸ THUẬT ĐÔ THỊ MỸ THO'
         ]);
     }
 

@@ -37,5 +37,12 @@
 <script src="/template/Atlantis/js/atlantis.min.js"></script>
 <script src="/js/SweetAlert/SweetAlert.js"></script>
 
+<!-- select bootrap -->
+<script src="/template/selectBootrap/dist/js/bootstrap-select.min.js"></script>
+
 <!-- validate -->
 <script src="/js/jquery.validate.min.js"></script>
+<script src="/js/main/modal.js"></script>
+
+<!-- fancytree -->
+<script src="/template/fancytree/dist/jquery.fancytree-all-deps.min.js"></script>

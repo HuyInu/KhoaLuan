@@ -1,7 +1,4 @@
 <?php
-
-
-
 Route::get('/', 'welcomeController@show')->name('home');
 
 Route::post('/login','loginController@login')->name('login');
@@ -18,9 +15,18 @@ Route::middleware('checklogin')->group(function(){
     });
 
     Route::group(['prefix'=>'user'],function(){
-        Route::get('/','Admin\user\userController@show');
+        Route::get('/','Admin\user\userController@show')->name('user');
+        Route::post('/getNguoiDung','Admin\user\userController@getNguoiDung')->name('getNguoiDung');
+        Route::post('/insert','Admin\user\userController@insert')->name('insertUser');
+        Route::post('/edit','Admin\user\userController@edit')->name('edittUser');
+        Route::post('/delete','Admin\user\userController@delete')->name('deletetUser');
+    });
+    
+    Route::group(['prefix'=>'phan_quyen'],function(){
+        Route::get('/','Admin\PhanQuyen\PhanQuyenController@show')->name('PhanQuyen');
     });
 
+    
 
     Route::group(['prefix'=>'profile'],function(){
         Route::get('/','Admin\profile\profileController@show')->name('profile');
@@ -29,6 +35,9 @@ Route::middleware('checklogin')->group(function(){
     });
 });
 
-Route::get('/ban-do-tra-cuu-thong-tin-quy-hoach','BanDoQuyHoach\BanDoQuyHoachController@show')->name('ban-do-quy-hoach');
+Route::group(['prefix'=>'ban-do-tra-cuu-thong-tin-quy-hoach'],function(){
+    Route::get('/','BanDoQuyHoach\BanDoQuyHoachController@show')->name('ban-do-quy-hoach');
+});
 
 Route::post('/changePasswork','Admin\profile\profileController@changePasswork')->name('changePasswork');
+

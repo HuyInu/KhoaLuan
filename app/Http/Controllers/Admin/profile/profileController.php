@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Helper;
 
 use App\Http\Service\profile\profileService;
 use App\Http\Service\xa\xaService;
@@ -43,6 +44,7 @@ class profileController extends Controller
         if($userInfo['MaXa'])
         {
             $XaById = $this->profileService->getXaById($userInfo['MaXa']);
+            
             $MaHuyen = $XaById[0]['MaHuyen'];
             $duLieuMDXa = $this->profileService->getXaByMaHuyen($MaHuyen);
         }
@@ -60,19 +62,21 @@ class profileController extends Controller
             'duLieuXa'=>$duLieuMDXa,
             'duLieuCoQuan' =>  $duLieuCoQuan,
             'MaHuyen' =>$MaHuyen,
+            'title'=>"Thông tin cá nhân | HỆ THỐNG GIS QUẢN LÝ HẠ TẦNG KỸ THUẬT ĐÔ THỊ MỸ THO"
         ]);
     }
     
     public function editProfile(Request $req)
     {
         $user = Auth::user();
-        $Validator = Validator::make($req->all(),[
+        $data = (object)Helper::unserialize_Ajax_Data($req->data);
+        $Validator = Validator::make((array)$data,[
             'Email'=>"unique:NguoiDung,Email,$user->id,id"
         ]);
-        
+
         if($Validator->passes())
         {
-            $result = $this->profileService->updateProfile($user->id,$req);
+            $result = $this->profileService->updateProfile($user->id,$data);
             if($result === true)
             {
                 return response()->json([
@@ -119,8 +123,8 @@ class profileController extends Controller
     public function changePasswork(Request $req)
     {
         try{
-            
-            $checkOldPassword = $this->profileService->checkOldPassword($req);
+            $data = (object)$req->all();
+            $checkOldPassword = $this->profileService->checkOldPassword($data);
             if(!$checkOldPassword)
             {
                 return response()->json([
@@ -129,7 +133,7 @@ class profileController extends Controller
                 ]);
             }
 
-            $this->profileService->changePassword($req,Auth::user()->id);
+            $this->profileService->changePassword($data,Auth::user()->id);
 
             return response()->json([
                 'error'=>false,

@@ -21,8 +21,14 @@
 <!-- CSS Files -->
 <link rel="stylesheet" href="/template/Atlantis/css/bootstrap.min.css">
 <link rel="stylesheet" href="/template/Atlantis/css/atlantis.min.css">
-
 <link rel="stylesheet" href="/template/Atlantis/css/atlantis.min.css">
+
+<!-- select bootrap -->
+<link rel="stylesheet" href="/template/selectBootrap/dist/css/bootstrap-select.min.css">
+
 
 <!-- CSS -->
 <link rel="stylesheet" href="/css/Admin/main.css">
+
+<!-- fancytree -->
+<link href="/template/fancytree/dist/skin-win8/ui.fancytree.min.css" rel="stylesheet">

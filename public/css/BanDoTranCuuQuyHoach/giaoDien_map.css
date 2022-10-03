@@ -1,8 +1,37 @@
 html,
-      body,
-      #viewDiv {
-        padding: 0;
-        margin: 0;
-        height: 100%;
-        width: 100%;
-      }
+body,
+#viewDiv {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+#menu{
+  box-shadow: none;
+  margin-right: 10px;
+  
+}
+.menu-item{
+  margin-bottom: 8px;
+}
+
+.item-button{
+  background: rgb(0 112 255 / 67%) !important;
+}
+
+#content{
+  background: white;
+  margin-right: 10px;
+}
+.hide{
+  display: none;
+}
+
+.container{
+  width: 333px;
+}
+
+#legend_Container{
+   max-height: 675px;
+   overflow-y: scroll;
+}

@@ -33,6 +33,11 @@ class DuAnQuyHoach extends Model
         return $this::with(['LoaiQuyHoach'])->get();
     }
 
+    public function getID_Name()
+    {
+        return $this::all(['MaDuAn','TenDuAn']);
+    }
+
     public function edit($MaDuAn,
                         $TenDuAn,
                         $TinhTrangPheDuyet,

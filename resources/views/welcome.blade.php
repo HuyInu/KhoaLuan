@@ -10,9 +10,6 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
-    
-        
-
 		<!-- Fonts and icons -->
 		<script src="/template/Atlantis/js/plugin/webfont/webfont.min.js"></script>
 		<script>
@@ -176,11 +173,9 @@
 					Action
 				</button>
 				<div class="dropdown-menu">
-					<a class="dropdown-item" href="#">Action</a>
-					<a class="dropdown-item" href="#">Another action</a>
-					<a class="dropdown-item" href="#">Something else here</a>
+					<a class="dropdown-item" href="{{route('PhanQuyen')}}">Phân quyền</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">Separated link</a>
+					<a class="dropdown-item" href="{{route('user')}}">Quản lý người dùng</a>
 				</div>
 			</div>
 		</div>

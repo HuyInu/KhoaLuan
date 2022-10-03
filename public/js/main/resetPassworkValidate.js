@@ -10,7 +10,9 @@ $('#doiMatKhauForm').validate({
             checklower: true,
             checkupper: true,
             checkdigit: true,
-            specialKey:true,
+            unicode:true,
+            checkSpace:true,
+            specialKey_password:true
         },
         passwordNew_confirm:{
             equalTo : "#passwordNew"
@@ -23,10 +25,13 @@ $('#doiMatKhauForm').validate({
         passwordNew:{
             minlength: "Mật khẩu tối thiểu 8 ký tự.",
             maxlength: "Mật khẩu tối đa 15 ký tự.",
-            required:"Vui lòng nhập mật khẩu mới.",
+            required:"Vui lòng nhập mật khẩu.",
             checklower: "Mật khẩu phải có ít nhất 1 ký tự thường",
             checkupper: "Mật khẩu phải có ít nhất 1 ký tự in",
-            checkdigit: "Mật khẩu phải có ít nhất 1 số"
+            checkdigit: "Mật khẩu phải có ít nhất 1 số",
+            unicode:"Mật khẩu đăng nhập không được có dấu",
+            checkSpace:"Mật khẩu không được có khoảng trắng",
+            specialKey_password:"Mật khẩu phải có ít nhất 1 ký tự đặt biệt"
         },
         passwordNew_confirm:{
             equalTo : "Mật khẩu không trùng khớp."
@@ -48,9 +53,18 @@ $('#doiMatKhauForm').validate({
     }
 });
 
-jQuery.validator.addMethod("specialKey", function(value, element) {
-    return this.optional(element) || /^\w+$/i.test(value);
-}, "Mật khẩu không được có dấu.");
+jQuery.validator.addMethod("specialKey_password", function(value, element) {
+    return this.optional(element) || /[!@#$%^&*]/i.test(value);
+});
+
+$.validator.addMethod("unicode", function(value,element) {
+    return this.optional(element) || /^[\u0000-\u007f]*$/.test(value); 
+});
+
+$.validator.addMethod("checkSpace", function(value, element) {
+    var a= this.optional(element) || /[^!\S]/.test(value);;
+    return !a;
+});
 
 $.validator.addMethod("checklower", function(value) {
     return /[a-z]/.test(value);

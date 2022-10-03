@@ -100,7 +100,7 @@
                                     <h4>
                                         {{Auth()->user()->Ho.' '.Auth()->user()->Ten}}
                                     </h4>
-                                    <p class="text-muted">{{Auth()->user()->Email ?? ''}}</p><a href="{{route('profile')}}" class="btn btn-xs btn-secondary btn-sm">Thông tin cá nhân</a>
+                                    <p class="text-muted">{{Auth()->user()->Email ? Auth()->user()->Email : 'Chưa có Email'}}</p><a href="{{route('profile')}}" class="btn btn-xs btn-secondary btn-sm">Thông tin cá nhân</a>
                                 </div>
                             </div>
                         </li>

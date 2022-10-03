@@ -147,9 +147,11 @@
                                 <label for="xa">Phường/ xã:</label>
                                 <select class="form-control form-control" id="MaXa" name="MaXa">
                                     <option value="0">Chọn phường/ xã</option>
-                                    @foreach($duLieuXa as $data)
-                                    <option value="{{$data['MaXa']}}">{{$data['TenXa']}}</option>
-                                    @endforeach
+                                    @if($duLieuXa)
+                                        @foreach($duLieuXa as $data)
+                                        <option value="{{$data['MaXa']}}">{{$data['TenXa']}}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>

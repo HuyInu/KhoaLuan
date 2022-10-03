@@ -14,4 +14,9 @@ class LoaiNguoiDung extends Model
         return $this->hasMany(NguoiDung::class,'MaLoaiNguoiDung','MaLoai');
     }
     //----------//
+
+    public function getAll()
+    {
+        return $this::all();
+    }
 }

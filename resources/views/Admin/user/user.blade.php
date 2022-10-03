@@ -19,7 +19,7 @@
         <div class="card-header">
             <div class="d-flex align-items-center">
                 <h4 class="card-title">Quản lý tài khoản</h4>
-                <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#addRowModal">
+                <button class="btn btn-primary btn-round ml-auto" data-toggle="modal" data-target="#Add_Modal">
                     <i class="fa fa-plus"></i>
                     Thêm
                 </button>
@@ -27,76 +27,26 @@
         </div>
         <div class="card-body">
             <!-- Modal -->
-            <div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header no-bd">
-                            <h5 class="modal-title">
-                                <span class="fw-mediumbold">
-                                Thêm mới</span> 
-                                <span class="fw-light">
-                                    dự án quy hoạch
-                                </span>
-                            </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p class="small">Điền đủ thông tin để thêm dự án quy hoạch mới</p>
-                            <form>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="form-group form-group-default">
-                                            <label>Name</label>
-                                            <input id="addName" type="text" class="form-control" placeholder="fill name">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 pr-0">
-                                        <div class="form-group form-group-default">
-                                            <label>Position</label>
-                                            <input id="addPosition" type="text" class="form-control" placeholder="fill position">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group form-group-default">
-                                            <label>Office</label>
-                                            <input id="addOffice" type="text" class="form-control" placeholder="fill office">
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer no-bd">
-                            <button type="button" id="addRowButton" class="btn btn-primary">Add</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            @include('Admin.user.InsertModal')
+            @include('Admin.user.EditModal')
+            
             <div class="table-responsive">
-                <table id="add-row" class="display table table-striped table-hover" >
+                <table id="user_table" class="display table table-striped table-hover" >
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Họ</th>
-                            <th>Tên</th>
                             <th>Tên đăng nhập</th>
+                            <th>Họ Tên</th>
                             <th>Email</th>
                             <th>Giới tính</th>
                             <th>Loại người dùng</th>
                             <th>Cơ quan</th>
-                            <th>Địa chỉ</th>
                             <th>Điện thoại</th>
                             <th style="width: 10%">Thao tác</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>ID</th>
-                            <th>Họ</th>
-                            <th>Tên</th>
+                            <th>Họ Tên</th>
                             <th>Tên đăng nhập</th>
                             <th>Email</th>
                             <th>Giới tính</th>
@@ -104,38 +54,30 @@
                             <th>Cơ quan</th>
                             <th>Địa chỉ</th>
                             <th>Điện thoại</th>
-                            <th>Thao tác</th>
                         </tr>
                     </tfoot>
                     <tbody>
+                        @foreach($NguoiDungList as $item)
                         <tr>
-                            <th>STT</th>
-                            <th>Mã dự án</th>
-                            <th>Tên dự án</th>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>Edinburgh</td>
-                            <td>Edinburgh</td>
-                            <td>Edinburgh</td>
-                            <td>Edinburgh</td>
+                            <td>{{$item->TenDangNhap ? $item->TenDangNhap : null}}</td>
+                            <td>{{$item->Ho && $item->Ten ? $item->Ho .' '.$item->Ten : null}}</td>
+                            <td>{{$item->Email ? $item->Email : null}}</td>
+                            <td>{{$item->GioiTinh ? $item->GioiTinh : null}}</td>
+                            <td>{{$item->LoaiNguoiDung ? $item->LoaiNguoiDung->TenLoai : null}}</td>
+                            <td>{{$item->CoQuan ? $item->CoQuan->TenCoQuan : null}}</td>
+                            <td>{{$item->DienThoai ? $item->DienThoai : null}}</td>
                             <td>
                                 <div class="form-button-action">
-                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
+                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Sửa" id="edit" MaNguoiDung="{{$item->id}}">
                                         <i class="fa fa-edit"></i>
                                     </button>
-                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
+                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Xóa" id="delete" MaNguoiDung="{{$item->id}}">
                                         <i class="fa fa-times"></i>
                                     </button>
-                                    <!-- Rounded switch -->
-                                    <label class="switch">
-                                    <input type="checkbox">
-                                    <span class="slider round"></span>
-                                    </label>
                                 </div>
                             </td>
                         </tr>
-                        
+                        @endforeach
                     </tbody>
                 </table>
             </div>
