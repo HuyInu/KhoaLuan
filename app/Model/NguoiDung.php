@@ -36,14 +36,18 @@ class NguoiDung extends Authenticatable
 
     public function NhomQuyen()
     {
-        return $this->belongsToMany(NhomQuyen::class,'id','id');
+        return $this->belongsToMany(NhomQuyen::class,'NguoiDung_NhomQuyen','id','MaNhomQuyen');
     }
     //----------//
     public function getAll()
     {
-        return $this::with(['LoaiNguoiDung','CoQuan'])->get(['id','TenDangNhap','Ho','Ten','Email','GioiTinh','MaLoaiNguoiDung','MaCoQuan','DienThoai']);
+        return $this::with(['LoaiNguoiDung','CoQuan'])->orderByRaw('-MaCoQuan DESC')->get(['id','TenDangNhap','Ho','Ten','Email','GioiTinh','MaLoaiNguoiDung','MaCoQuan','DienThoai']);
     }
 
+    public function getNguoiDung_CoQuan()
+    {
+
+    }
 
     public function getByID($id)
     {
@@ -133,4 +137,8 @@ class NguoiDung extends Authenticatable
         $user->delete();
     }
 
+    public function get_NhomQuyen_NguoiDung($MaNguoiDung)
+    {
+        return $this::with('NhomQuyen','NhomQuyen.Quyen')->where('id','=',$MaNguoiDung)->get(['id','TenDangNhap']);
+    }
 }

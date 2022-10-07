@@ -152,3 +152,29 @@ function User_destroy(userID, row)
         }
     })
 }
+
+function get_NhomQuyen_NguoiDung(userID)
+{
+    var MaNguoiDung =userID;
+    $.ajax({
+        type: 'POST',
+        datatype: 'JSON',
+        data:{MaNguoiDung},
+        url: '/user/get_NhomQuyen_NguoiDung',
+        success: function (result) {
+            
+            if (result.error === false) 
+            {
+                if(result.NhomQuyen_NguoiDung)
+                {
+                    const TenDangNhap = result.NhomQuyen_NguoiDung[0].TenDangNhap;
+                    GiaoDien_load_NhomQuyen_Vao_Modal(result.NhomQuyen_NguoiDung[0].nhom_quyen, TenDangNhap)
+                    return 0;
+                }
+            } 
+            else {
+                errorAlert(result.message)
+            }
+        }
+    })
+}

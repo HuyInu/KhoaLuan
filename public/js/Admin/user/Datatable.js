@@ -16,54 +16,22 @@ $(document).ready(function() {
         "loadingRecords": "Đang tải...",
         "zeroRecords": "Không tìm thấy kết quả.",
         },
-        initComplete: function () {
-            this.api().columns().every( function () {
-                var column = this;
-                var select = $('<select class="form-control"><option value=""></option></select>')
-                .appendTo( $(column.footer()).empty() )
-                .on( 'change', function () {
-                    var val = $.fn.dataTable.util.escapeRegex(
-                        $(this).val()
-                        );
-
-                    column
-                    .search( val ? '^'+val+'$' : '', true, false )
-                    .draw();
-                } );
-
-                column.data().unique().sort().each( function ( d, j ) {
-                    select.append( '<option value="'+d+'">'+d+'</option>' )
-                } );
-            } );
-        }
     });
-
-    /*$('#user_table').DataTable( {
-        "pageLength": 5,
-        initComplete: function () {
-            this.api().columns().every( function () {
-                var column = this;
-                var select = $('<select class="form-control"><option value=""></option></select>')
-                .appendTo( $(column.footer()).empty() )
-                .on( 'change', function () {
-                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
-
-                    column.search( val ? '^'+val+'$' : '', true, false ).draw();
-                } );
-
-                column.data().unique().sort().each( function ( d, j ) {
-                    select.append( '<option value="'+d+'">'+d+'</option>' )
-                } );
-            } );
-        }
-    });*/
-
-    
 });
+
+function getRowID(thisElement)
+{
+    const table = $('#user_table').DataTable();
+    const rowIndex =table.row( $(thisElement).parents('tr')).index();
+    return rowIndex;
+}
 
 function Datatable_addRow(MaNguoiDung)
 {
-    var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Sửa" id="edit" MaNguoiDung="'+MaNguoiDung+'"> <i class="fa fa-edit"></i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Xóa" id="delete" MaNguoiDung="'+MaNguoiDung+'"> <i class="fa fa-times"></i> </button> </div> </td>';
+    var action = '<td> <div class="form-button-action">'+
+    '<button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary" data-original-title="Sửa" id="edit" MaNguoiDung="'+MaNguoiDung+'"> <i class="fa fa-edit"></i></button>'+
+    '<button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-info btn-lg" data-original-title="Nhóm quyền" id="ShowNhomQuyen" MaNguoiDung="'+MaNguoiDung+'"><i class="fas fa-user-circle"></i></button>'+
+    '<button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Xóa" id="delete" MaNguoiDung="'+MaNguoiDung+'"> <i class="fa fa-times"></i> </button> </div> </td>';
     const GioiTinh = $("#GioiTinh").val() != '' ? $("#GioiTinh").find(":selected").text() : null;
     const CoQuan = $("#CoQuan").val() != '' ? $("#CoQuan").find(":selected").text() : null;
     $('#user_table').dataTable().fnAddData([
@@ -78,16 +46,13 @@ function Datatable_addRow(MaNguoiDung)
         ]);
 }
 
-function getRowID(thisElement)
-{
-    const table = $('#user_table').DataTable();
-    const rowIndex =table.row( $(thisElement).parents('tr')).index();
-    return rowIndex;
-}
 
 function DataTable_editRow(rowID,MaNguoiDung)
 {
-    var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Sửa" id="edit" MaNguoiDung="'+MaNguoiDung+'"> <i class="fa fa-edit"></i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Xóa" id="delete" MaNguoiDung="'+MaNguoiDung+'"> <i class="fa fa-times"></i> </button> </div> </td>';
+    var action = '<td> <div class="form-button-action">'+
+    '<button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary" data-original-title="Sửa" id="edit" MaNguoiDung="'+MaNguoiDung+'"> <i class="fa fa-edit"></i></button>'+
+    '<button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-info btn-lg" data-original-title="Nhóm quyền" id="ShowNhomQuyen" MaNguoiDung="'+MaNguoiDung+'"><i class="fas fa-user-circle"></i></button>'+
+    '<button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Xóa" id="delete" MaNguoiDung="'+MaNguoiDung+'"> <i class="fa fa-times"></i> </button> </div> </td>';
     const GioiTinh = $("#Edit_GioiTinh").val() != '' ? $("#Edit_GioiTinh").find(":selected").text() : null;
     const CoQuan = $("#Edit_CoQuan").val() != '' ? $("#Edit_CoQuan").find(":selected").text() : null;
 
@@ -111,3 +76,4 @@ function DataTable_deleteRow(rowID)
 
     table.row(rowID).remove().draw();
 }
+

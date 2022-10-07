@@ -7,3 +7,12 @@
     border-radius: 50%;
     border: 2px solid #fff;
 }
+
+.modal_main_head{
+    color: white; 
+    background-color: #1269db;
+}
+
+.modal_main_CloseBtn{
+    color: white;
+}

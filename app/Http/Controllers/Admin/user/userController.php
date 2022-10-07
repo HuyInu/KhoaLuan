@@ -141,4 +141,23 @@ class userController extends Controller
             ]);
         }
     }
+
+    public function get_NhomQuyen_NguoiDung(Request $req)
+    {
+        try{
+            $NhomQuyen_NguoiDung = $this->userService->get_NhomQUyen_NguoiDung($req);
+            
+            return response()->json([
+                'error'=>false,
+                'NhomQuyen_NguoiDung'=>$NhomQuyen_NguoiDung,
+            ]);
+        }
+        catch(\Exception $err)
+        {
+            return response()->json([
+                'error'=>true,
+                'message'=>"Đã xảy ra lỗi",
+            ]);
+        }
+    }
 }

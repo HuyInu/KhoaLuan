@@ -57,3 +57,20 @@ function GiaoDien_DataToform(Ho,
     $('#MaNguoiDung').html(MaNguoiDung);
 
 }
+
+function GiaoDien_load_NhomQuyen_Vao_Modal(NhomQuyen_NguoiDung, TenDangNhap)
+{
+    $('#NhomQuyen_NguoiDung_bodyTable').html();
+    $('#TenDangNhap_table_head').html(TenDangNhap)
+    $.each(NhomQuyen_NguoiDung, function( index, NhomQuyen ) {
+        var Quyen=NhomQuyen.quyen;
+        $.each(Quyen, function( index, Quyen ) {
+            $('#NhomQuyen_NguoiDung_bodyTable').append(
+                                                        "<tr>"+
+                                                            "<td>"+NhomQuyen.TenNhomQuyen+"</td>"+
+                                                            "<td>"+Quyen.TenQuyen+"</td>"+
+                                                        "</tr>"
+                                                        );
+        });  
+    });
+}

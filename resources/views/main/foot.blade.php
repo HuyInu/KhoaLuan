@@ -24,6 +24,7 @@
 
 <!-- Datatables -->
 <script src="/template/Atlantis/js/plugin/datatables/datatables.min.js"></script>
+<script src="/js/main/DataTable_Main.js"></script>
 
 <!-- Bootstrap Notify -->
 <script src="/template/Atlantis/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>

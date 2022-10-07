@@ -28,7 +28,7 @@
 
 
 <!-- CSS -->
-<link rel="stylesheet" href="/css/Admin/main.css">
+<link rel="stylesheet" href="/css/main.css">
 
 <!-- fancytree -->
 <link href="/template/fancytree/dist/skin-win8/ui.fancytree.min.css" rel="stylesheet">

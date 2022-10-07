@@ -29,7 +29,29 @@
             <!-- Modal -->
             @include('Admin.user.InsertModal')
             @include('Admin.user.EditModal')
-            
+            @include('Admin.user.DSNhomQuyenModal')
+            <div class="row" style="padding-left: 15px;">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Loại người dùng:</label>
+                    <select class="form-control" id="LoaiNguoiDung_Sort">
+                        <option selected hidden disabled>Chọn loại người dùng</option>
+                        <option value>Tất cả</option>
+                        @foreach($LoaiNguoiDung as $item)
+                        <option value="{{$item->TenLoai}}">{{$item->TenLoai}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Cơ quan:</label>
+                    <select class="form-control" id="CoQuan_Sort">
+                        <option selected hidden disabled>Chọn cơ quan</option>
+                        <option value>Tất cả</option>
+                        @foreach($CoQuan as $item)
+                        <option value="{{$item->TenCoQuan}}">{{$item->TenCoQuan}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
             <div class="table-responsive">
                 <table id="user_table" class="display table table-striped table-hover" >
                     <thead>
@@ -45,16 +67,7 @@
                         </tr>
                     </thead>
                     <tfoot>
-                        <tr>
-                            <th>Họ Tên</th>
-                            <th>Tên đăng nhập</th>
-                            <th>Email</th>
-                            <th>Giới tính</th>
-                            <th>Loại người dùng</th>
-                            <th>Cơ quan</th>
-                            <th>Địa chỉ</th>
-                            <th>Điện thoại</th>
-                        </tr>
+                        
                     </tfoot>
                     <tbody>
                         @foreach($NguoiDungList as $item)
@@ -68,10 +81,13 @@
                             <td>{{$item->DienThoai ? $item->DienThoai : null}}</td>
                             <td>
                                 <div class="form-button-action">
-                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Sửa" id="edit" MaNguoiDung="{{$item->id}}">
+                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary " data-original-title="Sửa" id="edit" MaNguoiDung="{{$item->id}}">
                                         <i class="fa fa-edit"></i>
                                     </button>
-                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Xóa" id="delete" MaNguoiDung="{{$item->id}}">
+                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-info btn-lg" data-original-title="Nhóm quyền" id="ShowNhomQuyen" MaNguoiDung="{{$item->id}}">
+                                        <i class="fas fa-user-circle"></i>
+                                    </button>
+                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger " data-original-title="Xóa" id="delete" MaNguoiDung="{{$item->id}}">
                                         <i class="fa fa-times"></i>
                                     </button>
                                 </div>

@@ -1,12 +1,12 @@
 <div class="modal fade" id="Edit_Modal" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
     <div class="modal-dialog" role="document" style="max-width: 1000px;">
         <div class="modal-content">
-            <div class="modal-header no-bd">
+            <div class="modal-header no-bd modal_main_head">
                 <h5 class="modal-title">
                     <h2 class="fw-mediumbold">Sửa người dùng mã: &nbsp</h2> <h2 id="MaNguoiDung" class="fw-mediumbold"></h2>
                     <input type="hidden" id="rowID">
                 </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close modal_main_CloseBtn" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>

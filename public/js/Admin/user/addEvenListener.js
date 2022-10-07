@@ -21,6 +21,21 @@ $(document).on("click", '#delete', function(event) {
     });
 });
 
+$(document).on("click", '#ShowNhomQuyen', function(event) { 
+    const userID = $(this).attr('MaNguoiDung');
+    get_NhomQuyen_NguoiDung(userID);
+    openModal('#NhomQuyenList_Modal');
+});
+
 $('#togglePassword').on('change',function(){
     GioaDien_togglePassword(this);
 });
+
+
+$('#LoaiNguoiDung_Sort').on('change',function(){
+    DataTable_Main_sort('#user_table',this,4);
+})
+
+$('#CoQuan_Sort').on('change',function(){
+    DataTable_Main_sort('#user_table',this,5);
+})
