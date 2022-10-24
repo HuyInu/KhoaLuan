@@ -116,7 +116,7 @@
                             <div class="form-group">
                                 <div id="treeData_NguoiDung">
                                     <ul id="treeData" style="display: none;">
-                                        <li id="" class="folder">Phòng quản lý đô thị TP Mỹ Tho
+                                        <li id="0" class="folder">Phòng quản lý đô thị TP Mỹ Tho
                                         <ul role="group">
                                             @foreach($NguoiDung_list as $item)
                                             <li id="{{$item->id }}">{{$item->Ho}}

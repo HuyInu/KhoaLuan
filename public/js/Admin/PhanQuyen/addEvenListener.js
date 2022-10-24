@@ -95,4 +95,7 @@ $('#save_NhomQuyen_NguoiDung').on('click',function(){
     const MaNhomQuyen = $('#select-NhomQuyen').val();
 
     them_NguoiDung_Vao_NhomQuyen(MaNhomQuyen, NodeIDArray);
+
+    get_Quyen_NhomQuyen_NguoiDung(MaNhomQuyen);
+
 })

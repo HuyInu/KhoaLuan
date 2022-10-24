@@ -22,10 +22,7 @@
                             </tr>
                         </thead>
                         <tbody id="NhomQuyen_NguoiDung_bodyTable">
-                            <tr>
-                                <td>1</td>
-                                <td>Mark</td>
-                            </tr>
+
                         </tbody>
                     </table>
                 </div>

@@ -84,13 +84,7 @@ class profileService{
 
     public function layDuLieuXaTuHuyen($req)
     {
-        try
-        {
-            return $data = DMXa::where('MaHuyen','=',$req->MaHuyen)->get(['MaXa','TenXa']);
-        }catch(\Exception $err)
-        {
-            return false;
-        }      
+        return $data = $this->DMXa->getXaByMaHuyen($req->MaHuyen);   
     }
 
     function getXaById($MaXa)

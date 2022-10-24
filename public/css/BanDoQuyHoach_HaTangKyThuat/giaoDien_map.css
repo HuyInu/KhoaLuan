@@ -20,8 +20,9 @@ body,
 }
 
 #content{
-  background: white;
+  background: #ffffff;
   margin-right: 10px;
+  padding-top: 13px;
 }
 .hide{
   display: none;
@@ -34,4 +35,9 @@ body,
 #legend_Container{
    max-height: 675px;
    overflow-y: scroll;
+}
+
+/*popup*/
+.headPopup{
+  font-weight:bold ;
 }

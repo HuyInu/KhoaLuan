@@ -138,7 +138,7 @@
 								</div>
 								
 								<div class="col-sm-6 col-md-4">
-									<a href="" class="card-href">
+									<a href="{{route('ban-do-ha-tang-ky-thuat')}}" class="card-href">
 									<div class="card card-stats card-info card-round card-custom">
 										<div class="card-body">
 											<p  class="space"> </p>
@@ -150,6 +150,7 @@
 									</div>
 									</a>
 								</div>
+								@if(auth()->check())
 								<div class="col-sm-6 col-md-4">
 									<a href="{{route('duAnQuyHoach')}}" class="card-href">
 									<div class="card card-stats card-success card-round card-custom">
@@ -163,12 +164,15 @@
 									</div>
 									</a>
 								</div>
+								@endif
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="btn-group" id="setting">
+				@if(auth()->check())
+				<button class="btn btn-info">Đăng nhập</button>
 				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Action
 				</button>

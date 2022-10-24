@@ -5,6 +5,7 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use App\Model\NguoiDung;
 use App\Model\DMHuyen;
+use App\Model\ThuaDat;
 
 class DMXa extends Model
 {
@@ -17,8 +18,13 @@ class DMXa extends Model
 
    public function DMHuyen()
     {
-        return $this->belongTo(DMHuyen::class,'MaHuyen','MaHuyen');
+        return $this->belongsTo(DMHuyen::class,'MaHuyen','MaHuyen');
     }
+
+   public function ThuaDat()
+   {
+      return $this->hasMany(ThuaDat::class,'MaXa','MaXa');
+   }
    //----------//
 
    public function getXaById($MaXa)

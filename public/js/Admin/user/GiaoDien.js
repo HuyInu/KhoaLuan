@@ -60,7 +60,7 @@ function GiaoDien_DataToform(Ho,
 
 function GiaoDien_load_NhomQuyen_Vao_Modal(NhomQuyen_NguoiDung, TenDangNhap)
 {
-    $('#NhomQuyen_NguoiDung_bodyTable').html();
+    $('#NhomQuyen_NguoiDung_bodyTable').html('');
     $('#TenDangNhap_table_head').html(TenDangNhap)
     $.each(NhomQuyen_NguoiDung, function( index, NhomQuyen ) {
         var Quyen=NhomQuyen.quyen;

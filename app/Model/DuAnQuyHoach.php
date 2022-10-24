@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use App\Model\LoaiDuAn;
 use App\Model\TienDoDuAn;
 use App\Model\LoaiQuyHoach;
+use App\Model\DuongDayDien;
+use App\Model\DuongOngCapNuoc;
+use App\Model\TramBienAp;
+use App\Model\NhaMayNuoc;
+
 
 class DuAnQuyHoach extends Model
 {
@@ -25,6 +30,26 @@ class DuAnQuyHoach extends Model
     public function LoaiQuyHoach()
     {
         return $this->belongsTo(LoaiQuyHoach::class,'MaLoaiQuyHoach','MaLoaiQuyHoach');
+    }
+
+    public function DuongDayDien()
+    {
+        return $this->hasMany(DuongDayDien::class,'MaDuAnQuyHoach','MaDuAn');
+    }
+
+    public function DuongOngCapNuoc()
+    {
+        return $this->hasMany(DuongOngCapNuoc::class,'LoaiDuAnQuyHoach','MaDuAn');
+    }
+
+    public function TramBienAp()
+    {
+        return $this->hasMany(TramBienAp::class,'MaDuAnQuyHoach','MaDuAn');
+    }
+
+    public function NhaMayNuoc()
+    {
+        return $this->hasMany(NhaMayNuoc::class,'LoaiDuAnQuyHoach','MaDuAn');
     }
     //-------
 

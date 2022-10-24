@@ -104,18 +104,19 @@ class profileController extends Controller
 
     function layDuLieuXaTuHuyen(Request $req)
     {
-        $duLieuDMXa = $this->profileService->layDuLieuXaTuHuyen($req);
-        if($duLieuDMXa !== false)
-        {
+        try{
+            $duLieuDMXa = $this->profileService->layDuLieuXaTuHuyen($req);
+
             return response()->json([
                 'error'=>false,
                 'duLieuDMXa'=>$duLieuDMXa,
             ]);
         }
-        else
+        catch(\Exception $err)
         {
             return response()->json([
                 'error'=>true,
+                'message'=>'Đã xảy ra lỗi'
             ]);
         }
     }

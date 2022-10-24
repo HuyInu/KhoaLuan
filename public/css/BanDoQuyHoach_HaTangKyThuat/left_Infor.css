@@ -1,0 +1,122 @@
+#leftInfo {
+    /* width: 530px; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 0;
+    z-index: 3;
+    background: #fff;
+    transition: 0.3s;
+    overflow: hidden;
+  }
+  
+  .bg-grey {
+    background: rgba(4, 126, 226, 0.788) !important;
+  }
+  
+  .head-container {
+    font-size: 25px;
+    padding: 1px;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 0 2px 0 #535252;
+    position: relative;
+  }
+  
+  .close-left-info {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    color: #f2f2f2;
+  }
+  
+  #leftInfo .body-container {
+    overflow: auto;
+    position: relative;
+    height: 95%;
+  }
+  
+  .body-container {
+    padding: 15px 15px;
+    font-size: 16px;
+  }
+  
+  .general-information {
+    margin-bottom: 15px;
+  }
+  
+  .list-function {
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 4fr 4fr 4fr;
+    text-align: center;
+    border: 1px solid #f2f2f2;
+  }
+  
+  .noticeable-information {
+    padding-top: 20px;
+    font-style: italic;
+  }
+  
+  .box-item {
+    margin: 10px 0;
+  }
+  
+  .head-box {
+    padding-left: 7px;
+    color: #f2f2f2;
+    background: #218c74;
+    display: grid;
+  }
+  
+  .body-box {
+    background-color: #f2f2f2;
+    color: #404040;
+    /* display: grid; */
+    /* grid-template-columns: 1fr 1fr; */
+    padding: 12px 15px;
+  }
+  
+  .body-box .item-field {
+    font-size: 14px;
+    color: #404040;
+  }
+  
+  .head-box h5 {
+    color: #f2f2f2;
+  }
+  
+  .font-bold {
+    font-weight: 710;
+    margin: 10px 0;
+  }
+  
+  .w-col-6-6 {
+    display: grid;
+    grid-template-columns: 6fr 6fr;
+    margin-bottom: 14px;
+  }
+
+  .hide_left_Info{
+    /*width: 530px!important;*/
+    transform: translateX(-530px);
+  }
+
+  .show_left_Info{
+    width:430px;
+  }
+
+  .body-box .item-field span {
+    color: #2cabe3;
+}
+
+.item-lf:hover{
+    background-color: rgb(231, 231, 231);
+    text-decoration: none;
+}
+
+.item-lf{
+padding-top: 10px;
+}

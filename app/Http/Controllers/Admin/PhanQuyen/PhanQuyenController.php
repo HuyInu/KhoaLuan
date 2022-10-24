@@ -138,7 +138,7 @@ class PhanQuyenController extends Controller
                 'success'=>"Cập nhật nhóm quyền thành công",
             ]);
         }
-        catch(\Exceptions $err)
+        catch(\Exception $err)
         {
             return response()->json([
                 'error'=>true,

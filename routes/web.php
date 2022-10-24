@@ -46,6 +46,17 @@ Route::middleware('checklogin')->group(function(){
 
 Route::group(['prefix'=>'ban-do-tra-cuu-thong-tin-quy-hoach'],function(){
     Route::get('/','BanDoQuyHoach\BanDoQuyHoachController@show')->name('ban-do-quy-hoach');
+    Route::post('/getThuaDat','BanDoQuyHoach\BanDoQuyHoachController@getThuaDat')->name('getThuaDat');
+    Route::post('/timKiemThuaDat','BanDoQuyHoach\BanDoQuyHoachController@timKiemThuaDat')->name('timKiemThuaDat');
+    Route::post('/getDMXa','BanDoQuyHoach\BanDoQuyHoachController@layDuLieuXaTuHuyen')->name('getDMXa_QuyHoach');
+});
+
+Route::group(['prefix'=>'ban-do-ha-tang-ky-thuat'],function(){
+    Route::get('/','BanDo_HaTang_KyThuat\BanDo_HaTang_KyThuatController@show')->name('ban-do-ha-tang-ky-thuat');
+    Route::post('/getDuongDayDien','BanDo_HaTang_KyThuat\BanDo_HaTang_KyThuatController@getDuongDayDien')->name('getDuongDayDien');
+    Route::post('/getOngCapNuoc','BanDo_HaTang_KyThuat\BanDo_HaTang_KyThuatController@getOngCapNuoc')->name('getOngCapNuoc');
+    Route::post('/getTramBienAp','BanDo_HaTang_KyThuat\BanDo_HaTang_KyThuatController@getTramBienAp')->name('getTramBienAp');
+    Route::post('/getNhaMayNuoc','BanDo_HaTang_KyThuat\BanDo_HaTang_KyThuatController@getNhaMayNuoc')->name('getNhaMayNuoc');
 });
 
 Route::post('/changePasswork','Admin\profile\profileController@changePasswork')->name('changePasswork');
