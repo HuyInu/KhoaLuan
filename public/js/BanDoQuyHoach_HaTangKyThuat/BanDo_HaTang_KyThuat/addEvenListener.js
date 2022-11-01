@@ -1,3 +1,4 @@
-$("#basemap").on("click",function(){
-    show_menu_content(baseMap,layerList,legend);
+$('#Huyen').on('change',function(){
+    const MaHuyen = $(this).val();console.log('a')
+    Ajax_getXa_By_Huyen(MaHuyen);
 })

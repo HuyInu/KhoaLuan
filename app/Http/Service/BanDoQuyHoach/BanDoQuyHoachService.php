@@ -39,14 +39,14 @@ class BanDoQuyHoachService{
         return $this->ThuaDat->getThuaDat_By_OdjectID($odjectID);
     }
 
-    public function getSuDungDat($odjectID)
+    public function getSuDungDat($odjectID, $MaDuAn)
     {
-        return $this->ThuaDat->getSuDungDat($odjectID);
+        return $this->ThuaDat->getSuDungDat($odjectID, $MaDuAn);
     }
 
-    public function timKiemSuDungDat($Maxa, $SoTo, $SoThua)
+    public function timKiemSuDungDat($Maxa, $SoTo, $SoThua, $MaDuAn)
     {
-        return $this->ThuaDat->getSuDungDat_by_SoTo_SoThua($Maxa, $SoTo, $SoThua);
+        return $this->ThuaDat->getSuDungDat_by_SoTo_SoThua($Maxa, $SoTo, $SoThua,$MaDuAn);
     }
 
     public function getThuaDat_By_MaXa_SoTo_SoThua($MaXa, $SoTo, $SoThua)

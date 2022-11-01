@@ -7,4 +7,5 @@
 
 <script src="/js/BanDoQuyHoach_HaTangKyThuat/BanDo_HaTang_KyThuat/GiaoDien.js"></script>
 <script src="/js/BanDoQuyHoach_HaTangKyThuat/BanDo_HaTang_KyThuat/ajax.js"></script>
+<script src="/js/BanDoQuyHoach_HaTangKyThuat/BanDo_HaTang_KyThuat/addEvenListener.js"></script>
 

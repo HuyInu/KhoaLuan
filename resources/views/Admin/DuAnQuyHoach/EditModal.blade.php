@@ -157,7 +157,7 @@
                     </div>
                     <div class="modal-footer no-bd">
                         <button type="submit" id="editRowButton" class="btn btn-primary">Sửa</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
                     </div>
                     @csrf
                 </form>

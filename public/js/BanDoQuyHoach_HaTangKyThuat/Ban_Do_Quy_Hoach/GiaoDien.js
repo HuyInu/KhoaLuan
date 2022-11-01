@@ -16,9 +16,33 @@ function GiaoDien_load_SuDungDat_to_leftInfo(SuDungDat)
     $('.di-item').html('');
     if(SuDungDat.length > 0)
     {
+        var DuAnTemp = null;
+        var content = null;
         const color = PublicFunction_get_colorArray();
         $.each(SuDungDat, function( index, value ) {
-            const content = `<div class="box-item">
+            if(value.MaDuAnQuyHoach != DuAnTemp)
+            {   
+                content = `<div class="ttqh-information">
+                                <div class="body-ttqh">
+                                    <div class="content-text">
+                                        <h5>
+                                            <span class="TenLoaiQuyHoach font-bold">${value.TenLoaiQuyHoach || "..."}</span> với tổng diện tích
+                                            <span class="font-bold DienTich">${value.TongDienTich || "..."}</span> <b>m<sup>2</sup></b> cụ thể:
+                                        </h5>
+                                        <div class="content-text-info">
+                                            <div class="icon"><i class="fas fa-info-circle fa-xl text-info"></i></div>
+                                            <div class="text">
+                                                Quyết định số <span class="font-bold QuyetDinh">${value.SoQuyetDinhPheDuyet || "..."}</span> ngày
+                                                <span class="font-bold NgayPheDuyet"> ${value.NgayKyQuyetDinh || "..."}</span> về phê duyệt quy
+                                                hoạch đồ án <span class="font-bold TenDuAn">${value.TenDuAn || "..."}</span> <span class="font-bold TyLe"> tỷ lệ ${value.TyLeBanVe || "..."}</span> với diện tích <span class="font-bold DienTich">${value.TongDienTich || "..."}</span> <b>m<sup>2</sup></b> cụ thể:
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`;
+                $('.di-item').append(content);
+            }
+            content = `<div class="box-item">
                         <div class="head-box" style="background-color:`+color[index]+`">
                             <h5 class="font-bold">`+(index+1) +`. `+ value.TenLoaiDatTheoDA+`</h5>
                         </div>
@@ -43,6 +67,7 @@ function GiaoDien_load_SuDungDat_to_leftInfo(SuDungDat)
                     </div>`;
 
             $('.di-item').append(content);
+            DuAnTemp = value.MaDuAnQuyHoach;
             });
         }
 }

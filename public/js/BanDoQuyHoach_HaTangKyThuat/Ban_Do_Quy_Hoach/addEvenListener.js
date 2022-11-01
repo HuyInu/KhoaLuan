@@ -3,9 +3,6 @@ $('#SoThua,#SoTo').on('input', function() {
 });
 
 
-
-
-
 $('#Huyen').on('change',function(){
     const MaHuyen = $(this).val();
     Ajax_getXa_By_Huyen(MaHuyen);

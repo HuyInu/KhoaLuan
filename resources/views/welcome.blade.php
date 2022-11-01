@@ -29,48 +29,66 @@
 		<link rel="stylesheet" href="/template/Atlantis/css/atlantis.min.css">
 
 		<link rel="stylesheet" href="/css/welcome.css" />
+		<link rel="stylesheet" href="/css/main.css" />
 
     </head>
     <body>
 		<!-- Wrapper -->
 		<div id="wrapper" class="bg" >
 			<!-- Logo Header -->
-			<div class="main-header">
-				<div class="logo-header" data-background-color="blue">
-					<a href="{{route('home')}}" class="logo">
-						<img src="/image/main-logo.png" width="" alt="navbar brand" class="navbar-brand" style="width: 50px;height: 50px;">
-					</a>
-					<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon">
-							<i class="icon-menu"></i>
-						</span>
-					</button>
-					<button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
-					<div class="nav-toggle">
-						<button class="btn btn-toggle toggle-sidebar">
-							<i class="icon-menu"></i>
-						</button>
-					</div>
-				</div>
+			@if(Auth()->check())
+			<div class="main-header" style="background: #ff000000; box-shadow: none;">
 				<!-- End Logo Header -->
 				<!-- Navbar Header -->
-				<nav class="navbar navbar-header navbar-expand-lg" data-background-color="blue2">
-					
+				<nav class="navbar navbar-expand-lg" data-background-color="blue2" style="background: #ff000000;">
+					@php
+					$userType = Auth::user()->MaLoaiNguoiDung;
+					$avatarSrc = null;
+					switch ($userType) {
+						case 1:
+							$avatarSrc = "/image/admin.jpg";
+							break;
+						case 2:
+							$avatarSrc = '/image/user-default.jpg';
+							break;
+						case 3:
+							$avatarSrc = '/image/user-default.jpg';
+							break;
+					};
+					@endphp
 					<div class="container-fluid">
-						
 						<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
-							<li class="nav-item toggle-nav-search hidden-caret">
-								<a class="nav-link" data-toggle="collapse" href="#search-nav" role="button" aria-expanded="false" aria-controls="search-nav">
-									<i class="fa fa-search"></i>
+							<li class="nav-item dropdown hidden-caret">
+								<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
+									<div class="avatar-sm">
+										<img src="{{$avatarSrc}}" alt="..." class="avatar-img rounded-circle">
+									</div>
 								</a>
+								<ul class="dropdown-menu dropdown-user animated fadeIn">
+									<div class="scroll-wrapper dropdown-user-scroll scrollbar-outer" style="position: relative;"><div class="dropdown-user-scroll scrollbar-outer scroll-content" style="height: auto; margin-bottom: 0px; margin-right: 0px; max-height: 0px;">
+										<li>
+											<div class="user-box">
+												<div class="avatar-lg"><img src="{{$avatarSrc}}" alt="image profile" class="avatar-img rounded"></div>
+												<div class="u-text">
+													<h4>{{Auth()->user()->Ho.' '.Auth()->user()->Ten}}</h4>
+													<p class="text-muted">{{Auth()->user()->Email}}</p><a href="{{route('profile')}}" class="btn btn-xs btn-secondary btn-sm">Thông tin cá nhân</a>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="dropdown-divider"></div>
+											<a class="dropdown-item" href="{{route('logout')}}">Đăng xuất</a>
+										</li>
+									</div><div class="scroll-element scroll-x"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar ui-draggable ui-draggable-handle"></div></div></div><div class="scroll-element scroll-y"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar ui-draggable ui-draggable-handle"></div></div></div></div>
+								</ul>
 							</li>
-							{!!$nav!!}
 						</ul>
 					</div>
 				</nav>
 				<!-- End Navbar -->
 			</div>
-			<div class="modal fade" id="addRowModal" tabindex="-1" role="dialog" aria-hidden="true">
+			@endif
+			<div class="modal fade" id="loginModel" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog" role="document" style="max-width: 600px;">
                     <div class="modal-content">
                         <div class="modal-header no-bd">
@@ -114,7 +132,7 @@
 					<div class="page-inner">
 
 						<div style="text-align: center;margin-top: 50px;" class="card-body">
-							<a href="index.html" class="logo">
+							<a href="#" class="logo">
 								<img style="height: 100px;width: 100;" src="/image/main-logo.png" alt="navbar brand" class="navbar-brand">
 							</a>
 							<h1 style="color: white;">HỆ THỐNG THÔNG TIN ĐỊA LÝ THÀNH PHỐ MỸ THO</h1>
@@ -125,7 +143,7 @@
 								
 								<div class="col-sm-6 col-md-4">
 									<a href="{{route('ban-do-quy-hoach')}}" class="card-href">
-									<div class="card card-stats card-primary card-round card-custom">
+									<div class="card card-stats card-round card-custom card-hover" style="background-color: #1572e89c;color: white;">
 										<div class="card-body">
 											<p  class="space"></p>
 											<span class="btn-label">
@@ -139,7 +157,7 @@
 								
 								<div class="col-sm-6 col-md-4">
 									<a href="{{route('ban-do-ha-tang-ky-thuat')}}" class="card-href">
-									<div class="card card-stats card-info card-round card-custom">
+									<div class="card card-stats  card-round card-custom card-hover" style="background-color: #48abf794;color: white;">
 										<div class="card-body">
 											<p  class="space"> </p>
 											<span class="btn-label">
@@ -153,7 +171,7 @@
 								@if(auth()->check())
 								<div class="col-sm-6 col-md-4">
 									<a href="{{route('duAnQuyHoach')}}" class="card-href">
-									<div class="card card-stats card-success card-round card-custom">
+									<div class="card card-stats card-round card-custom card-hover" style="background-color: #2dd93fa8;color: white;">
 										<div class="card-body">
 											<p  class="space"></p>
 											<span class="btn-label">
@@ -165,22 +183,50 @@
 									</a>
 								</div>
 								@endif
+								<div class="col-sm-6 col-md-4">
+									<a href="{{route('QLDanhMuc')}}" class="card-href">
+									<div class="card card-stats card-round card-custom card-hover" style="background-color: #2b3ec7c2;color: white;">
+										<div class="card-body">
+											<p  class="space"></p>
+											<span class="btn-label">
+												<i class="fas fa-th-list"></i>
+											</span>
+											<h3>QUẢN LÝ DANH MỤC</h3>
+										</div>
+									</div>
+									</a>
+								</div>
+								<div class="col-sm-6 col-md-4">
+									<a href="{{route('SuDungDat')}}" class="card-href">
+									<div class="card card-stats card-round card-custom card-hover" style="background-color: #c72b4bc2;color: white;">
+										<div class="card-body">
+											<p  class="space"></p>
+											<span class="btn-label">
+												<i class="fas fa-th-list"></i>
+											</span>
+											<h3>QUẢN LÝ SỬ DỤNG ĐẤT</h3>
+										</div>
+									</div>
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="btn-group" id="setting">
-				@if(auth()->check())
-				<button class="btn btn-info">Đăng nhập</button>
+				@if(!auth()->check())
+				<button class="btn btn-info" data-toggle="modal" data-target="#loginModel">Đăng nhập</button>
+				@elseif(Auth()->user()->MaLoaiNguoiDung == 1)
 				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Action
+					<i class="fas fa-cogs fa-2xl"></i>
 				</button>
 				<div class="dropdown-menu">
 					<a class="dropdown-item" href="{{route('PhanQuyen')}}">Phân quyền</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="{{route('user')}}">Quản lý người dùng</a>
 				</div>
+				@endif
 			</div>
 		</div>
 			

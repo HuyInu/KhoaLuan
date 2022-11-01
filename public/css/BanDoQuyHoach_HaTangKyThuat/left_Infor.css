@@ -120,3 +120,8 @@
 .item-lf{
 padding-top: 10px;
 }
+
+.content-text-info{
+  display: grid;
+  grid-template-columns: 1fr 11fr;
+}

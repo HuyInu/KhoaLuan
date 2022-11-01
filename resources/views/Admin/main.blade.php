@@ -6,10 +6,10 @@
 
     </head>
     <body>
-        <div class="wrapper">
+        <div class="wrapper sidebar_minimize">
             <div class="main-header">
                 <!-- Logo Header -->
-                <div class="logo-header" data-background-color="blue">
+                <!--<div class="logo-header" data-background-color="blue">
                     
                     <a href="{{route('home')}}" class="logo">
                         <img class="main-logo" src="/image/main-logo.png" alt="navbar brand" class="navbar-brand" style="width: 50px;height: 50px;">
@@ -25,15 +25,15 @@
                             <i class="icon-menu"></i>
                         </button>
                     </div>
-                </div>
+                </div>-->
                 <!-- End Logo Header -->
 
                 <!-- Navbar Header -->
                 @include('Admin.navbar')
                 <!-- End Navbar -->
             </div>
-                <!-- Sidebar -->
-                @include('Admin.sidebar')
+                <!-- Sidebar @include('Admin.sidebar')-->
+                
                 <!-- End Sidebar -->
 
             <div class="main-panel">

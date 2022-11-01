@@ -14,7 +14,9 @@ require([
         "esri/widgets/Locate",
         "esri/rest/support/Query",
         "esri/geometry/Polygon",
-        "esri/Graphic"
+        "esri/Graphic",
+        "esri/widgets/ScaleBar",
+        "esri/geometry/support/webMercatorUtils"
         ], (
             Map, 
             MapView,
@@ -31,7 +33,9 @@ require([
             Locate,
             Query,
             Polygon,
-            Graphic
+            Graphic,
+            ScaleBar,
+            webMercatorUtils
         )=> (async ()=> {
 
   const url= "https://localhost:6443";
@@ -39,18 +43,38 @@ require([
           
   const SuDungDat_Map = new MapImageLayer({
     url: url+"/arcgis/rest/services/BanDoNen/Su_Dung_Dat/MapServer",
-    title:"Sử dụng đất",
+    title:"Quy hoạch xây dựng",
     opacity:0.7,
     minScale: 5958.4470,
     sublayers: [
       {
         id: 0,
-        visible: true,
+        title:" ",
+        listMode: "hide",
       }],
   });
-  
   const SuDungDat_Map_sublayer = SuDungDat_Map.findSublayerById(0);
 
+  const HienTrang_Map = new MapImageLayer({
+    url: url+"/arcgis/rest/services/BanDoNen/HienTrangSuDungDat/MapServer",
+    title:"Hiện trạng xây dựng",
+    opacity:0.7,
+    minScale: 5958.4470,
+    visible:false,
+    sublayers: [
+      {
+        id: 0,
+        title:" ",
+        listMode: "hide",
+      }],
+  });
+
+  const SuDungDat_Group = new GroupLayer({
+    title: "Sử dụng đất",
+    layers: [SuDungDat_Map,HienTrang_Map],
+  });
+
+  
 
   const labelClass = {
     symbol: {
@@ -78,25 +102,37 @@ require([
   
   });
   
-  const Xa = new FeatureLayer({
-    url: url+"/arcgis/rest/services/BanDoNen/Huyen_Xa/FeatureServer/0",
-    title:"Phường xã",
+  const Huyen_Xa = new MapImageLayer({
+    url: url+"/arcgis/rest/services/BanDoNen/Huyen_Xa/MapServer",
+    title:"Lớp nền",
     minScale:40000,
+    sublayers: [
+      {
+        id: 1,
+        title:"Quận huyện",
+      },
+      {
+        id: 0,
+        title:"Phường xã",
+      },
+      ],
   });
 
-  const Huyen = new FeatureLayer({
+  const Huyen_Xa_Xa_sublayer = Huyen_Xa.findSublayerById(0);
+
+  /*const Huyen = new FeatureLayer({
     url: url+"/arcgis/rest/services/BanDoNen/Huyen_Xa/FeatureServer/1",
     title:"Quận huyện",
     maxScale:40000,
-  });
+  });*/
 
-  const Huyen_Xa_Group = new GroupLayer({
+  /*const Huyen_Xa_Group = new GroupLayer({
     title: "Lớp nền",
     layers: [Xa,Huyen],
-  });
+  });*/
 
   const map = new Map({
-    layers: [Huyen_Xa_Group,Thua_Dat_Map,SuDungDat_Map],
+    layers: [Huyen_Xa,Thua_Dat_Map,SuDungDat_Group],
     basemap: "topo-vector",
   });
 
@@ -126,7 +162,7 @@ require([
     container:"legend",
     layerInfos: [
       {
-        layer: SuDungDat_Map,
+        layer: SuDungDat_Group,
         title: "Sử dụng đất"
       }
     ]
@@ -163,25 +199,46 @@ require([
 
   //zoom
   const zoom = new Zoom({
-    view: view
+    view: view,
+    container: "zoom",
   });
   
-  //view.ui.add(zoom, "bottom-right");
 
   //locate
   const locateWidget = new Locate({
     view: view, 
     container: "locate",
+    useHeadingEnabled: false,
+    goToOverride: function(view, options) {
+      options.target.scale = 1500;
+      return view.goTo(options.target);
+    }
+    
   });
-  GiaoDienMain_remove_hideAttr_locateWidget();
-  view.ui.add(["slider",zoom], "bottom-right");
-  //view.ui.add([locateWidget], "top-left");
+  
+  
+  view.ui.add(['bottom-right-control'], "bottom-right");
+
+  const scaleBar = new ScaleBar({
+    view: view,
+    unit: "dual"
+  });
+
+  view.ui.add(scaleBar,"bottom-left")
 
   //==============================================================================================
 
   function Map_All_removeGraphic()
   {
     view.graphics.removeAll();
+  }
+
+  function showCoordinates(evt) {
+    var point = view.toMap({x: evt.x, y: evt.y});
+    //the map is in web mercator but display coordinates in geographic (lat, long)
+    var mp = webMercatorUtils.webMercatorToGeographic(point);
+    //display mouse coordinates
+    $('#showToaDo').html("Lat/Lon "+mp.y.toFixed(6) + ", " + mp.x.toFixed(6));
   }
  
   //======================================ADDEVENTLISTENER========================================
@@ -190,11 +247,16 @@ require([
     $( "#leftInfo" ).removeClass( "show_left_Info");
     $( "#leftInfo" ).addClass("hide_left_Info");
   })
+  
   $('#Xa').on('change',function(){
-    const query = new Query();
-    query.where = "MaPhuongXa = '"+$(this).val()+"'";
-    PublicFunction_extendLayer(Xa ,query,view);
+    const query = new Query({
+      where : "MaPhuongXa = '"+$(this).val()+"'",
+      returnGeometry:true,
+    });
+    
+    PublicFunction_extendLayer(Huyen_Xa_Xa_sublayer ,query,view);
   })
+  
   $("#select-DAQH").on('change',function(){
     Function_sort_SuDungDat_By_DAQH(SuDungDat_Map_sublayer,'MaDuAnQuyHoach', $(this).val(),view);
   });
@@ -216,10 +278,10 @@ require([
       {
         Map_All_removeGraphic();
       }
-
-
     });
   })
+
+  view.on("pointer-move", showCoordinates);
 
   $('#TimKiem').on('click',function(){
     const MaXa = $('#Xa').val();

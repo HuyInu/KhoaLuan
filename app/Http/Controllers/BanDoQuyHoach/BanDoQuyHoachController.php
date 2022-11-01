@@ -39,9 +39,10 @@ class BanDoQuyHoachController extends Controller
     public function getThuaDat(Request $req)
     {
         try{
+            //dd($req->MaDuAn);
             $ThuaDat = $this->BanDoQuyHoachService->getThuaDat($req->odjectID);
 
-            $SuDungDat = $this->BanDoQuyHoachService->getSuDungDat($req->odjectID);
+            $SuDungDat = $this->BanDoQuyHoachService->getSuDungDat($req->odjectID, $req->MaDuAn);
             //$SuDungDat->THUADATSHAPE = json_encode($SuDungDat->THUADATSHAPE);
             return response()->json([
                 'error'=>false,
@@ -60,10 +61,10 @@ class BanDoQuyHoachController extends Controller
 
     public function timKiemThuaDat(Request $req)
     {
-        try{
+        try{//dd($req->MaDuAn);
             $ThuaDat = $this->BanDoQuyHoachService->getThuaDat_By_MaXa_SoTo_SoThua($req->MaXa, $req->SoTo, $req->SoThua);
 
-            $SuDungDat = $this->BanDoQuyHoachService->timKiemSuDungDat($req->MaXa, $req->SoTo, $req->SoThua);
+            $SuDungDat = $this->BanDoQuyHoachService->timKiemSuDungDat($req->MaXa, $req->SoTo, $req->SoThua, $req->MaDuAn);
 
             return response()->json([
                 'error'=>false,
@@ -71,7 +72,7 @@ class BanDoQuyHoachController extends Controller
                 'SuDungDat' => $SuDungDat
             ]);
         }
-        catch(\Exception $err)
+        catch(\Exceptions $err)
         {
             return response()->json([
                 'error'=>true,

@@ -1,46 +1,8 @@
 function PublicFunction_extendLayer(layer, Query, view)
   {
-    layer.queryExtent(Query).then(function(results){
-      view.goTo(results.extent);  // go to the extent of the results satisfying the query
+    layer.queryFeatures(Query).then(function(results){
+      view.goTo(results.features[0].geometry.extent);  // go to the extent of the results satisfying the query
     });
-  }
-
-  function PublicFunction_sort_SuDungDat_By_DAQH(layer,layerAttribute, AttributeValue,view)
-  {
-    const sublayer = layer.findSublayerById(0);
-    console.log(sublayer);
-    sublayer.definitionExpression = layerAttribute +"= '"+ AttributeValue+"'";
-    view.goTo(sublayer.definitionExpression)
-    /*if(AttributeValue != '0')
-    {
-      const query = new Query();
-      query.where = layerAttribute+"= '"+AttributeValue+"'";
-      query.returnGeometry = true;
-      query.outFields = ["OBJECTID"];
-
-      featureLayer.queryFeatures(query).then((results) => {
-
-        if(results.features.length > 0)
-        {
-          const objectIds = [];
-
-          $.each(results.features, function( index, value ) {
-            objectIds.push(value.attributes.OBJECTID);
-          });
-          
-          layerView.filter = {objectIds};
-          PublicFunction_goToFeature(results.features[0].geometry,view)
-        }
-        else
-        {
-          layerView.filter = '';
-        }
-      });
-    }
-    else
-    {
-      layerView.filter = '';
-    }*/
   }
 
   function PublicFunction_goToFeature(geometry,view)
@@ -58,7 +20,6 @@ function PublicFunction_extendLayer(layer, Query, view)
             //outFields: ["*"],
             returnGeometry: true
           }).then((results) => {
-            console.log(results)
             if (results.features.length > 0) 
             {
               PublicFunction_goToFeature(results.features[0].geometry,view);

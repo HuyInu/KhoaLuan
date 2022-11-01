@@ -28,24 +28,41 @@ class ThuaDat extends Model
         return $this::with(['DMXa.DMHuyen'])->where([['MaXa','=',$MaXa],['SoHieuToBanDo','=',$SoTo],['SoThuTuThua','=',$SoThua]])->get([DB::raw('SHAPE.ToString() as SHAPE'),'OBJECTID','MaXa','SoHieuToBanDo','SoThuTuThua','DienTich','DienTichPhapLy','TenChu','DiaChi']);
     }
 
-    public function select_intersect_ThuaDat()
+    public function select_intersect_ThuaDat($whereTongDienTich)
     {
-        $sql = "SELECT THUADAT.SHAPE.STIntersection(SDDAT.SHAPE).ToString() as SUDUNGDATSHAPE,ISNULL(SDDAT.TenLoaiDatTheoDA,0) as TenLoaiDatTheoDA, ISNULL(SDDAT.HeSoSuDungDat,0) as HeSoSuDungDat, ISNULL(SDDAT.TangCaoXayDung,0) as TangCaoXayDung, ISNULL(SDDAT.MatDoXayDung, 0) as MatDoXayDung, CONVERT(numeric(6,2),(((THUADAT.SHAPE.STIntersection(SDDAT.SHAPE).STArea()*100)/THUADAT.SHAPE.STArea())*THUADAT.DienTich)/100) as DienTich 
-                from sde.THUADAT THUADAT , sde.SuDungDat SDDAT";
+        $sql = "SELECT THUADAT.SHAPE.STIntersection(SDDAT.SHAPE).ToString() as SUDUNGDATSHAPE,ISNULL(SDDAT.TenLoaiDatTheoDA,0) as TenLoaiDatTheoDA, ISNULL(SDDAT.HeSoSuDungDat,0) as HeSoSuDungDat, ISNULL(SDDAT.TangCaoXayDung,0) as TangCaoXayDung, ISNULL(SDDAT.MatDoXayDung, 0) as MatDoXayDung, 
+                    SDDAT.MaDuAnQuyHoach, DAQH.SoQuyetDinhPheDuyet, format(DAQH.NgayKyQuyetDinh,'dd/MM/yyyy') as NgayKyQuyetDinh, DAQH.TenDuAn, DAQH.TyLeBanVe, LQH.TenLoaiQuyHoach,
+                    CONVERT(numeric(6,2),(((THUADAT.SHAPE.STIntersection(SDDAT.SHAPE).STArea()*100)/THUADAT.SHAPE.STArea())*THUADAT.DienTich)/100) as DienTich, CONVERT(numeric(6,2),TongDT.TongDienTich) as TongDienTich
+                from sde.THUADAT THUADAT , sde.SuDungDat SDDAT, sde.DuAnQuyHoach DAQH, sde.LoaiQuyHoach LQH, 
+                    (select SDDAT.MaDuAnQuyHoach,sum((((THUADAT.SHAPE.STIntersection(SDDAT.SHAPE).STArea()*100)/THUADAT.SHAPE.STArea())*THUADAT.DienTich)/100) as TongDienTich from sde.THUADAT THUADAT , sde.SuDungDat SDDAT where THUADAT.SHAPE.STIntersects(SDDAT.SHAPE)=1 $whereTongDienTich group by SDDAT.MaDuAnQuyHoach) TongDT
+                where SDDAT.MaDuAnQuyHoach = DAQH.MaDuAn and DAQH.MaLoaiQuyHoach = LQH.MaLoaiQuyHoach and TongDT.MaDuAnQuyHoach= SDDAT.MaDuAnQuyHoach and THUADAT.SHAPE.STIntersects(SDDAT.SHAPE)=1";
         return $sql;
     }
 
-    public function getSuDungDat($odjectID)
+    public function select_where_MaDuAn($MaDuAn)
     {
-        $sql = $this->select_intersect_ThuaDat()." where THUADAT.SHAPE.STIntersects(SDDAT.SHAPE)=1 and THUADAT.OBJECTID=$odjectID";
 
-         return DB::select(DB::raw($sql));
+        if($MaDuAn != '0' && $MaDuAn != null)
+            return " and SDDAT.MaDuAnQuyHoach = '$MaDuAn'";
+        else
+            return null;
     }
 
-    public function getSuDungDat_by_SoTo_SoThua($MaXa, $SoTo, $SoThua)
+    public function getSuDungDat($odjectID, $MaDuAn)
     {
-        $sql = $this->select_intersect_ThuaDat()." where THUADAT.SHAPE.STIntersects(SDDAT.SHAPE)=1 and THUADAT.MaXa='$MaXa' and THUADAT.SoThuTuThua='$SoThua' and THUADAT.SoHieuToBanDo='$SoTo'";
-        
+        $where = "and THUADAT.OBJECTID=$odjectID";
+        $sql = $this->select_intersect_ThuaDat($where).$where;
+        $sql.= $this->select_where_MaDuAn($MaDuAn);
+
+        return DB::select(DB::raw($sql));
+    }
+
+    public function getSuDungDat_by_SoTo_SoThua($MaXa, $SoTo, $SoThua,$MaDuAn)
+    {
+        $where = "and THUADAT.MaXa='$MaXa' and THUADAT.SoThuTuThua='$SoThua' and THUADAT.SoHieuToBanDo='$SoTo'";
+        $sql = $this->select_intersect_ThuaDat($where).$where;
+        $sql.= $this->select_where_MaDuAn($MaDuAn);
+
         return DB::select(DB::raw($sql));
     }
 }

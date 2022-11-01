@@ -15,6 +15,8 @@ require([
   "esri/rest/support/Query",
   "esri/geometry/Polygon",
   "esri/Graphic",
+  "esri/widgets/ScaleBar",
+  "esri/geometry/support/webMercatorUtils",
   "esri/PopupTemplate"
 
 ], (
@@ -34,6 +36,8 @@ require([
   Query,
   Polygon,
   Graphic,
+  ScaleBar,
+  webMercatorUtils,
   PopupTemplate
 
 ) => {
@@ -59,6 +63,9 @@ require([
       },
     ]
   });
+
+  const Huyen_Xa_Xa_sublayer = Huyen_Xa_Map.findSublayerById(0);
+
   const TramBienAp = new FeatureLayer({
     url: url+"/arcgis/rest/services/HaTangKyThuat/CapDien/FeatureServer/0",
     title:"Trạm biến áp",
@@ -106,7 +113,7 @@ require([
 
 
   const map = new Map({
-    layers: [HaTangKyThuat_Group,Huyen_Xa_Map],
+    layers: [Huyen_Xa_Map,HaTangKyThuat_Group],
     basemap: "topo-vector"
   });
 
@@ -153,11 +160,24 @@ require([
     source:source,
   });
 
-  
+  //opacity slider
+  const opacitySlider = new Slider({
+    min: 0,
+    max: 1,
+    steps: 0.1,
+    values: [0.7],
+    layout:"vertical",
+    container:"slider"
+  });
+
+  opacitySlider.on("thumb-drag", function(event){ 
+    SuDungDat_Map.opacity = event.value;
+  });
 
   //zoom
   const zoom = new Zoom({
-    view: view
+    view: view,
+    container: "zoom",
   });
 
   //locate
@@ -166,13 +186,38 @@ require([
     container: "locate",
   });
 
-  GiaoDienMain_remove_hideAttr_locateWidget();
+  const scaleBar = new ScaleBar({
+    view: view,
+    unit: "dual"
+  });
+
+  view.ui.add(scaleBar,"bottom-left")
+
   GiaoDienMain_hide_ZoomDefautWidget();
   view.ui.add(['selectDuAnQH','menu'], "top-right");
-  view.ui.add(['slider',zoom,'locate'], "bottom-right");
+  view.ui.add(['bottom-right-control'], "bottom-right");
 //=======================================================FUNCTION==============================
 
+function showCoordinates(evt) {
+  var point = view.toMap({x: evt.x, y: evt.y});
+  //the map is in web mercator but display coordinates in geographic (lat, long)
+  var mp = webMercatorUtils.webMercatorToGeographic(point);
+  //display mouse coordinates
+  $('#showToaDo').html("Lat/Lon "+mp.y.toFixed(6) + ", " + mp.x.toFixed(6));
+}
+
 //=====================================================================================
+$('#Xa').on('change',function(){
+  const query = new Query({
+    where : "MaPhuongXa = '"+$(this).val()+"'",
+    returnGeometry:true,
+  });
+  
+  PublicFunction_extendLayer(Huyen_Xa_Xa_sublayer ,query,view);
+})
+
+view.on("pointer-move", showCoordinates);
+
   view.on("click", (event) => {
     view.hitTest(event).then((response) => {
       const results = response.results;
@@ -181,7 +226,7 @@ require([
             results[0].graphic
         ) {
           var odjectID;
-          var popup =new PopupTemplate();;
+          var popup =new PopupTemplate();
 
           switch(results[0].graphic.layer) {
             case DuongDayDien:

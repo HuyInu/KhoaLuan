@@ -1,7 +1,9 @@
-
 <nav class="navbar navbar-header navbar-expand-lg" data-background-color="blue2">
     
     <div class="container-fluid">
+        <a href="{{route('home')}}" class="logo" style="margin-right: 33px;">
+                        <img class="main-logo" src="/image/main-logo.png" alt="navbar brand" class="navbar-brand" style="width: 50px;height: 50px;">
+        </a>
         <h1 class="head1">HỆ THỐNG QUẢN LÝ QUY HOẠCH VÀ HẠ TẦNG KỸ THUẬT THÀNH PHỐ MỸ THO</h1>
         <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
             <li class="nav-item toggle-nav-search hidden-caret">
@@ -10,72 +12,24 @@
                 </a>
             </li>
             <li class="nav-item dropdown hidden-caret">
-                <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
-                    <i class="fas fa-layer-group"></i>
-                </a>
-                <div class="dropdown-menu quick-actions quick-actions-info animated fadeIn">
-                    <div class="quick-actions-header">
-                        <span class="title mb-1">Quick Actions</span>
-                        <span class="subtitle op-8">Shortcuts</span>
-                    </div>
-                    <div class="quick-actions-scroll scrollbar-outer">
-                        <div class="quick-actions-items">
-                            <div class="row m-0">
-                                <a class="col-6 col-md-4 p-0" href="#">
-                                    <div class="quick-actions-item">
-                                        <i class="flaticon-file-1"></i>
-                                        <span class="text">Generated Report</span>
-                                    </div>
-                                </a>
-                                <a class="col-6 col-md-4 p-0" href="#">
-                                    <div class="quick-actions-item">
-                                        <i class="flaticon-database"></i>
-                                        <span class="text">Create New Database</span>
-                                    </div>
-                                </a>
-                                <a class="col-6 col-md-4 p-0" href="#">
-                                    <div class="quick-actions-item">
-                                        <i class="flaticon-pen"></i>
-                                        <span class="text">Create New Post</span>
-                                    </div>
-                                </a>
-                                <a class="col-6 col-md-4 p-0" href="#">
-                                    <div class="quick-actions-item">
-                                        <i class="flaticon-interface-1"></i>
-                                        <span class="text">Create New Task</span>
-                                    </div>
-                                </a>
-                                <a class="col-6 col-md-4 p-0" href="#">
-                                    <div class="quick-actions-item">
-                                        <i class="flaticon-list"></i>
-                                        <span class="text">Completed Tasks</span>
-                                    </div>
-                                </a>
-                                <a class="col-6 col-md-4 p-0" href="#">
-                                    <div class="quick-actions-item">
-                                        <i class="flaticon-file"></i>
-                                        <span class="text">Create New Invoice</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="nav-item dropdown hidden-caret">
+                @php
+                $userType = Auth::user()->MaLoaiNguoiDung;
+                $avatarSrc = null;
+                switch ($userType) {
+                    case 1:
+                        $avatarSrc = "/image/admin.jpg";
+                        break;
+                    case 2:
+                        $avatarSrc = '/image/user-default.jpg';
+                        break;
+                    case 3:
+                        $avatarSrc = '/image/user-default.jpg';
+                        break;
+                };
+                @endphp
                 <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
                     <div class="avatar-sm">
-                        @switch(Auth()->user()->MaLoaiNguoiDung)
-                            @case(1)
-                                <img src="/image/admin.jpg" alt="..." class="avatar-img rounded-circle">
-                                @break
-                            @case(2)
-                                <img src="/image/user-default.jpg" alt="..." class="avatar-img rounded-circle">
-                                @break
-                            @case(3)
-                                <img src="/image/user-default.jpg" alt="..." class="avatar-img rounded-circle">
-                                @break
-                        @endswitch
+                        <img src="{{$avatarSrc}}" alt="..." class="avatar-img rounded-circle">
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -83,18 +37,7 @@
                         <li>
                             <div class="user-box">
                                 <div class="avatar-lg">
-                                @switch(Auth()->user()->MaLoaiNguoiDung)
-                                    @case(1)
-                                        <img src="/image/admin.jpg" alt="image profile" class="avatar-img rounded">
-                                        @break
-                                    @case(2)
-                                        <img src="/image/user-default.jpg" alt="image profile" class="avatar-img rounded">
-                                        @break
-                                    @case(3)
-                                        <img src="/image/user-default.jpg" alt="image profile" class="avatar-img rounded">
-                                        @break
-                                @endswitch
-                                    
+                                    <img src="{{$avatarSrc}}" alt="image profile" class="avatar-img rounded">           
                                 </div>
                                 <div class="u-text">
                                     <h4>

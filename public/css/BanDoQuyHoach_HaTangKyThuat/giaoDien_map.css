@@ -41,3 +41,19 @@ body,
 .headPopup{
   font-weight:bold ;
 }
+
+#bottom-right-control{
+  box-shadow: none;
+}
+#map_control
+{
+  margin-left: 200px;
+  width: 32px
+}
+.map_control_item{
+  margin-bottom: 10px;
+}
+
+.bootstrap-select {
+  width: 330px !important;
+}

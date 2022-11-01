@@ -64,8 +64,6 @@
             <div class="card-body">
                 <div class="user-profile text-center">
                     <div class="name">{{$userInfor['Ho'].' '.$userInfor['Ten']}}</div>
-                    <div class="job">Frontend Developer</div>
-                    <div class="desc">A man who hates loneliness</div>
                 </div>
             </div> 
         </div>

@@ -4,6 +4,26 @@ $.ajaxSetup({
     }
 })
 
+function Ajax_getXa_By_Huyen(MaHuyen)
+{
+    $.ajax({
+        type: 'POST',
+        datatype: 'JSON',
+        data:{MaHuyen},
+        url: '/ban-do-tra-cuu-thong-tin-quy-hoach/getDMXa',
+        success: function (result) {
+            if (result.error === false) 
+            {
+                
+                GiaoDienMain_Load_Data_To_Select(result.duLieuDMXa, 'MaXa', 'TenXa', '#Xa');
+            } 
+            else {
+                errorAlert(result.message);
+            }
+        }
+    })
+}
+
 function Ajax_get_DuongDayDien(odjectID,popup, featureLayer)
 {
     $.ajax({

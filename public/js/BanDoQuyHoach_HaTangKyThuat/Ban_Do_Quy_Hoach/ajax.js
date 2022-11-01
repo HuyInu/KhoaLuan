@@ -26,10 +26,12 @@ function Ajax_getXa_By_Huyen(MaHuyen)
 
 function Ajax_getThuaDat(odjectID,Graphic, view)
 {
+    const MaDuAn=  $('#select-DAQH').val()
+
     $.ajax({
         type: 'POST',
         datatype: 'JSON',
-        data:{odjectID},
+        data:{odjectID, MaDuAn},
         url: '/ban-do-tra-cuu-thong-tin-quy-hoach/getThuaDat',
         success: function (result) {
             if (result.error === false) 
@@ -59,10 +61,11 @@ function Ajax_getThuaDat(odjectID,Graphic, view)
 
 function Ajax_timKiemThuaDat(MaXa, SoTo, SoThua, featureLayer,Graphic,view)
 {
+    const MaDuAn=  $('#select-DAQH').val()
     $.ajax({
         type: 'POST',
         datatype: 'JSON',
-        data:{MaXa, SoTo, SoThua},
+        data:{MaXa, SoTo, SoThua, MaDuAn},
         url: '/ban-do-tra-cuu-thong-tin-quy-hoach/timKiemThuaDat',
         success: function (result) {
             console.log(result)

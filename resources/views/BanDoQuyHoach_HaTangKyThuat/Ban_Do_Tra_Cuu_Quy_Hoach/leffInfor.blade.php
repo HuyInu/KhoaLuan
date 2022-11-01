@@ -50,24 +50,7 @@
             </div>
             <div class="body-di-container">
                 <div class="di-item">
-                    <!-- <div class="ttqh-information">
-                        <div class="body-ttqh">
-                            <div class="content-text">
-                                <h5>
-                                    <span class="TenLoaiQuyHoach font-bold">Quy hoạch chung đô thị</span> với tổng diện tích
-                                    <span class="font-bold DienTich"> 41.75</span> <b>m<sup>2</sup></b> cụ thể:
-                                </h5>
-                                <div class="content-text-info">
-                                    <div class="icon"><i class="mdi mdi-information mdi-24px text-info"></i></div>
-                                    <div class="text">
-                                        Quyết định số <span class="font-bold QuyetDinh">2759/QĐ-UBND</span> ngày
-                                        <span class="font-bold NgayPheDuyet"> 11/04/2014</span> về phê duyệt quy
-                                        hoạch đồ án <span class="font-bold TenDuAn">ĐIỀU CHỈNH QUY HOẠCH CHUNGTHÀNH PHỐ MỸ THO – TỈNH TIỀN GIANG ĐẾN NĂM 2030</span> <span class="font-bold TyLe"> tỷ lệ 1/10.000</span> với diện tích <span class="font-bold DienTich"> 41.75</span> <b>m<sup>2</sup></b> cụ thể:
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>-->
+                    
                     
                 </div>
             </div>

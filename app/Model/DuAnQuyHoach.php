@@ -10,6 +10,7 @@ use App\Model\DuongDayDien;
 use App\Model\DuongOngCapNuoc;
 use App\Model\TramBienAp;
 use App\Model\NhaMayNuoc;
+use App\Model\SuDungDat;
 
 
 class DuAnQuyHoach extends Model
@@ -50,6 +51,11 @@ class DuAnQuyHoach extends Model
     public function NhaMayNuoc()
     {
         return $this->hasMany(NhaMayNuoc::class,'LoaiDuAnQuyHoach','MaDuAn');
+    }
+
+    public function SuDungDat()
+    {
+        return $this->hasMany(SuDungDat::class,'MaDuAnQuyHoach','MaDuAn');
     }
     //-------
 

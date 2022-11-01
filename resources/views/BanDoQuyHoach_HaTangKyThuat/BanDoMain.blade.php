@@ -9,7 +9,7 @@
         <div id="viewDiv"></div>
         <div id="selectDuAnQH">
             <select class="selectpicker" id="select-DAQH" data-live-search="true">
-                <option value='' disabled selected>Chọn quy hoạch</option>
+                <option value='0' disabled selected>Chọn quy hoạch</option>
                 <option value='0'>Tất cả</option>
                 @foreach($DAQH_List as $item)
                 <option value='{{$item->MaDuAn}}'>{{$item->TenDuAn}}</option>
@@ -91,8 +91,16 @@
                 </div>
             </div>
         </div>
-        <div id="slider" style="height:133px"></div>
-        <div id="locate"></div>
+
+        <div id="bottom-right-control">
+            <div id="map_control" >
+                <div id="slider" class="map_control_item" style="height:133px; background: #f5deb300;"></div>
+                <div id="zoom" class="map_control_item"></div>
+                <div id="locate" class="map_control_item"></div>
+            </div>
+            <div id="showToaDo" style="padding: 0px 15px 0px;box-shadow: none;" ></div>
+        </div>
+        
         @yield('content')
         
 	</body>
@@ -102,4 +110,5 @@
         @yield('foot')
         
     </footer>
+
 </html>
