@@ -7,14 +7,19 @@ Route::get('/logout','loginController@logout')->name('logout');
 
 Route::middleware('checklogin')->group(function(){
 
+    
     Route::group(['prefix'=>'DuAnQuyHoach'],function(){
-        Route::get('/','Admin\DuAnQuyHoach\DuAnQuyHoachController@show')->name('duAnQuyHoach');
-        Route::post('/edit','Admin\DuAnQuyHoach\DuAnQuyHoachController@edit')->name('editDuAnQuyHoach');
-        Route::post('/delete','Admin\DuAnQuyHoach\DuAnQuyHoachController@delete')->name('deleteDuAnQuyHoach');
-        Route::post('/insert','Admin\DuAnQuyHoach\DuAnQuyHoachController@insert')->name('insertDuAnQuyHoach');
+        Route::middleware('checkQuyenQLDAQH')->group(function(){
+            Route::get('/','Admin\DuAnQuyHoach\DuAnQuyHoachController@show')->name('duAnQuyHoach');
+            Route::post('/get_DAQH','Admin\DuAnQuyHoach\DuAnQuyHoachController@getDAQH')->name('getDuAnQuyHoach');
+            Route::post('/edit','Admin\DuAnQuyHoach\DuAnQuyHoachController@edit')->name('editDuAnQuyHoach');
+            Route::post('/delete','Admin\DuAnQuyHoach\DuAnQuyHoachController@delete')->name('deleteDuAnQuyHoach');
+            Route::post('/insert','Admin\DuAnQuyHoach\DuAnQuyHoachController@insert')->name('insertDuAnQuyHoach');
+        });
     });
 
-    Route::middleware('checkSuperAdmin')->group(function(){
+
+    Route::middleware('checkQuyenQLNguoiDung')->group(function(){
         Route::group(['prefix'=>'user'],function(){
             Route::get('/','Admin\user\userController@show')->name('user');
             Route::post('/getNguoiDung','Admin\user\userController@getNguoiDung')->name('getNguoiDung');
@@ -44,32 +49,72 @@ Route::middleware('checklogin')->group(function(){
         Route::post('/getDMXa','Admin\profile\profileController@layDuLieuXaTuHuyen')->name('getDMXa');
     });
 
+    
     Route::group(['prefix'=>'QLDanhMuc'],function(){
-        Route::get('/','Admin\QLDanhMuc\QLDanhMucController@show')->name('QLDanhMuc');
+        Route::middleware('checkQuyenQLDanhMuc')->group(function(){
+            Route::get('/','Admin\QLDanhMuc\QLDanhMucController@show')->name('QLDanhMuc');
 
-        Route::group(['prefix'=>'LoaiQuyHoach'],function(){
-            Route::get('/','Admin\QLLoaiQuyHoach\QLLoaiQuyHoachController@show')->name('QLLoaiQuyHoach');
-            Route::post('/them_LoaiQuyHoach','Admin\QLLoaiQuyHoach\QLLoaiQuyHoachController@them')->name('AddLoaiQuyHoach');
-            Route::post('/get_LoaiQuyHoach','Admin\QLLoaiQuyHoach\QLLoaiQuyHoachController@getLoaiQuyHoach')->name('getLoaiQuyHoach');
-            Route::post('/sua_LoaiQuyHoach','Admin\QLLoaiQuyHoach\QLLoaiQuyHoachController@sua')->name('EditLoaiQuyHoach');
-            Route::post('/xoa_LoaiQuyHoach','Admin\QLLoaiQuyHoach\QLLoaiQuyHoachController@xoa')->name('DeleteLoaiQuyHoach');
+            Route::group(['prefix'=>'LoaiQuyHoach'],function(){
+                Route::get('/','Admin\QLLoaiQuyHoach\QLLoaiQuyHoachController@show')->name('QLLoaiQuyHoach');
+                Route::post('/them_LoaiQuyHoach','Admin\QLLoaiQuyHoach\QLLoaiQuyHoachController@them')->name('AddLoaiQuyHoach');
+                Route::post('/get_LoaiQuyHoach','Admin\QLLoaiQuyHoach\QLLoaiQuyHoachController@getLoaiQuyHoach')->name('getLoaiQuyHoach');
+                Route::post('/sua_LoaiQuyHoach','Admin\QLLoaiQuyHoach\QLLoaiQuyHoachController@sua')->name('EditLoaiQuyHoach');
+                Route::post('/xoa_LoaiQuyHoach','Admin\QLLoaiQuyHoach\QLLoaiQuyHoachController@xoa')->name('DeleteLoaiQuyHoach');
+            });
+
+            Route::group(['prefix'=>'LoaiDuAn'],function(){
+                Route::get('/','Admin\QLLoaiDuAn\QLLoaiDuAnController@show')->name('QLLoaiDuAn');
+                Route::post('/them_LoaiDuAn','Admin\QLLoaiDuAn\QLLoaiDuAnController@them')->name('AddLoaiDuAn');
+                Route::post('/get_LoaiDuAn','Admin\QLLoaiDuAn\QLLoaiDuAnController@getLoaiDuAn')->name('getLoaiDuAn');
+                Route::post('/sua_LoaiDuAn','Admin\QLLoaiDuAn\QLLoaiDuAnController@sua')->name('EditLoaiDuAn');
+                Route::post('/xoa_LoaiDuAn','Admin\QLLoaiDuAn\QLLoaiDuAnController@xoa')->name('DeleteLoaiDuAn');
+            });
         });
+    });
 
-        Route::group(['prefix'=>'LoaiDuAn'],function(){
-            Route::get('/','Admin\QLLoaiDuAn\QLLoaiDuAnController@show')->name('QLLoaiDuAn');
-            Route::post('/them_LoaiDuAn','Admin\QLLoaiDuAn\QLLoaiDuAnController@them')->name('AddLoaiDuAn');
-            Route::post('/get_LoaiDuAn','Admin\QLLoaiDuAn\QLLoaiDuAnController@getLoaiDuAn')->name('getLoaiDuAn');
-            Route::post('/sua_LoaiDuAn','Admin\QLLoaiDuAn\QLLoaiDuAnController@sua')->name('EditLoaiDuAn');
-            Route::post('/xoa_LoaiDuAn','Admin\QLLoaiDuAn\QLLoaiDuAnController@xoa')->name('DeleteLoaiDuAn');
+    Route::group(['prefix'=>'QLHaTangKyThuat'],function(){
+        Route::middleware('checkQuyenQLHaTangKyThuat')->group(function(){
+            Route::get('/','Admin\QLHaTangKyThuatMenu\QLHaTangKyThuatMenuController@show')->name('QLHaTangKyThuat');
+
+            Route::group(['prefix'=>'DuongDayDien'],function(){
+                Route::get('/','DuongDayDien\DuongDayDienController@show')->name('QLDuongDayDien');
+                Route::post('/get_DuongDayDien','DuongDayDien\DuongDayDienController@get')->name('getDuongDayDien');
+                Route::post('/sua_DuongDayDien','DuongDayDien\DuongDayDienController@sua')->name('suaDuongDayDien');
+                Route::post('/xoa_DuongDayDien','DuongDayDien\DuongDayDienController@xoa')->name('xoaDuongDayDien');
+            });
+
+            Route::group(['prefix'=>'TramBienAp'],function(){
+                Route::get('/','TramBienAp\TramBienApController@show')->name('QLTramBienAp');
+                Route::post('/get','TramBienAp\TramBienApController@get')->name('getTramBienAp');
+                Route::post('/edit','TramBienAp\TramBienApController@sua')->name('EditTramBienAp');
+                Route::post('/xoa','TramBienAp\TramBienApController@xoa')->name('xoaTramBienAp');
+            });
+        
+            Route::group(['prefix'=>'DuongCapNuoc'],function(){
+                Route::get('/','DuongOngCapNuoc\DuongOngCapNuocController@show')->name('QLDuongCapNuoc');
+                Route::post('/get','DuongOngCapNuoc\DuongOngCapNuocController@get')->name('getDuongCapNuoc');
+                Route::post('/edit','DuongOngCapNuoc\DuongOngCapNuocController@sua')->name('EditDuongCapNuoc');
+                Route::post('/xoa','DuongOngCapNuoc\DuongOngCapNuocController@xoa')->name('xoaDuongCapNuoc');
+            });
+        
+            Route::group(['prefix'=>'NhaMayNuoc'],function(){
+                Route::get('/','NhaMayNuoc\NhaMayNuocController@show')->name('QLNhaMayNuoc');
+                Route::post('/get','NhaMayNuoc\NhaMayNuocController@get')->name('getNhaMayNuoc');
+                Route::post('/edit','NhaMayNuoc\NhaMayNuocController@sua')->name('EditNhaMayNuoc');
+                Route::post('/xoa','NhaMayNuoc\NhaMayNuocController@xoa')->name('xoaNhaMayNuoc');
+            });
         });
     });
 
     Route::group(['prefix'=>'SuDungDat'],function(){
-        Route::get('/','Admin\QLSuDungDat\QLSuDungDatController@show')->name('SuDungDat');
-        Route::post('/get_SuDungDat','Admin\QLSuDungDat\QLSuDungDatController@getSuDungDat')->name('getSuDungDat');
-        Route::post('/sua_SuDungDat','Admin\QLSuDungDat\QLSuDungDatController@sua')->name('suaSuDungDat');
-        Route::post('/xoa_SuDungDat','Admin\QLSuDungDat\QLSuDungDatController@xoa')->name('xoaSuDungDat');
+        Route::middleware('checkQuyenSuDungDat')->group(function(){
+            Route::get('/','Admin\QLSuDungDat\QLSuDungDatController@show')->name('SuDungDat');
+            Route::post('/get_SuDungDat','Admin\QLSuDungDat\QLSuDungDatController@getSuDungDat')->name('getSuDungDat');
+            Route::post('/sua_SuDungDat','Admin\QLSuDungDat\QLSuDungDatController@sua')->name('suaSuDungDat');
+            Route::post('/xoa_SuDungDat','Admin\QLSuDungDat\QLSuDungDatController@xoa')->name('xoaSuDungDat');
+        });
     });
+  
 });
 
 Route::group(['prefix'=>'ban-do-tra-cuu-thong-tin-quy-hoach'],function(){
@@ -86,6 +131,8 @@ Route::group(['prefix'=>'ban-do-ha-tang-ky-thuat'],function(){
     Route::post('/getTramBienAp','BanDo_HaTang_KyThuat\BanDo_HaTang_KyThuatController@getTramBienAp')->name('getTramBienAp');
     Route::post('/getNhaMayNuoc','BanDo_HaTang_KyThuat\BanDo_HaTang_KyThuatController@getNhaMayNuoc')->name('getNhaMayNuoc');
 });
+
+
 
 Route::post('/changePasswork','Admin\profile\profileController@changePasswork')->name('changePasswork');
 

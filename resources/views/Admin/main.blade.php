@@ -5,7 +5,7 @@
         @yield('head')
 
     </head>
-    <body>
+    <body style=' background-image: url("/image/background-loop.png");background-repeat: repeat;'>
         <div class="wrapper sidebar_minimize">
             <div class="main-header">
                 <!-- Logo Header -->
@@ -32,9 +32,6 @@
                 @include('Admin.navbar')
                 <!-- End Navbar -->
             </div>
-                <!-- Sidebar @include('Admin.sidebar')-->
-                
-                <!-- End Sidebar -->
 
             <div class="main-panel">
                 <div class="content">

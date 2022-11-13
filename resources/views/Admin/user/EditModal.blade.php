@@ -88,7 +88,7 @@
                                         <div class="input-group ">	
                                             <input type="password" class="form-control" id="Edit_password" name="Edit_password" disabled>
                                             <div class="input-group-append" >
-                                                <span class="input-group-text" id="btnShowPassword"><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
+                                                <span class="input-group-text" id="Edit_btnShowPassword"><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
                                             </div>
                                         </div>
                                     </div>

@@ -37,12 +37,15 @@ function PublicFunction_extendLayer(layer, Query, view)
   }
 
   
-  function PublicFunction_creat_CustomPopup(popup, featureLayer, popupContent, title)
+  function PublicFunction_creat_CustomPopup(popupContent, title, action, view, location)
   {
-    
-    popup.title = title;
-    popup.content = popupContent;
-    featureLayer.popupTemplate = popup;
+
+    view.popup.open({
+      title: title, 
+      content: popupContent, 
+      location: location,
+      actions:[action]
+    });
   }
 
   function PublicFunction_Convert_geom_to_array(geom)
@@ -54,6 +57,7 @@ function PublicFunction_extendLayer(layer, Query, view)
     {
       c[i] = c[i].split(' ')
     }
+    console.log(c)
     return c;
   }
 

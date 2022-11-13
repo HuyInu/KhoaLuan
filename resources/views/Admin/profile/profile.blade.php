@@ -54,7 +54,7 @@
 <div class="row">
     <div class="col-md-4">
         <div class="card card-profile">
-            <div class="card-header" style="background-image: url('../assets/img/blogpost.jpg')">
+            <div class="card-header" style="background-image: url('/template/Atlantis/img/blogpost.jpg')">
                 <div class="profile-picture">
                     <div class="avatar avatar-xl">
                         <img src="{{$avatar}}" alt="..." class="avatar-img rounded-circle">
@@ -63,7 +63,7 @@
             </div>
             <div class="card-body">
                 <div class="user-profile text-center">
-                    <div class="name">{{$userInfor['Ho'].' '.$userInfor['Ten']}}</div>
+                    <div class="name" id="Ten_CardProfile">{{$userInfor['Ho'].' '.$userInfor['Ten']}}</div>
                 </div>
             </div> 
         </div>
@@ -97,7 +97,7 @@
                             <div class="form-group">
                                 <label for="gioiTinh">Giới tính:</label>
                                 <select class="form-control form-control" id="GioiTinh" name="GioiTinh">
-                                    <option value="none">Chọn giới tính</option>
+                                    <option value="">Chọn giới tính</option>
                                     <option value="1">Nam</option>
                                     <option value="0">Nữ</option>
                                 </select>
@@ -145,7 +145,7 @@
                                 <label for="xa">Phường/ xã:</label>
                                 <select class="form-control form-control" id="MaXa" name="MaXa">
                                     <option value="0">Chọn phường/ xã</option>
-                                    @if($duLieuXa)
+                                    @if($duLieuXa != 0)
                                         @foreach($duLieuXa as $data)
                                         <option value="{{$data['MaXa']}}">{{$data['TenXa']}}</option>
                                         @endforeach

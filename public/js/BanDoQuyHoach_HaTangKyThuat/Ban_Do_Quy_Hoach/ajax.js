@@ -27,7 +27,6 @@ function Ajax_getXa_By_Huyen(MaHuyen)
 function Ajax_getThuaDat(odjectID,Graphic, view)
 {
     const MaDuAn=  $('#select-DAQH').val()
-
     $.ajax({
         type: 'POST',
         datatype: 'JSON',

@@ -83,4 +83,6 @@ class PhanQuyenService{
     {
         $this->NhomQuyen->them_NhomQuyen_NguoiDung($req->MaNhomQuyen,$req->NodeIDArray);
     }
+
+    
 }

@@ -44,11 +44,12 @@ $("#Open_SuaNhomQuyenForm").on('click',function(){
 })
 
 $("#XoaNhomQuyen").on('click',function(){
-
+    
     if(check_NhomQuyen_Val()==0)
     {
         return 0;
     }
+    const MaNhomQuyen = $('#select-NhomQuyen').val();
     deleteAlert(MaNhomQuyen, 'nhóm quyền', function (confirmed) {
         if (confirmed == true) {
             xoa_NhomQuyen(MaNhomQuyen);

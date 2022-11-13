@@ -5,12 +5,21 @@ $('#Edit_Form').validate({
         onclick: false,
         TenDuAn: {
             required: true,
-        }
+        },
+        TenDuAn: {
+            required: true,
+        },
+        TinhTrangPheDuyet: {
+            required_TinhTrangPheDuyet: true,
+        },
     },
     messages: {
         TenDuAn: {
             required: 'Vui lòng nhập tên dự án.',
-        }
+        },
+        TenDuAn: {
+            required: 'Vui lòng nhập tên dự án.',
+        },
     },
     errorElement: 'span',
     errorPlacement: function (error, element) {
@@ -24,7 +33,7 @@ $('#Edit_Form').validate({
         $(element).removeClass('is-invalid');
     },
     submitHandler: function (form) {
-        editDuAnQuyHoach();
+       
     }
 });
 
@@ -68,8 +77,7 @@ $('#Add_Form').validate({
 });
 
 jQuery.validator.addMethod("required_TinhTrangPheDuyet", function(value, element) {
-    const TinhTrangPheDuyet = $('#Add_TinhTrangPheDuyet').val();
-    if(TinhTrangPheDuyet != '')
+    if(value != '')
     {
         return true;
     }

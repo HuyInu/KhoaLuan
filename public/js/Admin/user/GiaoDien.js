@@ -24,6 +24,30 @@ $(document).ready(function() {
         }
     });
 
+    var Edit_showPassword = false;
+        $('#Edit_btnShowPassword').on('click',function(){
+            Edit_showPassword = !Edit_showPassword;
+            if(Edit_showPassword){
+                $('#Edit_password').attr('type','text');
+                $(this).html(`<i class="fa fa-eye" aria-hidden="true"></i>`);
+            }else{
+                $('#Edit_password').attr('type','password');
+                $(this).html(`<i class="fa fa-eye-slash" aria-hidden="true"></i>`);
+        }
+    });
+
+    var Edit_showPassword_confirm = false;
+        $('#Edit_btnShowPassword_confirm').on('click',function(){
+            Edit_showPassword_confirm = !Edit_showPassword_confirm;
+            if(Edit_showPassword_confirm){
+                $('#Edit_password_confirm').attr('type','text');
+                $(this).html(`<i class="fa fa-eye" aria-hidden="true"></i>`);
+            }else{
+                $('#Edit_password_confirm').attr('type','password');
+                $(this).html(`<i class="fa fa-eye-slash" aria-hidden="true"></i>`);
+        }
+    });
+
 })
 function GioaDien_togglePassword(element)
 {

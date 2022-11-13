@@ -34,6 +34,24 @@ class DuAnQuyHoachController extends Controller
         ]);
     }
 
+    public function getDAQH(Request $req)
+    {
+        try{
+            $DuAnQuyHoach = $this->DuAnQuyHoachService->get_DuAnQuyHoach_By_MaDuAn($req);
+
+            return response()->json([
+                'error'=>false,
+                'DuAnQuyHoach'=> $DuAnQuyHoach,
+            ]);
+        }catch(\Exception $err)
+        {
+            return response()->json([
+                'error'=>true,
+                'message'=>'Đã xảy ra lỗi.',
+            ]);
+        }
+    }
+
     public function edit(Request $req)
     {
         $data = (object)$this->DuAnQuyHoachService->unserialize_Ajax_Data($req->data);
@@ -84,6 +102,7 @@ class DuAnQuyHoachController extends Controller
     public function insert(Request $req)
     {
         try{
+            
             $data = (object)$this->DuAnQuyHoachService->unserialize_Ajax_Data($req->data);
             //dd($data);
 
@@ -104,7 +123,7 @@ class DuAnQuyHoachController extends Controller
                 'success'=>'Thêm thành công',
             ]);
 
-        }catch(\Exception $err)
+        }catch(\Exceptions $err)
         {
             return response()->json([
                 'error'=>true,

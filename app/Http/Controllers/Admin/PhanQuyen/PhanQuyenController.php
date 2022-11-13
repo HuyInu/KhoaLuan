@@ -21,7 +21,6 @@ class PhanQuyenController extends Controller
         $NhomQuyen_list = $this->PhanQuyenService->getAll_NhomQuyen();
         $Quyen_list = $this->PhanQuyenService->getAll_Quyen();
         
-        //dd(json_encode($NguoiDung_list));
         return view('Admin.PhanQuyen.PhanQuyen',[
             'NguoiDung_list'=>$NguoiDung_list,
             'NhomQuyen_list'=>$NhomQuyen_list,

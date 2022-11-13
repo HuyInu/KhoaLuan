@@ -154,8 +154,8 @@ class userService{
         $this->NguoiDung->xoa($req->MaNguoiDung);
     }
 
-    public function get_NhomQUyen_NguoiDung($req)
+    public function get_NhomQUyen_NguoiDung($MaNguoiDung)
     {
-        return $this->NguoiDung->get_NhomQuyen_NguoiDung($req->MaNguoiDung);
+        return $this->NguoiDung->get_NhomQuyen_NguoiDung($MaNguoiDung);
     }
 }

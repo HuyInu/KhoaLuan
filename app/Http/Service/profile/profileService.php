@@ -56,7 +56,7 @@ class profileService{
         try{
             $req->MaCoQuan = $this->setNullInput('0',$req->MaCoQuan);
             $req->MaXa = $this->setNullInput('0',$req->MaXa);
-            $req->GioiTinh = $this->setNullInput('None',$req->GioiTinh);
+            $req->GioiTinh = $this->setNullInput(NULL,$req->GioiTinh);
 
             $this->NguoiDung->updateNguoiDung($userId,
                                             (string)$req->TenDangNhap,
@@ -71,7 +71,7 @@ class profileService{
                                             null);
             return true;
         }
-        catch(\Exception $err)
+        catch(\Exceptions $err)
         {
             return false;
         }

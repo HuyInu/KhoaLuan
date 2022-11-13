@@ -1,22 +1,38 @@
-function loadDataToModel(element)
+function loadDataToModel(MaDuAn, 
+    TenDuAn, 
+    MaLoaiQuyHoach, 
+    TinhTrangPheDuyet,
+    SoQuyetDinhPheDuyet,
+    NgayKyQuyetDinh, 
+    QuyMoDanSo, 
+    TyLeBanVe, 
+    DienTich, 
+    ThoiGianXinPheDuyet, 
+    ThoiGianQuyHoach, 
+    ThoiGianLayYKien, 
+    ThoiGianCongBo, 
+    DonViQuanLy, 
+    DonViCapNhat, 
+    MaLoaiDuAn, 
+    MaTienDoDuAn)
 {
-    $('#MaDuAn').val($(element).closest("tr").find(".MaDuAn").text());
-    $('#TenDuAn').val($(element).closest("tr").find(".TenDuAn").text());
-    $('#MaLoaiQuyHoach').val($(element).closest("tr").find(".TenLoaiQuyHoach").attr('id-data'));
-    $('#TinhTrangPheDuyet').val($(element).closest("tr").find(".TinhTrangPheDuyet").attr('id-data'));
-    $('#SoQuyetDinhPheDuyet').val($(element).closest("tr").find(".SoQuyetDinhPheDuyet").text());
-    $('#NgayKyQuyetDinh').val($(element).closest("tr").find(".NgayKyQuyetDinh").text());
-    $('#QuyMoDanSo').val($(element).closest("tr").find(".QuyMoDanSo").text());
-    $('#TyLeBanVe').val($(element).closest("tr").find(".TyLeBanVe").text());
-    $('#DienTich').val($(element).closest("tr").find(".DienTich").text());
-    $('#ThoiGianXinPheDuyet').val($(element).closest("tr").find(".ThoiGianXinPheDuyet").text());
-    $('#ThoiGianQuyHoach').val($(element).closest("tr").find(".ThoiGianQuyHoach").text());
-    $('#ThoiGianLayYKien').val($(element).closest("tr").find(".ThoiGianLayYKien").text());
-    $('#ThoiGianCongBo').val($(element).closest("tr").find(".ThoiGianCongBo").text());
-    $('#DonViQuanLy').val($(element).closest("tr").find(".DonViQuanLy").text());
-    $('#DonViCapNhat').val($(element).closest("tr").find(".DonViCapNhat").text());
-    $('#MaLoaiDuAn').val($(element).closest("tr").find(".MaLoaiDuAn").attr('id-data'));
-    $('#MaTienDoDuAn').val($(element).closest("tr").find(".MaTienDoDuAn").attr('id-data'));
+    $('#MaDuAn').val(MaDuAn);
+    $('#TenDuAn').val(TenDuAn);
+    $('#MaLoaiQuyHoach').val(MaLoaiQuyHoach);
+    $('#TinhTrangPheDuyet').val(TinhTrangPheDuyet);
+    $('#SoQuyetDinhPheDuyet').val(SoQuyetDinhPheDuyet);
+    $('#NgayKyQuyetDinh').val(NgayKyQuyetDinh);
+    $('#QuyMoDanSo').val(QuyMoDanSo);
+    $('#TyLeBanVe').val(TyLeBanVe);
+    $('#DienTich').val(DienTich);
+    $('#ThoiGianXinPheDuyet').val(ThoiGianXinPheDuyet);
+    $('#ThoiGianQuyHoach').val(ThoiGianQuyHoach);
+    $('#ThoiGianLayYKien').val(ThoiGianLayYKien);
+    $('#ThoiGianCongBo').val(ThoiGianCongBo);
+    $('#DonViQuanLy').val(DonViQuanLy);
+    $('#DonViCapNhat').val(DonViCapNhat);
+    $('#MaLoaiDuAn').val(MaLoaiDuAn);
+    $('#MaTienDoDuAn').val(MaTienDoDuAn);
 }
 
 

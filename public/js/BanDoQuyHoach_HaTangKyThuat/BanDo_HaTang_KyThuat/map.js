@@ -1,4 +1,6 @@
 require([
+  "dojo/dom-class",
+  "dojo/query",
   "esri/Map",
   "esri/views/MapView",
   "esri/layers/MapImageLayer",
@@ -17,9 +19,12 @@ require([
   "esri/Graphic",
   "esri/widgets/ScaleBar",
   "esri/geometry/support/webMercatorUtils",
-  "esri/PopupTemplate"
+  "esri/PopupTemplate",
+  "esri/core/reactiveUtils"
 
 ], (
+  domClass,
+  query,
   Map, 
   MapView,
   MapImageLayer,
@@ -38,9 +43,10 @@ require([
   Graphic,
   ScaleBar,
   webMercatorUtils,
-  PopupTemplate
+  PopupTemplate,
+  reactiveUtils
 
-) => {
+  ) =>(async () =>{
 
   const url= "https://localhost:6443";
 
@@ -66,34 +72,82 @@ require([
 
   const Huyen_Xa_Xa_sublayer = Huyen_Xa_Map.findSublayerById(0);
 
+
+//---------------------------------------------Layer---------------------------------------------
+//+++++++++++++++++++++++++++++CAP DIEN+++++++++++++++++++++++++++++
+  const DuongDayDien_Title = "Đường dây diện";
+  const TramBienAp_Title = "Trạm biến áp";
+
   const TramBienAp = new FeatureLayer({
-    url: url+"/arcgis/rest/services/HaTangKyThuat/CapDien/FeatureServer/0",
-    title:"Trạm biến áp",
-    opacity:0.7,
+    url: url+"/arcgis/rest/services/HaTangKyThuat/CapDien/MapServer/0",
+    title: TramBienAp_Title,
     visible:false
   });
 
   const DuongDayDien = new FeatureLayer({
-    url: url+"/arcgis/rest/services/HaTangKyThuat/CapDien/FeatureServer/1",
-    title:"Đường dây diện",
-    opacity:0.7,
+    url: url+"/arcgis/rest/services/HaTangKyThuat/CapDien/MapServer/1",
+    title: DuongDayDien_Title,
     //visible:false
   });
+//+++++++++++++++++++++++++++++END CAP DIEN+++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++CAP NUOC+++++++++++++++++++++++++++++
+  const DuongCapNuoc_Title = "Đường ống nước";
+  const NhaMayNuoc_Title = "Nhà máy nước";
 
   const DuongOngNuoc = new FeatureLayer({
-    url: url+"/arcgis/rest/services/HaTangKyThuat/CapNuoc/FeatureServer/1",
-    title:"Đường ống nước",
-    opacity:0.7,
+    url: url+"/arcgis/rest/services/HaTangKyThuat/CapNuoc/MapServer/1",
+    title: DuongCapNuoc_Title,
     visible:false
   });
 
   const NhaMayNuoc = new FeatureLayer({
-    url: url+"/arcgis/rest/services/HaTangKyThuat/CapNuoc/FeatureServer/0",
-    title:"Nhà máy nước",
-    opacity:0.7,
+    url: url+"/arcgis/rest/services/HaTangKyThuat/CapNuoc/MapServer/0",
+    title: NhaMayNuoc_Title,
+    visible:false
+  });
+//+++++++++++++++++++++++++++++END CAP NUOC+++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++GIAO THONG+++++++++++++++++++++++++++++
+  const DuongGiaiThong_Title = "Đường giao thông";
+
+  const DuongGiaoThong = new FeatureLayer({
+    url: url+"/arcgis/rest/services/HaTangKyThuat/GiaoThong/MapServer/0",
+    title: DuongGiaiThong_Title,
+    visible:false
+  });
+  //+++++++++++++++++++++++++++++END GIAO THONG+++++++++++++++++++++++++++++
+  //+++++++++++++++++++++++++++++DUONG THOAT NUOC+++++++++++++++++++++++++++++
+  const DuongThoatNuoc_Title ="Ống thoát nước";
+  const TramXuLyNuocThai_Title ="Trạm xử lý nước thải";
+  const TramBom_Title ="Trạm bơm";
+  const MiengXa_Title ="Miệng xả";
+
+  const DuongThoatNuoc = new FeatureLayer({
+    url: url+"/arcgis/rest/services/HaTangKyThuat/ThoatNuoc/MapServer/3",
+    title: DuongThoatNuoc_Title,
     visible:false
   });
 
+  const TramXuLyNuocThai = new FeatureLayer({
+    url: url+"/arcgis/rest/services/HaTangKyThuat/ThoatNuoc/MapServer/0",
+    title: TramXuLyNuocThai_Title,
+    visible:false
+  });
+
+  const TramBom = new FeatureLayer({
+    url: url+"/arcgis/rest/services/HaTangKyThuat/ThoatNuoc/MapServer/1",
+    title: TramBom_Title,
+    visible:false
+  });
+
+  const MiengXa = new FeatureLayer({
+    url: url+"/arcgis/rest/services/HaTangKyThuat/ThoatNuoc/MapServer/2",
+    title: MiengXa_Title,
+    visible:false
+  });
+  //+++++++++++++++++++++++++++++END DUONG THOAT NUOC+++++++++++++++++++++++++++++
+  //---------------------------------------------EndLayer---------------------------------------------
+
+//---------------------------------------------GROUP---------------------------------------------
   var CapNuoc_Group = new GroupLayer({
     title: "Cấp nước",
     layers: [NhaMayNuoc,DuongOngNuoc]
@@ -104,14 +158,24 @@ require([
     layers: [TramBienAp, DuongDayDien]
   });
 
-  var HaTangKyThuat_Group = new GroupLayer({
-    title: "Hạ tầng kỹ thuật",
-    layers: [CapDien_Group,CapNuoc_Group],
-    minScale: 10000,
-    
+  var GiaoThong_Group = new GroupLayer({
+    title: "Giao thông",
+    layers: [DuongGiaoThong],
   });
 
+  var ThoatNuoc_Group = new GroupLayer({
+    title: "Thoát nước",
+    layers: [DuongThoatNuoc, TramXuLyNuocThai, TramBom, MiengXa],
+  });
 
+  var HaTangKyThuat_Group = new GroupLayer({
+    title: "Hạ tầng kỹ thuật",
+    layers: [CapDien_Group, CapNuoc_Group, ThoatNuoc_Group,GiaoThong_Group],
+    minScale: 10000,
+  });
+
+  
+//---------------------------------------------ENDGROUP---------------------------------------------
   const map = new Map({
     layers: [Huyen_Xa_Map,HaTangKyThuat_Group],
     basemap: "topo-vector"
@@ -160,19 +224,7 @@ require([
     source:source,
   });
 
-  //opacity slider
-  const opacitySlider = new Slider({
-    min: 0,
-    max: 1,
-    steps: 0.1,
-    values: [0.7],
-    layout:"vertical",
-    container:"slider"
-  });
 
-  opacitySlider.on("thumb-drag", function(event){ 
-    SuDungDat_Map.opacity = event.value;
-  });
 
   //zoom
   const zoom = new Zoom({
@@ -196,27 +248,81 @@ require([
   GiaoDienMain_hide_ZoomDefautWidget();
   view.ui.add(['selectDuAnQH','menu'], "top-right");
   view.ui.add(['bottom-right-control'], "bottom-right");
-//=======================================================FUNCTION==============================
+  //expandLayerList();
 
-function showCoordinates(evt) {
-  var point = view.toMap({x: evt.x, y: evt.y});
-  //the map is in web mercator but display coordinates in geographic (lat, long)
-  var mp = webMercatorUtils.webMercatorToGeographic(point);
-  //display mouse coordinates
-  $('#showToaDo').html("Lat/Lon "+mp.y.toFixed(6) + ", " + mp.x.toFixed(6));
-}
-
-//=====================================================================================
-$('#Xa').on('change',function(){
-  const query = new Query({
-    where : "MaPhuongXa = '"+$(this).val()+"'",
-    returnGeometry:true,
-  });
+  //=======================================================VARIALBEL==============================
+  var popup =new PopupTemplate();
+  let highlight;
+  const editThisAction = {
+    title: "Chỉnh sửa",
+    id: "edit-this",
+    className: "esri-icon-edit"
+  }
   
-  PublicFunction_extendLayer(Huyen_Xa_Xa_sublayer ,query,view);
-})
+  var clickedFeature={name:null,OBJECTID:null};
 
-view.on("pointer-move", showCoordinates);
+  //=======================================================ENDVARIALBEL==============================
+  //=======================================================FUNCTION==============================
+
+  function showCoordinates(evt) {
+    var point = view.toMap({x: evt.x, y: evt.y});
+    //the map is in web mercator but display coordinates in geographic (lat, long)
+    var mp = webMercatorUtils.webMercatorToGeographic(point);
+    //display mouse coordinates
+    $('#showToaDo').html("Lat/Lon "+mp.y.toFixed(6) + ", " + mp.x.toFixed(6));
+  }
+
+  function save_Clicked_Feature(name, OBJECTID)
+  {
+    clickedFeature.name= name;
+    clickedFeature.OBJECTID=OBJECTID;
+  }
+  function selectFeature(graphic) {
+    editFeature = graphic;
+    view.whenLayerView(editFeature.layer).then((layerView) => {
+        highlight = layerView.highlight(editFeature);
+    });
+  }
+  function unselectFeature() {
+    if (highlight) {
+        highlight.remove();
+    }
+  }
+
+  function click_feature(OBJECTID, layerTitle, getFeatureDATAFunction, action, mapPoint, graphic)
+  {
+    save_Clicked_Feature(layerTitle, OBJECTID);
+    getFeatureDATAFunction(OBJECTID, action, view, mapPoint);
+    selectFeature(graphic);
+  }
+
+  function expandLayerList() {
+    console.log(1)
+    document.querySelectorAll('.esri-layer-list__child-toggle').forEach(function(node, index){
+      
+        console.log(node)
+        domClass.add(node, "esri-layer-list__child-toggle--open");
+      
+    });
+
+    document.querySelectorAll('.esri-layer-list__list').forEach(function(node, index){
+      
+        $(node).attr("aria-expanded","true");
+        $(node).removeAttr('hidden');
+      
+    });
+  }
+  //=====================================================================================
+  $('#Xa').on('change',function(){
+    const queryXa = new Query({
+      where : "MaPhuongXa = '"+$(this).val()+"'",
+      returnGeometry:true,
+    });
+    
+    PublicFunction_extendLayer(Huyen_Xa_Xa_sublayer ,queryXa,view);
+  })
+
+  view.on("pointer-move", showCoordinates);
 
   view.on("click", (event) => {
     view.hitTest(event).then((response) => {
@@ -226,37 +332,59 @@ view.on("pointer-move", showCoordinates);
             results[0].graphic
         ) {
           var odjectID;
-          var popup =new PopupTemplate();
-
+          unselectFeature();
           switch(results[0].graphic.layer) {
+            case Huyen_Xa_Xa_sublayer:
+              console.log(1)
+            break;
             case DuongDayDien:
               odjectID = results[0].graphic.attributes.OBJECTID;
-
-              Ajax_get_DuongDayDien(odjectID,popup,DuongDayDien);
+              click_feature(odjectID, results[0].graphic.layer.title, Ajax_get_DuongDayDien, editThisAction, event.mapPoint, results[0].graphic);
             break;
 
             case DuongOngNuoc:
               odjectID = results[0].graphic.attributes.OBJECTID;
-
-              Ajax_get_OngCapNuoc(odjectID,popup,DuongOngNuoc);
+              click_feature(odjectID, results[0].graphic.layer.title, Ajax_get_OngCapNuoc, editThisAction, event.mapPoint, results[0].graphic);
             break;
 
             case TramBienAp:
               odjectID = results[0].graphic.attributes.OBJECTID;
-
-              Ajax_get_TramBienAp(odjectID,popup,TramBienAp);
+              click_feature(odjectID, results[0].graphic.layer.title, Ajax_get_TramBienAp, editThisAction, event.mapPoint, results[0].graphic);
             break;
 
             case NhaMayNuoc:
               odjectID = results[0].graphic.attributes.OBJECTID;
-
-              Ajax_get_NhaMayNuoc(odjectID,popup,NhaMayNuoc);
+              click_feature(odjectID, results[0].graphic.layer.title, Ajax_get_NhaMayNuoc, editThisAction, event.mapPoint, results[0].graphic);
             break;
           }
-            
-           
         }
     });
   })
 
-});
+  /*reactiveUtils.watch(
+    () => view.popup.visible == false,
+    () => {
+      console.log(`Popup visible: `);
+  });*/
+  
+  view.popup.on("trigger-action", (event) => {
+    if (event.action.id === "edit-this") {
+      switch(clickedFeature.name) {
+        case DuongDayDien_Title:
+          console.log(1)
+          GiaoDien_Show_Edit_DuongDayDien_Modal();
+        break;
+        case TramBienAp_Title:
+          GiaoDien_Show_Edit_TramBienAp_Modal();
+        break;
+        case DuongCapNuoc_Title:
+          GiaoDien_Show_Edit_DuongCapNuoc_Modal();
+        break;
+        case NhaMayNuoc_Title:
+          GiaoDien_Show_Edit_NhaMayNuoc_Modal();
+        break;
+      };
+    }
+  });
+
+})());

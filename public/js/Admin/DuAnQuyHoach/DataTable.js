@@ -36,21 +36,6 @@ $(document).ready(function() {
     }).draw();
     //End STT
 
-    var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times"></i> </button> </div> </td>';
-
-    /*$('#addRowButton').click(function() {
-        $('#DuAnQuyHoachTable').dataTable().fnAddData([
-            $("#MaDuAn").val(),
-            $("#MaDuAn").val(),
-            $("#TenDuAn").val(),
-            $("#MaLoaiQuyHoach").find(":selected").text(),
-            $("#TinhTrangPheDuyet").find(":selected").text(),
-            $("#NgayKyQuyetDinh").val(),
-            action
-            ]);
-        $('#addRowModal').modal('hide');
-
-    });*/
 });
 
 function DataTable_add_Data()
@@ -65,4 +50,35 @@ function DataTable_add_Data()
         $("#Add_NgayKyQuyetDinh").val(),
         action
         ]);
+}
+
+function DataTable_add_row(MaDuAn,TenDuAn, LoaiQuyHoach, TinhTrangPheDuyet, NgayKyQuyetDinh, SoQuyetDinhPheDuyet,idTable)
+{
+    const action = `<div class="form-button-action">
+                        <button type="button" data-toggle="tooltip" id="edit" class="btn btn-link btn-primary btn-lg" MaDuAn='${MaDuAn}' data-original-title="Sửa">
+                            <i class="fa fa-edit"></i>
+                        </button>
+                        <button type="button" data-toggle="tooltip" id="delete" class="btn btn-link btn-danger" MaDuAn='${MaDuAn}' data-original-title="Xóa">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>`;
+
+    const rowContent = ['',MaDuAn, TenDuAn,LoaiQuyHoach, TinhTrangPheDuyet, NgayKyQuyetDinh, SoQuyetDinhPheDuyet, action];
+    DataTable_Main_addRow(idTable,rowContent);
+
+}
+
+function DataTable_edit_row(MaDuAn,TenDuAn, LoaiQuyHoach, TinhTrangPheDuyet, NgayKyQuyetDinh, SoQuyetDinhPheDuyet,idTable, rowID)
+{
+    const action = `<div class="form-button-action">
+                        <button type="button" data-toggle="tooltip" id="edit" class="btn btn-link btn-primary btn-lg" MaDuAn='${MaDuAn}' data-original-title="Sửa">
+                            <i class="fa fa-edit"></i>
+                        </button>
+                        <button type="button" data-toggle="tooltip" id="delete" class="btn btn-link btn-danger" MaDuAn='${MaDuAn}' data-original-title="Xóa">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>`;
+
+    const rowContent = ['',MaDuAn, TenDuAn,LoaiQuyHoach, TinhTrangPheDuyet, NgayKyQuyetDinh, SoQuyetDinhPheDuyet, action];
+    DataTable_Main_editRow(idTable,rowContent, rowID)
 }

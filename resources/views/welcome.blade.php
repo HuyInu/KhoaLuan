@@ -169,63 +169,86 @@
 									</a>
 								</div>
 								@if(auth()->check())
-								<div class="col-sm-6 col-md-4">
-									<a href="{{route('duAnQuyHoach')}}" class="card-href">
-									<div class="card card-stats card-round card-custom card-hover" style="background-color: #2dd93fa8;color: white;">
-										<div class="card-body">
-											<p  class="space"></p>
-											<span class="btn-label">
-												<i class="fas fa-pen-alt"></i>
-											</span>
-											<h3>DỰ ÁN QUY HOẠCH</h3>
+									@if($userType ==1 || $QuyenQLDAQH)
+										<div class="col-sm-6 col-md-4">
+											<a href="{{route('duAnQuyHoach')}}" class="card-href">
+											<div class="card card-stats card-round card-custom card-hover" style="background-color: #2dd93fa8;color: white;">
+												<div class="card-body">
+													<p  class="space"></p>
+													<span class="btn-label">
+														<i class="fas fa-pen-alt"></i>
+													</span>
+													<h3>DỰ ÁN QUY HOẠCH</h3>
+												</div>
+											</div>
+											</a>
 										</div>
-									</div>
-									</a>
-								</div>
+									@endif
+									@if($userType ==1 || $QuyenQLDanhMuc)
+										<div class="col-sm-6 col-md-4">
+											<a href="{{route('QLDanhMuc')}}" class="card-href">
+											<div class="card card-stats card-round card-custom card-hover" style="background-color: #2b3ec7c2;color: white;">
+												<div class="card-body">
+													<p  class="space"></p>
+													<span class="btn-label">
+														<i class="fas fa-th-list"></i>
+													</span>
+													<h3>DANH MỤC</h3>
+												</div>
+											</div>
+											</a>
+										</div>
+									@endif
+									@if($userType ==1 || $QuyenQLSuDungDat)
+										<div class="col-sm-6 col-md-4">
+											<a href="{{route('SuDungDat')}}" class="card-href">
+											<div class="card card-stats card-round card-custom card-hover" style="background-color: #c72b4bc2;color: white;">
+												<div class="card-body">
+													<p  class="space"></p>
+													<span class="btn-label">
+														<i class="fas fa-th-list"></i>
+													</span>
+													<h3>SỬ DỤNG ĐẤT</h3>
+												</div>
+											</div>
+											</a>
+										</div>
+									@endif
+									@if($userType ==1 || $QuyenQLHaTangKyThuat)
+										<div class="col-sm-6 col-md-4">
+											<a href="{{route('QLHaTangKyThuat')}}" class="card-href">
+											<div class="card card-stats card-round card-custom card-hover" style="background-color: #b6c72bd1;color: white;">
+												<div class="card-body">
+													<p  class="space"></p>
+													<span class="btn-label">
+														<i class="fas fa-th-list"></i>
+													</span>
+													<h3>HẠ TẦNG KỸ THUẬT</h3>
+												</div>
+											</div>
+											</a>
+										</div>
+									@endif
 								@endif
-								<div class="col-sm-6 col-md-4">
-									<a href="{{route('QLDanhMuc')}}" class="card-href">
-									<div class="card card-stats card-round card-custom card-hover" style="background-color: #2b3ec7c2;color: white;">
-										<div class="card-body">
-											<p  class="space"></p>
-											<span class="btn-label">
-												<i class="fas fa-th-list"></i>
-											</span>
-											<h3>QUẢN LÝ DANH MỤC</h3>
-										</div>
-									</div>
-									</a>
-								</div>
-								<div class="col-sm-6 col-md-4">
-									<a href="{{route('SuDungDat')}}" class="card-href">
-									<div class="card card-stats card-round card-custom card-hover" style="background-color: #c72b4bc2;color: white;">
-										<div class="card-body">
-											<p  class="space"></p>
-											<span class="btn-label">
-												<i class="fas fa-th-list"></i>
-											</span>
-											<h3>QUẢN LÝ SỬ DỤNG ĐẤT</h3>
-										</div>
-									</div>
-									</a>
-								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="btn-group" id="setting">
-				@if(!auth()->check())
-				<button class="btn btn-info" data-toggle="modal" data-target="#loginModel">Đăng nhập</button>
-				@elseif(Auth()->user()->MaLoaiNguoiDung == 1)
-				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<i class="fas fa-cogs fa-2xl"></i>
-				</button>
-				<div class="dropdown-menu">
-					<a class="dropdown-item" href="{{route('PhanQuyen')}}">Phân quyền</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="{{route('user')}}">Quản lý người dùng</a>
-				</div>
+				@if(auth()->check())
+					@if($userType ==1 || $QuyenQLNguoiDung)
+					<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fas fa-cogs fa-2xl"></i>
+					</button>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="{{route('PhanQuyen')}}">Phân quyền</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="{{route('user')}}">Quản lý người dùng</a>
+					</div>
+					@endif
+				@else
+					<button class="btn btn-info" data-toggle="modal" data-target="#loginModel">Đăng nhập</button>			
 				@endif
 			</div>
 		</div>

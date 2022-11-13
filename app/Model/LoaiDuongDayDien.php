@@ -14,4 +14,10 @@ class LoaiDuongDayDien extends Model
     {
         return $this->hasMany(DuongDayDien::class,'LoaiDuongDien','MaLoaiDuongDayDien');
     }
+
+    //===========================\
+    public function get_All()
+    {
+        return $this::all();
+    }
 }

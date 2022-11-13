@@ -69,6 +69,12 @@ class DuAnQuyHoach extends Model
         return $this::all(['MaDuAn','TenDuAn']);
     }
 
+    public function get_by_OBJECTID($MaDuAn)
+    {
+        return $this::where('MaDuAn','=',$MaDuAn)->get();
+    }
+
+
     public function edit($MaDuAn,
                         $TenDuAn,
                         $TinhTrangPheDuyet,

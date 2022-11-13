@@ -35,6 +35,7 @@ class DuAnQuyHoachService{
         return $this->LoaiQuyHoach->getAll();
     }
 
+
     public function getTienDoDuAn_AscByName()
     {
         return $this->TienDoDuAn->sort_By_TenDuAnQuyHoach_Asc();
@@ -48,6 +49,16 @@ class DuAnQuyHoachService{
     public function getAllDuAnQuyHoach()
     {
         return $this->DuAnQuyHoach->getAll();
+    }
+
+    public function getID_Name_DAQH()
+    {
+        return $this->DuAnQuyHoach->getID_Name();
+    }
+
+    public function get_DuAnQuyHoach_By_MaDuAn($req)
+    {
+        return $this->DuAnQuyHoach->get_by_OBJECTID($req->MaDuAn);
     }
 
     public function validate_Infor_Form($MaDuAn,$req)
@@ -113,6 +124,7 @@ class DuAnQuyHoachService{
                                             $req->ThoiGianQuyHoach,
                                             $req->ThoiGianLayYKien,
                                             $req->ThoiGianCongBo);
+                                            
         $this->DuAnQuyHoach->edit(
                                 $MaDuAn,
                                 $req->TenDuAn,
@@ -162,7 +174,7 @@ class DuAnQuyHoachService{
                                             $req->Add_ThoiGianQuyHoach,
                                             $req->Add_ThoiGianLayYKien,
                                             $req->Add_ThoiGianCongBo);
-                                            
+                                          
 
         $this->DuAnQuyHoach->create($req->Add_MaDuAn,
                                     $req->Add_TenDuAn,
@@ -180,6 +192,6 @@ class DuAnQuyHoachService{
                                     $req->Add_DonViCapNhat,
                                     $checkedData->MaLoaiDuAn,
                                     $checkedData->MaTienDoDuAn,
-                                    $req->Add_MaLoaiQuyHoach);
+                                    $checkedData->MaLoaiQuyHoach);
     }
 }

@@ -14,4 +14,11 @@ class LoaiOngCapNuoc extends Model
     {
         return $this->hasMany(DuongOngCapNuoc::class,'LoaiOngCapNuoc','MaLoai');
     }
+
+    //=============
+
+    public function get_All()
+    {
+        return $this::all();
+    }
 }

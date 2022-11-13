@@ -29,7 +29,7 @@ class BanDoQuyHoachController extends Controller
                 'DAQH_List' => $DAQH_List,
                 'Huyen_Data' => $Huyen_Data
             ]);
-        }catch(\Exception $err)
+        }catch(\Exceptions $err)
         {
 
         }
@@ -39,7 +39,6 @@ class BanDoQuyHoachController extends Controller
     public function getThuaDat(Request $req)
     {
         try{
-            //dd($req->MaDuAn);
             $ThuaDat = $this->BanDoQuyHoachService->getThuaDat($req->odjectID);
 
             $SuDungDat = $this->BanDoQuyHoachService->getSuDungDat($req->odjectID, $req->MaDuAn);

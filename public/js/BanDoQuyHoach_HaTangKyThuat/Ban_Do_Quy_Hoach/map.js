@@ -93,7 +93,7 @@ require([
   };
 
   const Thua_Dat_Map = new FeatureLayer({
-    url: url+"/arcgis/rest/services/ThuaDat/Thua_Dat/FeatureServer/0",
+    url: url+"/arcgis/rest/services/ThuaDat/Thua_Dat/MapServer/0",
     title:"Thửa dắt",
     opacity:0.7,
     minScale: 2000,
@@ -120,16 +120,6 @@ require([
 
   const Huyen_Xa_Xa_sublayer = Huyen_Xa.findSublayerById(0);
 
-  /*const Huyen = new FeatureLayer({
-    url: url+"/arcgis/rest/services/BanDoNen/Huyen_Xa/FeatureServer/1",
-    title:"Quận huyện",
-    maxScale:40000,
-  });*/
-
-  /*const Huyen_Xa_Group = new GroupLayer({
-    title: "Lớp nền",
-    layers: [Xa,Huyen],
-  });*/
 
   const map = new Map({
     layers: [Huyen_Xa,Thua_Dat_Map,SuDungDat_Group],

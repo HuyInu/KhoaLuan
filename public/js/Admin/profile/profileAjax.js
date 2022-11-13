@@ -19,10 +19,12 @@ function editProfile()
                 if(result.validate === true && result.success)
                 {
                     successAlert('Sửa thành công');
+                    GiaoDien_update_Ten($('#Ho').val()+" "+$('#Ten').val());
                 }
                 else
                 {
                     $( "#email-form-group" ).append( '<span for="Email" class="error invalid-feedback" style="display: block;">'+result.message+'</span>');
+                    
                 }
             } 
             else {

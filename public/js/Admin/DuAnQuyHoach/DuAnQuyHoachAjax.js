@@ -4,10 +4,47 @@ $.ajaxSetup({
     }
 })
 
+function get_DuAnQuyHoach(MaDuAn)
+{
+    $.ajax({
+        type: 'POST',
+        datatype: 'JSON',
+        data:{MaDuAn},
+        url: '/DuAnQuyHoach/get_DAQH',
+        success: function (result) {
+            if (result.error === false) 
+            {   
+                const DAQH = result.DuAnQuyHoach[0];
+                loadDataToModel(MaDuAn, 
+                    DAQH.TenDuAn, 
+                    DAQH.MaLoaiQuyHoach, 
+                    DAQH.TinhTrangPheDuyet,
+                    DAQH.SoQuyetDinhPheDuyet,
+                    DAQH.NgayKyQuyetDinh, 
+                    DAQH.QuyMoDanSo, 
+                    DAQH.TyLeBanVe, 
+                    DAQH.DienTich, 
+                    DAQH.ThoiGianXinPheDuyet, 
+                    DAQH.ThoiGianQuyHoach, 
+                    DAQH.ThoiGianLayYKien, 
+                    DAQH.ThoiGianCongBo, 
+                    DAQH.DonViQuanLy, 
+                    DAQH.DonViCapNhat, 
+                    DAQH.MaLoaiDuAn, 
+                    DAQH.MaTienDoDuAn);
+            } 
+            else {
+                errorAlert(result.message);
+            }
+        }
+    })
+}
+
 function editDuAnQuyHoach()
 {
     const data = $("#Edit_Form").serialize();
     const MaDuAn = $("#MaDuAn").val();
+    const rowID = $("#rowID").html();
     $.ajax({
         type: 'POST',
         datatype: 'JSON',
@@ -24,6 +61,7 @@ function editDuAnQuyHoach()
                if(result.success)
                {
                     successAlert(result.success);
+                    DataTable_edit_row(MaDuAn,$('#TenDuAn').val(), $('#MaLoaiQuyHoach').find(":selected").text(), $('#TinhTrangPheDuyet').find(":selected").text(), $('#NgayKyQuyetDinh').val(), $('#SoQuyetDinhPheDuyet').val(), '#DuAnQuyHoachTable', rowID);
                     return 0;
                }
             } 
@@ -48,6 +86,7 @@ function delete_DuAnQuyHoach(DuAnID)
                if(result.success)
                {
                     successAlert(result.success);
+                    DataTable_Main_removeRow('#DuAnQuyHoachTable', $('#rowID').html());
                     return 0;
                }
             } 
@@ -71,13 +110,13 @@ function insert_DuAnQuyHoach()
             {
                if(result.validateError)
                {
-                    if(result.validateError.Add_MaDuAn[0])
+                    if(result.validateError.Add_MaDuAn)
                     {
                         $( ".Add_MaDuAn_group" ).append( '<span for="Add_MaDuAn" class="error invalid-feedback" style="display: block;">'+result.validateError.Add_MaDuAn[0]+'</span>');
                         return 0;
                     }
 
-                    if(result.validateError.Add_TenDuAn[0])
+                    if(result.validateError.Add_TenDuAn)
                     {
                         $( ".Add_TenDuAn_group" ).append( '<span for="Add_TenDuAn" class="error invalid-feedback" style="display: block;">'+result.validateError.Add_TenDuAn[0]+'</span>');
                         return 0;
@@ -87,7 +126,7 @@ function insert_DuAnQuyHoach()
                if(result.success)
                     {
                         successAlert(result.success);
-                     
+                        DataTable_add_row($('#Add_MaDuAn').val(),$('#Add_TenDuAn').val(), $('#Add_MaLoaiQuyHoach').find(":selected").text(), $('#Add_TinhTrangPheDuyet').find(":selected").text(), $('#Add_NgayKyQuyetDinh').val(), $('#Add_SoQuyetDinhPheDuyet').val(), '#DuAnQuyHoachTable');
                     }
                     return 0;
                 } 

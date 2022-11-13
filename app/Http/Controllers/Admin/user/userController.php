@@ -145,7 +145,7 @@ class userController extends Controller
     public function get_NhomQuyen_NguoiDung(Request $req)
     {
         try{
-            $NhomQuyen_NguoiDung = $this->userService->get_NhomQUyen_NguoiDung($req);
+            $NhomQuyen_NguoiDung = $this->userService->get_NhomQUyen_NguoiDung($req->MaNguoiDung);
             
             return response()->json([
                 'error'=>false,

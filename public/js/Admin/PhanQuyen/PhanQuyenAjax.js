@@ -66,7 +66,7 @@ function them_NhomQuyen()
                 if(result.success)
                 {
                     successAlert(result.success); 
-                    add_item_refrest_selectpicker("#select-NhomQuyen",result.MaNhomQuyenNew,TenNhomQuyen);
+                    add_item_selectpicker("#select-NhomQuyen",result.MaNhomQuyenNew,TenNhomQuyen);
                     return 0;
                 }
 

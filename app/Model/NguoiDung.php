@@ -41,7 +41,7 @@ class NguoiDung extends Authenticatable
     //----------//
     public function getAll()
     {
-        return $this::with(['LoaiNguoiDung','CoQuan'])->orderByRaw('-MaCoQuan DESC')->get(['id','TenDangNhap','Ho','Ten','Email','GioiTinh','MaLoaiNguoiDung','MaCoQuan','DienThoai']);
+        return $this::with(['LoaiNguoiDung','CoQuan'])->where('MaLoaiNguoiDung','!=',1)->orderByRaw('-MaCoQuan DESC')->get(['id','TenDangNhap','Ho','Ten','Email','GioiTinh','MaLoaiNguoiDung','MaCoQuan','DienThoai']);
     }
 
     public function getNguoiDung_CoQuan()

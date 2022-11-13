@@ -11,4 +11,24 @@ class NhaMayNuocService{
     {
         $this->NhaMayNuoc = $NhaMayNuoc;
     }
+
+    public function get_All_NhaMayNuoc()
+    {
+        return $this->NhaMayNuoc->get_All();
+    }
+
+    public function get_NhaMayNuoc_By_Id($req)
+    {
+        return  $this->NhaMayNuoc->get_by_OBJECTID($req->OBJECTID);
+    }
+
+    public function edit_NhaMayNuoc($req, $data)
+    {
+        $this->NhaMayNuoc->sua($req->OBJECTID, $data->TenNhaMayNuoc, $data->CongSuat, $data->DAQH_NhaMayNuoc);
+    }
+
+    public function xoa_NhaMayNuoc($req)
+    {
+        $this->NhaMayNuoc->xoa($req->OBJECTID);
+    }
 }

@@ -45,7 +45,7 @@ function Ajax_edit()
             
                 if(result.success)
                 {
-                    edit_row(OBJECTID,$('#TenLoaiDatTheoDA').val(),$('#DienTich').val(), $('#HeSoSuDungDat').val(), $('#TangCaoXayDung').val(), $('#TangCaoXayDung').val(), $('#MaDuAnQuyHoach').find(":selected").text(), $('#MaLoaiDatQHXD').find(":selected").text(), '#table', $('#rowID').html())
+                    edit_row(OBJECTID,$('#TenLoaiDatTheoDA').val(),$('#DienTich').val(), $('#HeSoSuDungDat').val(), $('#TangCaoXayDung').val(), $('#MatDoXayDung').val(), $('#MaDuAnQuyHoach').find(":selected").text(), $('#MaLoaiDatQHXD').find(":selected").text(), '#table', $('#rowID').html())
                     successAlert(result.success);
                     return 0;
                 }

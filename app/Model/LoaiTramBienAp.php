@@ -13,4 +13,11 @@ class LoaiTramBienAp extends Model
     {
         return $this->hasMany(TramBienAp::class,'MaLoaiTramBienAp','MaLoaiTramBienAp');
     }
+
+    //=====================
+
+    public function get_All()
+    {
+        return $this::all();
+    }
 }

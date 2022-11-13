@@ -41,7 +41,7 @@ class profileController extends Controller
         }
         
         $duLieuHuyen = $this->profileService->layDuLieuHuyen();
-        if($userInfo['MaXa'])
+        if(isset($userInfo->MaXa))
         {
             $XaById = $this->profileService->getXaById($userInfo['MaXa']);
             
@@ -50,8 +50,8 @@ class profileController extends Controller
         }
         else
         {
-            $MaHuyen = null;
-            $duLieuMDXa = null;
+            $MaHuyen = 0;
+            $duLieuMDXa = 0;
         }
         $duLieuCoQuan = $this->profileService->getCoQuan();
 

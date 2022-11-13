@@ -61,7 +61,11 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'checklogin'=>\App\Http\Middleware\CheckLoginMiddleware::class,
-        'checkSuperAdmin'=>\App\Http\Middleware\checkSuperAdmin::class,
+        'checkQuyenQLDAQH'=>\App\Http\Middleware\CheckQuyenQLDAQH::class,
+        'checkQuyenQLDanhMuc'=>\App\Http\Middleware\CheckQuyenQLDanhMuc::class,
+        'checkQuyenSuDungDat'=>\App\Http\Middleware\CheckQuyenSuDungDat::class,
+        'checkQuyenQLHaTangKyThuat'=>\App\Http\Middleware\CheckQuyenQLHaTangKyThuat::class,
+        'checkQuyenQLNguoiDung'=>\App\Http\Middleware\CheckQuyenQLNguoiDung::class,
     ];
 
     /**

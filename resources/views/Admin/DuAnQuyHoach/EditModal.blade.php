@@ -4,7 +4,7 @@
             <div class="modal-header no-bd">
                 <h5 class="modal-title">
                     <h2 class="fw-mediumbold">
-                    Sửa dự án quy hoạch</h2> 
+                    Sửa dự án quy hoạch</h2> <p hidden id='rowID'></p>
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
