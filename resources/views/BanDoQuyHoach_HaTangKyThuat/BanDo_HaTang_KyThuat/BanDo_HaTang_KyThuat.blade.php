@@ -4,6 +4,12 @@
     @include('BanDoQuyHoach_HaTangKyThuat.BanDo_HaTang_KyThuat.head')
 @endsection
 
+@section('search')
+<div id="search_Container" class="container hide" hidden>
+    
+</div>
+@endsection
+
 @section('content')
     @if(Auth()->check())
         @if(Auth()->user()->MaLoaiNguoiDung ==1 || $QuyenQLHaTangKyThuat)

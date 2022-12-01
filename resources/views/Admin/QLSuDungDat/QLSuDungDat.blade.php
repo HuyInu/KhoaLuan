@@ -68,10 +68,10 @@
                         <tr>
                             <td>{{$item->OBJECTID}}</td>
                             <td>{{$item->TenLoaiDatTheoDA}}</td>
-                            <td>{{$item->DienTich}}</td>
-                            <td>{{$item->HeSoSuDungDat}}</td>
-                            <td>{{$item->TangCaoXayDung}}</td>
-                            <td>{{$item->MatDoXayDung}}</td>
+                            <td>{{($item->DienTich != .00 && $item->DienTich != null ) ? str_replace('.',',',$item->DienTich) : ''}}</td>
+                            <td>{{($item->HeSoSuDungDat != .0 && $item->HeSoSuDungDat != null ) ? str_replace('.',',',$item->HeSoSuDungDat) : ''}}</td>
+                            <td>{{($item->TangCaoXayDung != 0 && $item->TangCaoXayDung != null ) ? $item->TangCaoXayDung : ''}}</td>
+                            <td>{{($item->MatDoXayDung != 0 && $item->MatDoXayDung != null ) ? $item->MatDoXayDung : ''}}</td>
                             <td>{{$item->DuAnQuyHoach->TenDuAn}}</td>
                             <td>{{$item->DMLoaiDatQHXD->TenLoaiDat}}</td>
                             <td>

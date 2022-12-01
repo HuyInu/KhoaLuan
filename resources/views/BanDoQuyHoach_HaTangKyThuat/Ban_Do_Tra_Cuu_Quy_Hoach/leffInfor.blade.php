@@ -1,4 +1,5 @@
 <div id="leftInfo" class="hide_left_Info" style="width:430px" >
+    <p id="ObjectID_ThuaDat" hidden></p>
     <div class="head-container bg-grey">
         <h3 class="head-title">Thông tin quy hoạch</h3>
         <label for="close" class="close-left-info" id="close-left-info"><i class="far fa-times-circle fa-lg" style="color: white;"></i></label>
@@ -27,19 +28,21 @@
             </div>
         </div>
         <div class="list-function">
-            <a href="https://www.google.com/maps/dir/undefined,undefined/10.359950554716876,106.36472497117772" class="item-lf" id="chiDuong" target="_blank">
+            <button class="btn left-contronll" id="chiDuong">
                 <i class="fas fa-directions text-info fa-2x"></i>
                 <p class="text-danger">Chỉ đường</p>
-            </a>
-            <a href="javascript:void(0)" class="item-lf" id="phongDen" data-objectid="623843">
+            </button>
+            <button class="btn left-contronll" id="phongDen">
                 <i class="fas fa-search-plus text-info fa-2x"></i>
                 <p class="text-danger">Phóng đến</p>
-            </a>
+                <p id='lat'></p>
+                <p id='long'></p>
+            </button>
             
-            <a href="javascript:void(0)" class="item-lf" id="btnExportPDF" data-pane="thuadat" data-title="Xuất pdf">
+            <button class="btn left-contronll" id="Xuat_PDF_Btn">
                 <i class="fas fa-file-pdf text-info fa-2x"></i>
                 <p class="text-danger">Xuất pdf</p>
-            </a>
+            </button>
         </div>
         <div class="noticeable-information">
             <span>Thông tin chỉ mang tính chất tham khảo</span>

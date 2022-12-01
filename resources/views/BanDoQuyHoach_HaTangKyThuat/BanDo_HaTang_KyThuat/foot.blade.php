@@ -5,6 +5,7 @@
 <script src="/js/BanDoQuyHoach_HaTangKyThuat/publicFunction.js"></script>
 <script src="/js/BanDoQuyHoach_HaTangKyThuat/addEvenListenerMain.js"></script>
 
+<script src="/js/BanDoQuyHoach_HaTangKyThuat/BanDo_HaTang_KyThuat/function.js"></script>
 <script src="/js/BanDoQuyHoach_HaTangKyThuat/BanDo_HaTang_KyThuat/GiaoDien.js"></script>
 <script src="/js/BanDoQuyHoach_HaTangKyThuat/BanDo_HaTang_KyThuat/ajax.js"></script>
 

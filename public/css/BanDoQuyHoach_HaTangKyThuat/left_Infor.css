@@ -125,3 +125,11 @@ padding-top: 10px;
   display: grid;
   grid-template-columns: 1fr 11fr;
 }
+
+.left-contronll{
+  background: white;
+}
+
+.left-contronll:hover{
+  background: rgb(231, 231, 231);
+}

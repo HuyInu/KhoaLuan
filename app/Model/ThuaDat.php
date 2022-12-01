@@ -20,7 +20,7 @@ class ThuaDat extends Model
 
     public function getThuaDat_By_OdjectID($odjectID)
     {
-        return $this::with(['DMXa.DMHuyen'])->where('OBJECTID','=',$odjectID)->get([DB::raw('SHAPE.ToString() as SHAPE'),'MaXa','SoHieuToBanDo','SoThuTuThua','DienTich','DienTichPhapLy','TenChu','DiaChi']);
+        return $this::with(['DMXa.DMHuyen'])->where('OBJECTID','=',$odjectID)->get([DB::raw('SHAPE.ToString() as SHAPE'),'OBJECTID', 'MaXa','SoHieuToBanDo','SoThuTuThua','DienTich','DienTichPhapLy','TenChu','DiaChi']);
     }
     
     public function getThuaDat_By_MaXa_SoTo_SoThua($MaXa, $SoTo, $SoThua)
@@ -30,9 +30,9 @@ class ThuaDat extends Model
 
     public function select_intersect_ThuaDat($whereTongDienTich)
     {
-        $sql = "SELECT THUADAT.SHAPE.STIntersection(SDDAT.SHAPE).ToString() as SUDUNGDATSHAPE,ISNULL(SDDAT.TenLoaiDatTheoDA,0) as TenLoaiDatTheoDA, ISNULL(SDDAT.HeSoSuDungDat,0) as HeSoSuDungDat, ISNULL(SDDAT.TangCaoXayDung,0) as TangCaoXayDung, ISNULL(SDDAT.MatDoXayDung, 0) as MatDoXayDung, 
-                    SDDAT.MaDuAnQuyHoach, DAQH.SoQuyetDinhPheDuyet, format(DAQH.NgayKyQuyetDinh,'dd/MM/yyyy') as NgayKyQuyetDinh, DAQH.TenDuAn, DAQH.TyLeBanVe, LQH.TenLoaiQuyHoach,
-                    CONVERT(numeric(6,2),(((THUADAT.SHAPE.STIntersection(SDDAT.SHAPE).STArea()*100)/THUADAT.SHAPE.STArea())*THUADAT.DienTich)/100) as DienTich, CONVERT(numeric(6,2),TongDT.TongDienTich) as TongDienTich
+        $sql = "SELECT THUADAT.SHAPE.STIntersection(SDDAT.SHAPE).ToString() as SUDUNGDATSHAPE,SDDAT.TenLoaiDatTheoDA as TenLoaiDatTheoDA, SDDAT.HeSoSuDungDat as HeSoSuDungDat, SDDAT.TangCaoXayDung as TangCaoXayDung, SDDAT.MatDoXayDung as MatDoXayDung, 
+                    SDDAT.MaDuAnQuyHoach , DAQH.SoQuyetDinhPheDuyet, format(DAQH.NgayKyQuyetDinh,'dd/MM/yyyy') as NgayKyQuyetDinh, DAQH.TenDuAn, DAQH.TyLeBanVe, LQH.TenLoaiQuyHoach,
+                    CONVERT(numeric(10,2),(((THUADAT.SHAPE.STIntersection(SDDAT.SHAPE).STArea()*100)/THUADAT.SHAPE.STArea())*THUADAT.DienTich)/100) as DienTich, CONVERT(numeric(10,2),TongDT.TongDienTich) as TongDienTich
                 from sde.THUADAT THUADAT , sde.SuDungDat SDDAT, sde.DuAnQuyHoach DAQH, sde.LoaiQuyHoach LQH, 
                     (select SDDAT.MaDuAnQuyHoach,sum((((THUADAT.SHAPE.STIntersection(SDDAT.SHAPE).STArea()*100)/THUADAT.SHAPE.STArea())*THUADAT.DienTich)/100) as TongDienTich from sde.THUADAT THUADAT , sde.SuDungDat SDDAT where THUADAT.SHAPE.STIntersects(SDDAT.SHAPE)=1 $whereTongDienTich group by SDDAT.MaDuAnQuyHoach) TongDT
                 where SDDAT.MaDuAnQuyHoach = DAQH.MaDuAn and DAQH.MaLoaiQuyHoach = LQH.MaLoaiQuyHoach and TongDT.MaDuAnQuyHoach= SDDAT.MaDuAnQuyHoach and THUADAT.SHAPE.STIntersects(SDDAT.SHAPE)=1";
@@ -48,11 +48,12 @@ class ThuaDat extends Model
             return null;
     }
 
-    public function getSuDungDat($odjectID, $MaDuAn)
+    public function getSuDungDat($odjectID, $MaDuAn = 0)
     {
-        $where = "and THUADAT.OBJECTID=$odjectID";
+        $where = " and THUADAT.OBJECTID=$odjectID";
         $sql = $this->select_intersect_ThuaDat($where).$where;
         $sql.= $this->select_where_MaDuAn($MaDuAn);
+        $sql .=" ORDER BY SDDAT.MaDuAnQuyHoach DESC, DienTich DESC";
 
         return DB::select(DB::raw($sql));
     }
@@ -62,6 +63,7 @@ class ThuaDat extends Model
         $where = "and THUADAT.MaXa='$MaXa' and THUADAT.SoThuTuThua='$SoThua' and THUADAT.SoHieuToBanDo='$SoTo'";
         $sql = $this->select_intersect_ThuaDat($where).$where;
         $sql.= $this->select_where_MaDuAn($MaDuAn);
+        
 
         return DB::select(DB::raw($sql));
     }

@@ -30,31 +30,7 @@
                     <div id="legend_Container" class="container hide" >            
                         <div id="legend"></div>
                     </div>
-                    <div id="search_Container" class="container hide">
-                        <div class="card-title">@yield('search-card-title')</div>
-                        <form id="timKiem_form">
-                            <div class="form-group">
-                                <label for="Huyen">Quận huyện*</label>
-                                <select class="form-control" id="Huyen" name="Huyen">
-                                    <option disabled selected hidden>Chọn quận huyện</option>
-                                    @foreach($Huyen_Data as $item)
-                                    <option value="{{$item->MaHuyen}}">{{$item->TenHuyen}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="Xa">Phường xã*</label>
-                                <select class="form-control" id="Xa" name="Xa">
-                                    <option disabled selected hidden>Chọn phường xã</option>
-                                    
-                                </select>
-                            </div>
-                            @yield('soThua-soTo-input')
-                            <div class="form-group pull-right">
-                                <button type="button" id="TimKiem" class="btn btn-info"> <i class="fas fa-search"></i> Tìm</button>
-                            </div>
-                        </form>
-                    </div>
+                    @yield('search')
                 </div>
                 
                 <div id="menu-list">
@@ -82,17 +58,12 @@
                             <i class="fas fa-info"></i>
                         </button>
                     </div>
-                
-                    <div class="menu-item">
-                        <button type="button" class="btn btn-icon btn-round btn-primary item-button" id="search">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
+                    @yield('search_menu')
                 </div>
             </div>
         </div>
 
-        <div id="bottom-right-control">
+        <div id="bottom-right-control" style="">
             <div id="map_control" >
                 <div id="slider" class="map_control_item" style="height:133px; background: #f5deb300;"></div>
                 <div id="zoom" class="map_control_item"></div>
@@ -101,12 +72,12 @@
             <div id="showToaDo" style="padding: 0px 15px 0px;box-shadow: none;" ></div>
         </div>
         
-        @yield('content')
-        
+        @yield('content')  
 	</body>
     <footer>
         @include('main.foot')
         <script src="https://js.arcgis.com/4.24/"></script>
+        <script src="/js/main/UIBlock.js"></script>
         @yield('foot')
         
     </footer>

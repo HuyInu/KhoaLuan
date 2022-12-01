@@ -33,3 +33,19 @@ $('#MaDuAnQuyHoach_Sort').on('change',function(){
 $('#MaLoaiDatQHXD_Sort').on('change',function(){
     DataTable_Main_sort('#table',this,7);
 })
+
+$('#DienTich').on('input',function(){
+    this.value = this.value.replace(/[^0-9 \,]/, '');
+})
+
+$('#HeSoSuDungDat').on('input',function(){
+    this.value = this.value.replace(/[^0-9 \,]/, '');
+})
+
+$('#TangCaoXayDung').on('input',function(){
+    this.value = this.value.replace(/[^0-9 \,]/, '');
+})
+
+$('#MatDoXayDung').on('input',function(){
+    this.value = this.value.replace(/[^0-9 \,]/, '');
+})

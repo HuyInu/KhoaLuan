@@ -15,16 +15,28 @@ function PublicFunction_extendLayer(layer, Query, view)
 
   function PublicFunction_queryFeature_gotoFeature( queryStr, featureLayer, view)
   {
+    PublicFunction_UI_Block('#viewDiv', 'fas fa-map', 'Đang tải bản đồ...');
     featureLayer.queryFeatures({
             where: queryStr,
-            //outFields: ["*"],
+            outSpatialReference : 102100,
             returnGeometry: true
           }).then((results) => {
             if (results.features.length > 0) 
             {
+              luu_lat_long_center_feature_to_localStorage(results.features[0].geometry.extent.center.latitude,
+                                                          results.features[0].geometry.extent.center.longitude);
               PublicFunction_goToFeature(results.features[0].geometry,view);
             }
+          }).then(function(){
+            PublicFunction_UI_UnBlock('#viewDiv');
           });
+    
+  }
+
+  function luu_lat_long_center_feature_to_localStorage(lat, long)
+  {
+    localStorage.setItem('lat', lat);
+    localStorage.setItem('long',long);
   }
 
   function PublicFunction_HightLight_Feature(highlightSelect, view, OBJECTID)
@@ -50,14 +62,43 @@ function PublicFunction_extendLayer(layer, Query, view)
 
   function PublicFunction_Convert_geom_to_array(geom)
   {
-    
+    var PolygonType = geom.slice(0,5);
+    var Array_Polygon;
+    if(PolygonType == 'MULTI')
+    {
+      Array_Polygon = Multipolygon_to_Array(geom);
+    }
+    else
+    {
+      Array_Polygon = Polygon_to_Array(geom);
+    }
+    return Array_Polygon;
+  }
+
+  function Polygon_to_Array(geom)
+  {
     var b = geom.slice(10,geom.length-2)
     var c = b.split(', ')
     for(i=0;i<c.length;i++)
     {
       c[i] = c[i].split(' ')
     }
-    console.log(c)
+  
+    return c;
+  }
+
+  function Multipolygon_to_Array(geom)
+  {
+    var b = geom.slice(16,geom.length-3)	
+		var c = b.split(')), ((')
+	
+		c.forEach(function(valueC, index){
+			c[index] = valueC.split(', ');
+			c[index].forEach(function(valueC2, index2){
+				c[index][index2] = valueC2.split(' ');
+			})
+		})
+
     return c;
   }
 
@@ -72,7 +113,11 @@ function PublicFunction_extendLayer(layer, Query, view)
 
   function PublicFunction_get_colorArray()
   {
-    return ['#E35832','#FAE243','#32E36B','#EBD43F'];
+    return ['#ff6459','#ff8b59','#ffaf59','#ffca59',
+            '#ffe959','#f4ff59','#d3ff59','#afff59',
+            '#7aff59','#49d128','#2af599','#2af5c6',
+            '#2adaf5','#2a96f5','#132dd6','#7922e3',
+            '#b922e3','#e322dd','#e322a9','#e32269'];
 
   }
 
@@ -116,3 +161,21 @@ function PublicFunction_extendLayer(layer, Query, view)
         view.graphics.add(polylineGraphic);
     })
   }  
+  
+  function PublicFunction_UI_Block(IdDivBlock, fontAwsome, message)
+  {
+    $(IdDivBlock).block({ 
+      message: ` <i style="font-size:30px; color:#f0f5ff;" class="`+fontAwsome+`"></i><b style="margin-left:10px;font-size:30px; color:#f0f5ff;">`+message+`</b>`, 
+      css: { border: 'none',
+              backgroundColor: 'transparent' } 
+    }); 
+  }
+  function PublicFunction_UI_UnBlock(IdDivBlock)
+  {
+    $(IdDivBlock).unblock(); 
+  }
+
+  
+
+
+  

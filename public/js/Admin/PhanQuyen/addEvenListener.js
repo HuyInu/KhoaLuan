@@ -97,6 +97,6 @@ $('#save_NhomQuyen_NguoiDung').on('click',function(){
 
     them_NguoiDung_Vao_NhomQuyen(MaNhomQuyen, NodeIDArray);
 
-    get_Quyen_NhomQuyen_NguoiDung(MaNhomQuyen);
+    //get_Quyen_NhomQuyen_NguoiDung(MaNhomQuyen);
 
 })

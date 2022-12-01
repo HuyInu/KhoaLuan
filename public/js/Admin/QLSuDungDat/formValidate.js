@@ -11,7 +11,16 @@ $('#EditForm').validate({
         },
         MaLoaiDatQHXD: {
             required_select: true,
-        }
+        },
+        DienTich:{
+            required: true,
+        },
+        HeSoSuDungDat:{
+            required: true,
+        },
+        TangCaoXayDung:{
+            required: true,
+        },
     },
     messages: {
         TenLoaiDatTheoDA: {
@@ -22,7 +31,16 @@ $('#EditForm').validate({
         },
         MaLoaiDatQHXD: {
             required_select: "Vui lòng chọn loại đất.",
-        }
+        },
+        DienTich:{
+            required: "Vui lòng nhập diện tích.",
+        },
+        HeSoSuDungDat:{
+            required: "Vui lòng nhập hệ số sử dụng đất.",
+        },
+        TangCaoXayDung:{
+            required: "Vui lòng nhập tầng cao xây dựng.",
+        }, 
     },
     errorElement: 'span',
     errorPlacement: function (error, element) {
@@ -41,6 +59,17 @@ $('#EditForm').validate({
 });
 
 jQuery.validator.addMethod("required_select", function(value, element) {
+    if(value != '')
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    } 
+});
+
+jQuery.validator.addMethod("required_value", function(value, element) {
     if(value != '')
     {
         return true;

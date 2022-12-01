@@ -42,27 +42,10 @@ class welcomeController extends Controller
                             if($Quyen_item['MaQuyen'] == 1)
                             {
                                 $QuyenQLDAQH = 1;
-                                continue;
-                            }
-                            if($Quyen_item['MaQuyen'] == 2)
-                            {
                                 $QuyenQLDanhMuc = 1;
-                                continue;
-                            }
-                            if($Quyen_item['MaQuyen'] == 3)
-                            {
                                 $QuyenQLSuDungDat = 1;
-                                continue;
-                            }
-                            if($Quyen_item['MaQuyen'] == 4)
-                            {
                                 $QuyenQLHaTangKyThuat = 1;
-                                continue;
-                            }
-                            if($Quyen_item['MaQuyen'] == 5)
-                            {
                                 $QuyenQLNguoiDung = 1;
-                                continue;
                             }
                         }
                     }

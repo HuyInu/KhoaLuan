@@ -53,19 +53,20 @@ require([
   const Huyen_Xa_Map = new MapImageLayer({
     url: "https://localhost:6443/arcgis/rest/services/BanDoNen/Huyen_Xa/MapServer",
     title:"Lớp nền",
-    maxScale:4000,
     sublayers: [
       {
         id: 1,
         visible: true,
         title:'Quận huyện',
-        listMode: "hide"
+        listMode: "hide",
+        maxScale:70000,
       },
       {
         id: 0,
         visible: true,
         title:'Phường xã',
-        listMode: "hide"
+        listMode: "hide",
+        minScale:40000,
       },
     ]
   });
@@ -79,29 +80,30 @@ require([
   const TramBienAp_Title = "Trạm biến áp";
 
   const TramBienAp = new FeatureLayer({
-    url: url+"/arcgis/rest/services/HaTangKyThuat/CapDien/MapServer/0",
+    url: url+"/arcgis/rest/services/HaTangKyThuat/CapDien/FeatureServer/0",
     title: TramBienAp_Title,
     visible:false
   });
 
   const DuongDayDien = new FeatureLayer({
-    url: url+"/arcgis/rest/services/HaTangKyThuat/CapDien/MapServer/1",
+    url: url+"/arcgis/rest/services/HaTangKyThuat/CapDien/FeatureServer/1",
     title: DuongDayDien_Title,
     //visible:false
   });
+  
 //+++++++++++++++++++++++++++++END CAP DIEN+++++++++++++++++++++++++++++
 //+++++++++++++++++++++++++++++CAP NUOC+++++++++++++++++++++++++++++
   const DuongCapNuoc_Title = "Đường ống nước";
   const NhaMayNuoc_Title = "Nhà máy nước";
 
   const DuongOngNuoc = new FeatureLayer({
-    url: url+"/arcgis/rest/services/HaTangKyThuat/CapNuoc/MapServer/1",
+    url: url+"/arcgis/rest/services/HaTangKyThuat/CapNuoc/FeatureServer/1",
     title: DuongCapNuoc_Title,
     visible:false
   });
 
   const NhaMayNuoc = new FeatureLayer({
-    url: url+"/arcgis/rest/services/HaTangKyThuat/CapNuoc/MapServer/0",
+    url: url+"/arcgis/rest/services/HaTangKyThuat/CapNuoc/FeatureServer/0",
     title: NhaMayNuoc_Title,
     visible:false
   });
@@ -110,7 +112,7 @@ require([
   const DuongGiaiThong_Title = "Đường giao thông";
 
   const DuongGiaoThong = new FeatureLayer({
-    url: url+"/arcgis/rest/services/HaTangKyThuat/GiaoThong/MapServer/0",
+    url: url+"/arcgis/rest/services/HaTangKyThuat/GiaoThong/FeatureServer/0",
     title: DuongGiaiThong_Title,
     visible:false
   });
@@ -122,25 +124,25 @@ require([
   const MiengXa_Title ="Miệng xả";
 
   const DuongThoatNuoc = new FeatureLayer({
-    url: url+"/arcgis/rest/services/HaTangKyThuat/ThoatNuoc/MapServer/3",
+    url: url+"/arcgis/rest/services/HaTangKyThuat/ThoatNuoc/FeatureServer/3",
     title: DuongThoatNuoc_Title,
     visible:false
   });
 
   const TramXuLyNuocThai = new FeatureLayer({
-    url: url+"/arcgis/rest/services/HaTangKyThuat/ThoatNuoc/MapServer/0",
+    url: url+"/arcgis/rest/services/HaTangKyThuat/ThoatNuoc/FeatureServer/0",
     title: TramXuLyNuocThai_Title,
     visible:false
   });
 
   const TramBom = new FeatureLayer({
-    url: url+"/arcgis/rest/services/HaTangKyThuat/ThoatNuoc/MapServer/1",
+    url: url+"/arcgis/rest/services/HaTangKyThuat/ThoatNuoc/FeatureServer/1",
     title: TramBom_Title,
     visible:false
   });
 
   const MiengXa = new FeatureLayer({
-    url: url+"/arcgis/rest/services/HaTangKyThuat/ThoatNuoc/MapServer/2",
+    url: url+"/arcgis/rest/services/HaTangKyThuat/ThoatNuoc/FeatureServer/2",
     title: MiengXa_Title,
     visible:false
   });
@@ -171,7 +173,7 @@ require([
   var HaTangKyThuat_Group = new GroupLayer({
     title: "Hạ tầng kỹ thuật",
     layers: [CapDien_Group, CapNuoc_Group, ThoatNuoc_Group,GiaoThong_Group],
-    minScale: 10000,
+    minScale: 50000//10000,
   });
 
   
@@ -195,6 +197,10 @@ require([
   view: view,
   });
   layerList.selectionEnabled = false;
+
+  layerList.when(function(){
+    GiaoDienMain_expandLayerList();
+  })
 
   //legend
   const legend = new Legend({
@@ -248,7 +254,6 @@ require([
   GiaoDienMain_hide_ZoomDefautWidget();
   view.ui.add(['selectDuAnQH','menu'], "top-right");
   view.ui.add(['bottom-right-control'], "bottom-right");
-  //expandLayerList();
 
   //=======================================================VARIALBEL==============================
   var popup =new PopupTemplate();
@@ -260,6 +265,16 @@ require([
   }
   
   var clickedFeature={name:null,OBJECTID:null};
+
+  const layerArray =[{layer:DuongDayDien,DAQHCollum:'MaDuAnQuyHoach'},
+                    {layer:DuongOngNuoc,DAQHCollum:'LoaiDuAnQuyHoach'},
+                    {layer:TramBienAp,DAQHCollum:'MaDuAnQuyHoach'},
+                    {layer:NhaMayNuoc,DAQHCollum:'LoaiDuAnQuyHoach'},
+                    {layer:DuongGiaoThong,DAQHCollum:'MaDuAnQuyHoach'},
+                    {layer:DuongThoatNuoc,DAQHCollum:'MaDuAnQuyHoach'},
+                    {layer:TramXuLyNuocThai,DAQHCollum:'MaDuAnQuyHoach'},
+                    {layer:TramBom,DAQHCollum:'MaDuAnQuyHoach'},
+                    {layer:MiengXa,DAQHCollum:'MaDuAnQuyHoach'},]
 
   //=======================================================ENDVARIALBEL==============================
   //=======================================================FUNCTION==============================
@@ -296,30 +311,37 @@ require([
     selectFeature(graphic);
   }
 
-  function expandLayerList() {
-    console.log(1)
-    document.querySelectorAll('.esri-layer-list__child-toggle').forEach(function(node, index){
-      
-        console.log(node)
-        domClass.add(node, "esri-layer-list__child-toggle--open");
-      
-    });
-
-    document.querySelectorAll('.esri-layer-list__list').forEach(function(node, index){
-      
-        $(node).attr("aria-expanded","true");
-        $(node).removeAttr('hidden');
-      
-    });
-  }
+  
   //=====================================================================================
   $('#Xa').on('change',function(){
     const queryXa = new Query({
       where : "MaPhuongXa = '"+$(this).val()+"'",
       returnGeometry:true,
-    });
-    
+    });   
     PublicFunction_extendLayer(Huyen_Xa_Xa_sublayer ,queryXa,view);
+  })
+
+  $('#select-DAQH').on('change',function(){
+    var MaDAQH =  $(this).val();
+
+    let myPromise = new Promise(function(resolve, reject) {
+      PublicFunction_UI_Block('#viewDiv', 'fas fa-map', 'Đang tải bản đồ...');
+    
+      layerArray.forEach(function (value, index) {
+        Function_sort_HaTangKyThuat_By_DAQH(value.layer,value.DAQHCollum, MaDAQH);
+      });
+      var featuresArray = [];
+      
+      var index =0;
+      Function_Sort_HaTangKyThuat(index, layerArray, MaDAQH, featuresArray, view)
+
+      resolve(1);
+    });
+
+    myPromise.then(function(){
+      PublicFunction_UI_UnBlock('#viewDiv');
+    })
+    
   })
 
   view.on("pointer-move", showCoordinates);
@@ -334,9 +356,6 @@ require([
           var odjectID;
           unselectFeature();
           switch(results[0].graphic.layer) {
-            case Huyen_Xa_Xa_sublayer:
-              console.log(1)
-            break;
             case DuongDayDien:
               odjectID = results[0].graphic.attributes.OBJECTID;
               click_feature(odjectID, results[0].graphic.layer.title, Ajax_get_DuongDayDien, editThisAction, event.mapPoint, results[0].graphic);
@@ -361,17 +380,11 @@ require([
     });
   })
 
-  /*reactiveUtils.watch(
-    () => view.popup.visible == false,
-    () => {
-      console.log(`Popup visible: `);
-  });*/
   
   view.popup.on("trigger-action", (event) => {
     if (event.action.id === "edit-this") {
       switch(clickedFeature.name) {
         case DuongDayDien_Title:
-          console.log(1)
           GiaoDien_Show_Edit_DuongDayDien_Modal();
         break;
         case TramBienAp_Title:
@@ -386,5 +399,7 @@ require([
       };
     }
   });
+
+  
 
 })());

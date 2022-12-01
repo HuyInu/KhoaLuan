@@ -3,3 +3,4 @@
 <script src="/js/Admin/QLSuDungDat/ajax.js"></script>
 <script src="/js/Admin/QLSuDungDat/GiaoDien.js"></script>
 <script src="/js/Admin/QLSuDungDat/addEvenListener.js"></script>
+<script src="/js/main/function_Main.js"></script>

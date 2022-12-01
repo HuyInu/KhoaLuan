@@ -61,7 +61,15 @@ function editDuAnQuyHoach()
                if(result.success)
                {
                     successAlert(result.success);
-                    DataTable_edit_row(MaDuAn,$('#TenDuAn').val(), $('#MaLoaiQuyHoach').find(":selected").text(), $('#TinhTrangPheDuyet').find(":selected").text(), $('#NgayKyQuyetDinh').val(), $('#SoQuyetDinhPheDuyet').val(), '#DuAnQuyHoachTable', rowID);
+                    if($('#MaLoaiQuyHoach').val() == '')
+                    {
+                        var MaLoaiQuyHoach = null;
+                    }
+                    else
+                    {
+                        var MaLoaiQuyHoach = $('#MaLoaiQuyHoach').find(":selected").text();
+                    }
+                    DataTable_edit_row(MaDuAn,$('#TenDuAn').val(), MaLoaiQuyHoach, $('#TinhTrangPheDuyet').find(":selected").text(), $('#NgayKyQuyetDinh').val(), $('#SoQuyetDinhPheDuyet').val(), '#DuAnQuyHoachTable', rowID);
                     return 0;
                }
             } 
@@ -126,7 +134,15 @@ function insert_DuAnQuyHoach()
                if(result.success)
                     {
                         successAlert(result.success);
-                        DataTable_add_row($('#Add_MaDuAn').val(),$('#Add_TenDuAn').val(), $('#Add_MaLoaiQuyHoach').find(":selected").text(), $('#Add_TinhTrangPheDuyet').find(":selected").text(), $('#Add_NgayKyQuyetDinh').val(), $('#Add_SoQuyetDinhPheDuyet').val(), '#DuAnQuyHoachTable');
+                        if($('#Add_MaLoaiQuyHoach').val() == '')
+                        {
+                            var MaLoaiQuyHoach = null;
+                        }
+                        else
+                        {
+                            var MaLoaiQuyHoach = $('#Add_MaLoaiQuyHoach').find(":selected").text();
+                        }
+                        DataTable_add_row($('#Add_MaDuAn').val(),$('#Add_TenDuAn').val(), MaLoaiQuyHoach, $('#Add_TinhTrangPheDuyet').find(":selected").text(), $('#Add_NgayKyQuyetDinh').val(), $('#Add_SoQuyetDinhPheDuyet').val(), '#DuAnQuyHoachTable');
                     }
                     return 0;
                 } 

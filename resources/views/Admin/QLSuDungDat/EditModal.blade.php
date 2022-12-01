@@ -20,15 +20,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="largeInput">Diện tích:</label>
-                                <input type="number" class="form-control" id="DienTich" name="DienTich">
+                                <input type="text" class="form-control" id="DienTich" name="DienTich">
                             </div>
                             <div class="form-group">
                                 <label for="largeInput">Hệ số sử dụng đất:</label>
-                                <input type="number" class="form-control" id="HeSoSuDungDat" name="HeSoSuDungDat" >
+                                <input type="text" class="form-control" id="HeSoSuDungDat" name="HeSoSuDungDat" >
                             </div>
                             <div class="form-group">
                                 <label for="largeInput">Tầng cao xây dựng:</label>
-                                <input type="number" class="form-control" id="TangCaoXayDung" name="TangCaoXayDung" >
+                                <input type="text" class="form-control" id="TangCaoXayDung" name="TangCaoXayDung" >
                             </div>
                         </div>
                         <div class="col-md-6 .col-4">

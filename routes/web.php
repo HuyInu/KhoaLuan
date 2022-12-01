@@ -132,6 +132,9 @@ Route::group(['prefix'=>'ban-do-ha-tang-ky-thuat'],function(){
     Route::post('/getNhaMayNuoc','BanDo_HaTang_KyThuat\BanDo_HaTang_KyThuatController@getNhaMayNuoc')->name('getNhaMayNuoc');
 });
 
+Route::group(['prefix'=>'PDF'],function(){
+    Route::post('/PDF_ThongTinQuyHoach','PDFConvert\PDF_ThongTinQuyHoachController@convert_HTML_to_PDF')->name('PDF_ThongTinQuyHoach');
+});
 
 
 Route::post('/changePasswork','Admin\profile\profileController@changePasswork')->name('changePasswork');

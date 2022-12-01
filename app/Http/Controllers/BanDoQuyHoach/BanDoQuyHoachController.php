@@ -29,7 +29,7 @@ class BanDoQuyHoachController extends Controller
                 'DAQH_List' => $DAQH_List,
                 'Huyen_Data' => $Huyen_Data
             ]);
-        }catch(\Exceptions $err)
+        }catch(\Exception $err)
         {
 
         }
@@ -71,7 +71,7 @@ class BanDoQuyHoachController extends Controller
                 'SuDungDat' => $SuDungDat
             ]);
         }
-        catch(\Exceptions $err)
+        catch(\Exception $err)
         {
             return response()->json([
                 'error'=>true,

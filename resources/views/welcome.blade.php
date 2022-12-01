@@ -34,7 +34,7 @@
     </head>
     <body>
 		<!-- Wrapper -->
-		<div id="wrapper" class="bg" >
+		<div id="wrapper" style="height: 100%;" class="" >
 			<!-- Logo Header -->
 			@if(Auth()->check())
 			<div class="main-header" style="background: #ff000000; box-shadow: none;">
@@ -127,11 +127,10 @@
                     </div>
                 </div>
             </div>
-			<div class="">
-				<div class="">
+				<div class="bg">
 					<div class="page-inner">
 
-						<div style="text-align: center;margin-top: 50px;" class="card-body">
+						<div style="text-align: center;margin-top: 1%;" class="card-body">
 							<a href="#" class="logo">
 								<img style="height: 100px;width: 100;" src="/image/main-logo.png" alt="navbar brand" class="navbar-brand">
 							</a>
@@ -169,7 +168,7 @@
 									</a>
 								</div>
 								@if(auth()->check())
-									@if($userType ==1 || $QuyenQLDAQH)
+									@if($userType ==1 || $userType == 2 || $QuyenQLDAQH)
 										<div class="col-sm-6 col-md-4">
 											<a href="{{route('duAnQuyHoach')}}" class="card-href">
 											<div class="card card-stats card-round card-custom card-hover" style="background-color: #2dd93fa8;color: white;">
@@ -199,7 +198,7 @@
 											</a>
 										</div>
 									@endif
-									@if($userType ==1 || $QuyenQLSuDungDat)
+									@if($userType ==1 || $userType == 2 || $QuyenQLSuDungDat)
 										<div class="col-sm-6 col-md-4">
 											<a href="{{route('SuDungDat')}}" class="card-href">
 											<div class="card card-stats card-round card-custom card-hover" style="background-color: #c72b4bc2;color: white;">
@@ -214,7 +213,7 @@
 											</a>
 										</div>
 									@endif
-									@if($userType ==1 || $QuyenQLHaTangKyThuat)
+									@if($userType ==1 || $userType == 2 || $QuyenQLHaTangKyThuat)
 										<div class="col-sm-6 col-md-4">
 											<a href="{{route('QLHaTangKyThuat')}}" class="card-href">
 											<div class="card card-stats card-round card-custom card-hover" style="background-color: #b6c72bd1;color: white;">
@@ -233,24 +232,24 @@
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-			<div class="btn-group" id="setting">
-				@if(auth()->check())
-					@if($userType ==1 || $QuyenQLNguoiDung)
-					<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<i class="fas fa-cogs fa-2xl"></i>
-					</button>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="{{route('PhanQuyen')}}">Phân quyền</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="{{route('user')}}">Quản lý người dùng</a>
+					<div class="btn-group" id="setting">
+						@if(auth()->check())
+							@if($userType ==1 || $QuyenQLNguoiDung)
+							<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="fas fa-cogs fa-2xl"></i>
+							</button>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="{{route('PhanQuyen')}}">Phân quyền</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="{{route('user')}}">Quản lý người dùng</a>
+							</div>
+							@endif
+						@else
+							<button class="btn btn-info" data-toggle="modal" data-target="#loginModel">Đăng nhập</button>			
+						@endif
 					</div>
-					@endif
-				@else
-					<button class="btn btn-info" data-toggle="modal" data-target="#loginModel">Đăng nhập</button>			
-				@endif
-			</div>
+				</div>
+			
 		</div>
 			
 		<!-- Scripts -->

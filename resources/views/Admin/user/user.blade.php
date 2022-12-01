@@ -75,7 +75,7 @@
                             <td>{{$item->TenDangNhap ? $item->TenDangNhap : null}}</td>
                             <td>{{$item->Ho && $item->Ten ? $item->Ho .' '.$item->Ten : null}}</td>
                             <td>{{$item->Email ? $item->Email : null}}</td>
-                            <td>{{$item->GioiTinh ? $item->GioiTinh : null}}</td>
+                            <td>{{$item->GioiTinh ? $item->GioiTinh == 1 ? 'Nam' : 'Nữ' : null}}</td>
                             <td>{{$item->LoaiNguoiDung ? $item->LoaiNguoiDung->TenLoai : null}}</td>
                             <td>{{$item->CoQuan ? $item->CoQuan->TenCoQuan : null}}</td>
                             <td>{{$item->DienThoai ? $item->DienThoai : null}}</td>

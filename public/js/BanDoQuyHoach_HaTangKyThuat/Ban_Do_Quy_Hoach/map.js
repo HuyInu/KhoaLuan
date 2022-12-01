@@ -37,7 +37,7 @@ require([
             ScaleBar,
             webMercatorUtils
         )=> (async ()=> {
-
+  
   const url= "https://localhost:6443";
   
           
@@ -45,7 +45,7 @@ require([
     url: url+"/arcgis/rest/services/BanDoNen/Su_Dung_Dat/MapServer",
     title:"Quy hoạch xây dựng",
     opacity:0.7,
-    minScale: 5958.4470,
+    minScale: 40000,
     sublayers: [
       {
         id: 0,
@@ -59,7 +59,7 @@ require([
     url: url+"/arcgis/rest/services/BanDoNen/HienTrangSuDungDat/MapServer",
     title:"Hiện trạng xây dựng",
     opacity:0.7,
-    minScale: 5958.4470,
+    minScale: 40000,
     visible:false,
     sublayers: [
       {
@@ -79,7 +79,7 @@ require([
   const labelClass = {
     symbol: {
       type: "text",
-      color: "green",
+      color: "#000000",
       font: {
         family: "Arial",
         size: 12,
@@ -87,33 +87,43 @@ require([
       }
     },
     labelPlacement: "above-center",
-    labelExpressionInfo: {
-      expression: "$feature.OBJECTID +'('+ $feature.SoHieuToBanDo+')'"
-    }
+    labelExpression: '[SoThuTuThua] CONCAT "(" CONCAT [SoHieuToBanDo] CONCAT ")"'
   };
 
-  const Thua_Dat_Map = new FeatureLayer({
-    url: url+"/arcgis/rest/services/ThuaDat/Thua_Dat/MapServer/0",
+  const Thua_Dat_Map = new MapImageLayer({
+    url: url+"/arcgis/rest/services/ThuaDat/Thua_Dat/MapServer",
     title:"Thửa dắt",
     opacity:0.7,
     minScale: 2000,
     listMode:"hide",
-    labelingInfo:labelClass
-  
+    
+    sublayers: [
+      {
+        id: 0,
+        title:" ",
+        labelingInfo:labelClass,
+        popupTemplate: {
+          title: " ",
+          outFields: ["*"]
+        }
+      }],
   });
+
+  const ThuaDat_sublayer = Thua_Dat_Map.findSublayerById(0);
   
   const Huyen_Xa = new MapImageLayer({
     url: url+"/arcgis/rest/services/BanDoNen/Huyen_Xa/MapServer",
     title:"Lớp nền",
-    minScale:40000,
     sublayers: [
       {
         id: 1,
         title:"Quận huyện",
+        maxScale:70000,
       },
       {
         id: 0,
         title:"Phường xã",
+        minScale:40000,
       },
       ],
   });
@@ -122,15 +132,15 @@ require([
 
 
   const map = new Map({
-    layers: [Huyen_Xa,Thua_Dat_Map,SuDungDat_Group],
+    layers: [Huyen_Xa,SuDungDat_Group, Thua_Dat_Map],
     basemap: "topo-vector",
   });
-
+var x=[106.356817, 10.354037]
   const view = new MapView({
     container: "viewDiv",
     map: map,
     zoom: 17,
-    center: [106.356817, 10.354037],
+    center: x,
   });
   //=================================================================================================
 
@@ -145,6 +155,10 @@ require([
     view: view,
   });
   layerList.selectionEnabled = false;
+
+  layerList.when(function(){
+    GiaoDienMain_expandLayerList();
+  })
 
   //legend
   const legend = new Legend({
@@ -230,12 +244,23 @@ require([
     //display mouse coordinates
     $('#showToaDo').html("Lat/Lon "+mp.y.toFixed(6) + ", " + mp.x.toFixed(6));
   }
- 
+  //======================================VARIALBEL========================================
+  //-------Locate--------
+  var latFeature = 0;
+  var longFeature = 0;
+  //-------END Locate--------
+
+  //-------zoom to feature-------
+  var featureCenter = null;
+  //-------end zoom to feature-------
+  //==============================================================================================
   //======================================ADDEVENTLISTENER========================================
+  view.when(function(){
+
+  
   $('#close-left-info').on('click',function(){
     Map_All_removeGraphic();
-    $( "#leftInfo" ).removeClass( "show_left_Info");
-    $( "#leftInfo" ).addClass("hide_left_Info");
+    GiaoDien_Hide_LeftInfo();
   })
   
   $('#Xa').on('change',function(){
@@ -252,34 +277,78 @@ require([
   });
 
   view.on("click", (event) => {
-    view.hitTest(event).then((response) => {
-      const results = response.results;
-      if (
-          results.length > 0 &&
-          results[0].graphic &&
-          results[0].graphic.layer === Thua_Dat_Map
-      ) {
-          Map_All_removeGraphic()
-          const odjectID = results[0].graphic.attributes.OBJECTID;
-
-          Ajax_getThuaDat(odjectID,Graphic, view);
-      }
-      else
-      {
-        Map_All_removeGraphic();
-      }
-    });
+    latFeature = event.mapPoint.latitude;
+    longFeature = event.mapPoint.longitude;
   })
+
+  view.popup.watch("selectedFeature", (graphic) => {
+    Map_All_removeGraphic();
+    if(graphic !=null)
+    {     console.log(graphic)
+      if(graphic.sourceLayer != null && graphic.sourceLayer.layer == Thua_Dat_Map && graphic.sourceLayer.id ==0){
+        view.popup.close();
+
+        featureCenter = graphic.geometry.extent.center;
+        const odjectID = graphic.attributes.OBJECTID;
+        Ajax_getThuaDat(odjectID,Graphic, view);
+        
+      }  
+    }
+    else
+    {
+      GiaoDien_Hide_LeftInfo();
+    }
+  });
 
   view.on("pointer-move", showCoordinates);
 
   $('#TimKiem').on('click',function(){
-    const MaXa = $('#Xa').val();
-    const SoTo = $('#SoTo').val();
-    const SoThua = $('#SoThua').val();
 
-    Map_All_removeGraphic();
-    Ajax_timKiemThuaDat(MaXa, SoTo, SoThua,Thua_Dat_Map,Graphic, view);
+    if ( $('#timKiem_form').valid() ) {
+      const MaXa = $('#Xa').val();
+      const SoTo = $('#SoTo').val();
+      const SoThua = $('#SoThua').val();
+
+      Map_All_removeGraphic();
+      Ajax_timKiemThuaDat(MaXa, SoTo, SoThua,ThuaDat_sublayer,Graphic, view);
+    }
   })
+  
 
+  $('#chiDuong').on('click',function(){
+    locateWidget.goToLocationEnabled = false;
+
+    locateWidget.locate().then(function(event){
+      var latLocation = event.coords.latitude;
+      var longLocation = event.coords.longitude;
+      var GooGleMapDirUrl = `https://www.google.com/maps/dir/${latLocation},${longLocation}/${latFeature},${longFeature}`;
+      window.open(GooGleMapDirUrl);
+    
+    }).then(function(){
+      locateWidget.goToLocationEnabled = true;
+    }).catch(function(){
+      warningAlert("Vui lòng cấp quyền truy cập vị trí cho trang web.")
+    });
+  });
+
+  $('#phongDen').on('click',function(){
+    if(localStorage.getItem('lat')!== null && localStorage.getItem('long')!== null)
+    {
+      var lat =localStorage.getItem('lat');
+      var long = localStorage.getItem('long')
+      featureCenter = [parseFloat(long), parseFloat(lat)];
+      latFeature = parseFloat(lat);
+      longFeature = parseFloat(long);
+
+      localStorage.removeItem('lat');
+      localStorage.removeItem('long');
+      
+    }
+
+    view.goTo({
+      center: featureCenter,
+      zoom: view.zoom + 2
+    });
+  });
+  })
 })());

@@ -48,3 +48,16 @@ function GiaoDienMain_Load_Data_To_Select(Data,valueField, textField, select)
     })
     
 }
+
+function GiaoDienMain_expandLayerList() {
+    document.querySelectorAll('.esri-layer-list__child-toggle').forEach(function(node, index){
+      $(node).attr("esri-layer-list__child-toggle--open");
+    });
+
+    document.querySelectorAll('.esri-layer-list__list').forEach(function(node, index){
+      
+        $(node).attr("aria-expanded","true");
+        $(node).removeAttr('hidden');
+      
+    });
+  }

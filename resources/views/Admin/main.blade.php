@@ -5,7 +5,7 @@
         @yield('head')
 
     </head>
-    <body style=' background-image: url("/image/background-loop.png");background-repeat: repeat;'>
+    <body >
         <div class="wrapper sidebar_minimize">
             <div class="main-header">
                 <!-- Logo Header -->

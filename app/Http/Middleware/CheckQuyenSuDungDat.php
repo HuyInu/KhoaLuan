@@ -26,14 +26,14 @@ class CheckQuyenSuDungDat
 
     public function handle($request, Closure $next)
     {
-        if(Auth()->user()->MaLoaiNguoiDung == 1)
+        if(Auth()->user()->MaLoaiNguoiDung == 1 || Auth()->user()->MaLoaiNguoiDung == 2)
         {
             return $next($request);
         }
         else
         {
             $NhomQuyen = $this->userService->get_NhomQUyen_NguoiDung(Auth()->user()->id)->toArray();
-            $check_Quyen = Helper::check_Quyen($NhomQuyen, 3);//Su dung dat
+            $check_Quyen = Helper::check_Quyen($NhomQuyen, 1);
             
             if($check_Quyen)
             {

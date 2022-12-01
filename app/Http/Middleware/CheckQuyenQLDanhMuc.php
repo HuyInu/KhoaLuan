@@ -32,7 +32,7 @@ class CheckQuyenQLDanhMuc
         else
         {
             $NhomQuyen = $this->userService->get_NhomQUyen_NguoiDung(Auth()->user()->id)->toArray();
-            $check_Quyen = Helper::check_Quyen($NhomQuyen, 2);//QL Danh Muc
+            $check_Quyen = Helper::check_Quyen($NhomQuyen, 1);
             
             if($check_Quyen)
             {
