@@ -77,7 +77,7 @@
     <footer>
         @include('main.foot')
         <script src="https://js.arcgis.com/4.24/"></script>
-        <script src="/js/main/UIBlock.js"></script>
+        
         @yield('foot')
         
     </footer>

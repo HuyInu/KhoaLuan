@@ -7,7 +7,7 @@ $('#timKiem_form').validate({
             required: true,
         },
         SoTo: {
-            required_select: true,
+            required: true,
         },
         Xa: {
             required_select: true,
@@ -18,7 +18,7 @@ $('#timKiem_form').validate({
             required: "Vui lòng số thửa.",
         },
         SoTo: {
-            required_select: "Vui lòng nhập số tờ.",
+            required: "Vui lòng nhập số tờ.",
         },
         Xa: {
             required_select: "Vui lòng chọn xã.",

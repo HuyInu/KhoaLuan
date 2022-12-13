@@ -47,3 +47,5 @@
 
 <!-- fancytree -->
 <script src="/template/fancytree/dist/jquery.fancytree-all-deps.min.js"></script>
+
+<script src="/js/main/UIBlock.js"></script>

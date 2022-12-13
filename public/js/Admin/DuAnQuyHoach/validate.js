@@ -10,7 +10,19 @@ $('#Edit_Form').validate({
             required: true,
         },
         TinhTrangPheDuyet: {
-            required_TinhTrangPheDuyet: true,
+            required_select: true,
+        },
+        MaLoaiQuyHoach: {
+            required_select: true,
+        },
+        TinhTrangPheDuyet: {
+            required_select: true,
+        },
+        MaTienDoDuAn: {
+            required_select: true,
+        },
+        MaLoaiDuAn: {
+            required_select: true,
         },
     },
     messages: {
@@ -19,6 +31,21 @@ $('#Edit_Form').validate({
         },
         TenDuAn: {
             required: 'Vui lòng nhập tên dự án.',
+        },
+        TinhTrangPheDuyet: {
+            required_select: "Vui lòng chọn tình trạng phê duyệt.",
+        },
+        MaLoaiQuyHoach: {
+            required_select: "Vui lòng chọn loại quy hoạch.",
+        },
+        TinhTrangPheDuyet: {
+            required_select: "Vui lòng chọn tình trạng phê duyệt.",
+        },
+        MaTienDoDuAn: {
+            required_select: "Vui lòng chọn tiến độ dự án.",
+        },
+        MaLoaiDuAn: {
+            required_select: "Vui lòng chọn loại dự án.",
         },
     },
     errorElement: 'span',
@@ -49,7 +76,19 @@ $('#Add_Form').validate({
             required: true,
         },
         Add_TinhTrangPheDuyet: {
-            required_TinhTrangPheDuyet: true,
+            required_select: true,
+        },
+        Add_MaLoaiQuyHoach: {
+            required_select: true,
+        },
+        Add_TinhTrangPheDuyet: {
+            required_select: true,
+        },
+        Add_MaTienDoDuAn: {
+            required_select: true,
+        },
+        Add_MaLoaiDuAn: {
+            required_select: true,
         },
     },
     messages: {
@@ -58,6 +97,21 @@ $('#Add_Form').validate({
         },
         Add_TenDuAn: {
             required: 'Vui lòng nhập tên dự án.',
+        },
+        Add_TinhTrangPheDuyet: {
+            required_select: "Vui lòng chọn tình trạng phê duyệt.",
+        },
+        Add_MaLoaiQuyHoach: {
+            required_select: "Vui lòng chọn loại quy hoạch.",
+        },
+        Add_TinhTrangPheDuyet: {
+            required_select: "Vui lòng chọn tình trạng phê duyệt.",
+        },
+        Add_MaTienDoDuAn: {
+            required_select: "Vui lòng chọn tiến độ dự án.",
+        },
+        Add_MaLoaiDuAn: {
+            required_select: "Vui lòng chọn loại dự án.",
         },
     },
     errorElement: 'span',
@@ -76,7 +130,7 @@ $('#Add_Form').validate({
     }
 });
 
-jQuery.validator.addMethod("required_TinhTrangPheDuyet", function(value, element) {
+jQuery.validator.addMethod("required_select", function(value, element) {
     if(value != '')
     {
         return true;
@@ -85,4 +139,4 @@ jQuery.validator.addMethod("required_TinhTrangPheDuyet", function(value, element
     {
         return false;
     } 
-}, "Vui lòng chọn tình trạng phê duyệt.");
+});

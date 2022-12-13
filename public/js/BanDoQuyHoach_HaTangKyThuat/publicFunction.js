@@ -15,7 +15,7 @@ function PublicFunction_extendLayer(layer, Query, view)
 
   function PublicFunction_queryFeature_gotoFeature( queryStr, featureLayer, view)
   {
-    PublicFunction_UI_Block('#viewDiv', 'fas fa-map', 'Đang tải bản đồ...');
+    
     featureLayer.queryFeatures({
             where: queryStr,
             outSpatialReference : 102100,
@@ -23,20 +23,29 @@ function PublicFunction_extendLayer(layer, Query, view)
           }).then((results) => {
             if (results.features.length > 0) 
             {
-              luu_lat_long_center_feature_to_localStorage(results.features[0].geometry.extent.center.latitude,
+              PublicFunction_luu_lat_long_center_feature_to_localStorage(results.features[0].geometry.extent.center.latitude,
                                                           results.features[0].geometry.extent.center.longitude);
               PublicFunction_goToFeature(results.features[0].geometry,view);
             }
           }).then(function(){
-            PublicFunction_UI_UnBlock('#viewDiv');
+            
           });
     
   }
 
-  function luu_lat_long_center_feature_to_localStorage(lat, long)
+  function PublicFunction_luu_lat_long_center_feature_to_localStorage(lat, long)
   {
     localStorage.setItem('lat', lat);
     localStorage.setItem('long',long);
+  }
+
+  function PublicFunction_xoa_lat_long_center_feature_from_localStorage()
+  {
+    if(localStorage.getItem('lat')!== null && localStorage.getItem('long')!== null)
+    {
+      localStorage.removeItem('lat');
+      localStorage.removeItem('long');
+    }
   }
 
   function PublicFunction_HightLight_Feature(highlightSelect, view, OBJECTID)
@@ -162,18 +171,7 @@ function PublicFunction_extendLayer(layer, Query, view)
     })
   }  
   
-  function PublicFunction_UI_Block(IdDivBlock, fontAwsome, message)
-  {
-    $(IdDivBlock).block({ 
-      message: ` <i style="font-size:30px; color:#f0f5ff;" class="`+fontAwsome+`"></i><b style="margin-left:10px;font-size:30px; color:#f0f5ff;">`+message+`</b>`, 
-      css: { border: 'none',
-              backgroundColor: 'transparent' } 
-    }); 
-  }
-  function PublicFunction_UI_UnBlock(IdDivBlock)
-  {
-    $(IdDivBlock).unblock(); 
-  }
+  
 
   
 

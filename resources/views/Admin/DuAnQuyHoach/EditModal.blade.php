@@ -1,4 +1,4 @@
-<div class="modal fade" id="Edit_Modal" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
+<div class="modal fade" id="Edit_Modal" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">quy
     <div class="modal-dialog" role="document" style="max-width: 1000px;">
         <div class="modal-content">
             <div class="modal-header no-bd modal_main_head">
@@ -29,7 +29,7 @@
                     <div class="row">
                         <div class="col-md-6 .col-4">
                             <div class="form-group">
-                                <label for="defaultSelect">Loại quy hoạch:</label>
+                                <label for="defaultSelect">Loại quy hoạch*:</label>
                                 <select class="form-control" id="MaLoaiQuyHoach"  name="MaLoaiQuyHoach">
                                     <option value="">Chọn loại quy hoạch</option>
                                     @foreach($dataLoaiQuyHoach as $item)
@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-md-6 .col-4">
                             <div class="form-group">
-                                <label for="defaultSelect">Tình trạng phê duyệt:</label>
+                                <label for="defaultSelect">Tình trạng phê duyệt*:</label>
                                 <select class="form-control" id="TinhTrangPheDuyet" name="TinhTrangPheDuyet">
                                     <option value="">Chọn tình trạng</option>
                                     <option value="0">Chưa phê duyệt</option>
@@ -80,7 +80,7 @@
                     <div class="row">
                         <div class="col-md-6 .col-4">
                             <div class="form-group">
-                                <label for="defaultSelect">Tiến độ dự án:</label>
+                                <label for="defaultSelect">Tiến độ dự án*:</label>
                                 <select class="form-control" id="MaTienDoDuAn" name="MaTienDoDuAn">
                                     <option value="">Chọn tiến độ dự án</option>
                                     @foreach($dataTienDoDuAn as $item)
@@ -91,7 +91,7 @@
                         </div>
                         <div class="col-md-6 .col-4">
                             <div class="form-group">
-                                <label for="largeInput">Diện tích:</label>
+                                <label for="largeInput">Diện tích(m<sup>2</sup>):</label>
                                 <input type="text" class="form-control" id="DienTich" name="DienTich">
                             </div>
                         </div>
@@ -99,7 +99,7 @@
                     <div class="row">
                         <div class="col-md-6 .col-4">
                             <div class="form-group">
-                                <label for="defaultSelect">Loại dự án:</label>
+                                <label for="defaultSelect">Loại dự án*:</label>
                                 <select class="form-control" id="MaLoaiDuAn" name="MaLoaiDuAn">
                                     <option value="">Chọn loại dự án</option>
                                     @foreach($dataLoaiDuAn as $item)

@@ -23,7 +23,7 @@ class QLSuDungDatController extends Controller
         $SuDungDat_list = $this->QLDuDungDatService->get_All_SuDungDat();
         $DuAnQuyHoach_list = $this->QLDuDungDatService->get_All_DuAnQuyHoach();
         $DMLoaiDatQHXD_list =  $this->QLDuDungDatService->get_All_DMLoaiDatQHXD();
-       
+       //dd($SuDungDat_list[6]);
         return view('Admin.QLSuDungDat.QLSuDungDat',[
             'title'=>'Quản lý sử dụng đất | HỆ THỐNG GIS QUẢN LÝ HẠ TẦNG KỸ THUẬT ĐÔ THỊ MỸ THO',
             'SuDungDat_list' => $SuDungDat_list,
@@ -36,7 +36,7 @@ class QLSuDungDatController extends Controller
     {
         try{
             $SuDungDat = $this->QLDuDungDatService->get_SuDungDat_By_ID($req);
-
+            $SuDungDat[0]->HeSoSuDungDat = (string)(float)$SuDungDat[0]->HeSoSuDungDat;
             return response()->json([
                 'error' => false,
                 'SuDungDat' => $SuDungDat

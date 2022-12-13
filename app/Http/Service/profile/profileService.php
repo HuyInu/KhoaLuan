@@ -71,7 +71,7 @@ class profileService{
                                             null);
             return true;
         }
-        catch(\Exceptions $err)
+        catch(\Exception $err)
         {
             return false;
         }

@@ -38,7 +38,7 @@ class DuAnQuyHoachController extends Controller
     {
         try{
             $DuAnQuyHoach = $this->DuAnQuyHoachService->get_DuAnQuyHoach_By_MaDuAn($req);
-
+            $DuAnQuyHoach[0]->DienTich = (string)(float)$DuAnQuyHoach[0]->DienTich;
             return response()->json([
                 'error'=>false,
                 'DuAnQuyHoach'=> $DuAnQuyHoach,

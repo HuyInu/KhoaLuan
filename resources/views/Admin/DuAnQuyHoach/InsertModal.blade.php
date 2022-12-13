@@ -29,7 +29,7 @@
                     <div class="row">
                         <div class="col-md-6 .col-4">
                             <div class="form-group">
-                                <label for="defaultSelect">Loại quy hoạch:</label>
+                                <label for="defaultSelect">Loại quy hoạch*:</label>
                                 <select class="form-control" id="Add_MaLoaiQuyHoach"  name="Add_MaLoaiQuyHoach">
                                     <option value="">Chọn loại quy hoạch</option>
                                     @foreach($dataLoaiQuyHoach as $item)
@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-md-6 .col-4">
                             <div class="form-group">
-                                <label for="defaultSelect">Tình trạng phê duyệt:</label>
+                                <label for="defaultSelect">Tình trạng phê duyệt*:</label>
                                 <select class="form-control" id="Add_TinhTrangPheDuyet" name="Add_TinhTrangPheDuyet">
                                     <option value="">Chọn tình trạng</option>
                                     <option value="0">Chưa phê duyệt</option>
@@ -80,7 +80,7 @@
                     <div class="row">
                         <div class="col-md-6 .col-4">
                             <div class="form-group">
-                                <label for="defaultSelect">Tiến độ dự án:</label>
+                                <label for="defaultSelect">Tiến độ dự án*:</label>
                                 <select class="form-control" id="Add_MaTienDoDuAn" name="Add_MaTienDoDuAn">
                                     <option value="">Chọn tiến độ dự án</option>
                                     @foreach($dataTienDoDuAn as $item)
@@ -91,7 +91,7 @@
                         </div>
                         <div class="col-md-6 .col-4">
                             <div class="form-group">
-                                <label for="largeInput">Diện tích:</label>
+                                <label for="largeInput">Diện tích(m<sup>2</sup>):</label>
                                 <input type="text" class="form-control" id="Add_DienTich" name="Add_DienTich">
                             </div>
                         </div>
@@ -99,7 +99,7 @@
                     <div class="row">
                         <div class="col-md-6 .col-4">
                             <div class="form-group">
-                                <label for="defaultSelect">Loại dự án:</label>
+                                <label for="defaultSelect">Loại dự án*:</label>
                                 <select class="form-control" id="Add_MaLoaiDuAn" name="Add_MaLoaiDuAn">
                                     <option value="">Chọn loại dự án</option>
                                     @foreach($dataLoaiDuAn as $item)

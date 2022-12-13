@@ -135,12 +135,12 @@ require([
     layers: [Huyen_Xa,SuDungDat_Group, Thua_Dat_Map],
     basemap: "topo-vector",
   });
-var x=[106.356817, 10.354037]
+
   const view = new MapView({
     container: "viewDiv",
     map: map,
     zoom: 17,
-    center: x,
+    center: [106.356817, 10.354037],
   });
   //=================================================================================================
 
@@ -277,21 +277,34 @@ var x=[106.356817, 10.354037]
   });
 
   view.on("click", (event) => {
+    PublicFunction_xoa_lat_long_center_feature_from_localStorage();
+
     latFeature = event.mapPoint.latitude;
     longFeature = event.mapPoint.longitude;
   })
 
   view.popup.watch("selectedFeature", (graphic) => {
     Map_All_removeGraphic();
+    PublicFunction_xoa_lat_long_center_feature_from_localStorage();
+
     if(graphic !=null)
-    {     console.log(graphic)
+    {    
       if(graphic.sourceLayer != null && graphic.sourceLayer.layer == Thua_Dat_Map && graphic.sourceLayer.id ==0){
         view.popup.close();
-
+        PublicFunction_UI_Block('#viewDiv', 'fas fa-map', 'Vui lòng chờ...');
         featureCenter = graphic.geometry.extent.center;
-        const odjectID = graphic.attributes.OBJECTID;
-        Ajax_getThuaDat(odjectID,Graphic, view);
-        
+
+        let myPromise = new Promise(function(myResolve, myReject) {
+         
+          const odjectID = graphic.attributes.OBJECTID;
+          Ajax_getThuaDat(odjectID,Graphic, view);
+
+          myResolve(1); 
+        })
+
+        myPromise.then(function(){
+          PublicFunction_UI_UnBlock('#viewDiv');
+        })
       }  
     }
     else
@@ -305,12 +318,22 @@ var x=[106.356817, 10.354037]
   $('#TimKiem').on('click',function(){
 
     if ( $('#timKiem_form').valid() ) {
-      const MaXa = $('#Xa').val();
-      const SoTo = $('#SoTo').val();
-      const SoThua = $('#SoThua').val();
+      PublicFunction_UI_Block('#viewDiv', 'fas fa-map', 'Đang tìm...');
 
-      Map_All_removeGraphic();
-      Ajax_timKiemThuaDat(MaXa, SoTo, SoThua,ThuaDat_sublayer,Graphic, view);
+      let myPromise = new Promise(function(myResolve, myReject) {
+        const MaXa = $('#Xa').val();
+        const SoTo = $('#SoTo').val();
+        const SoThua = $('#SoThua').val();
+
+        Map_All_removeGraphic();
+        Ajax_timKiemThuaDat(MaXa, SoTo, SoThua,ThuaDat_sublayer,Graphic, view);
+
+        myResolve(1); 
+      });
+        
+      myPromise.then(function(){
+        PublicFunction_UI_UnBlock('#viewDiv');
+      })
     }
   })
   
@@ -318,6 +341,15 @@ var x=[106.356817, 10.354037]
   $('#chiDuong').on('click',function(){
     locateWidget.goToLocationEnabled = false;
 
+    if(localStorage.getItem('lat')!== null && localStorage.getItem('long')!== null)
+    {
+      var lat =localStorage.getItem('lat');
+      var long = localStorage.getItem('long');
+
+      latFeature = parseFloat(lat);
+      longFeature = parseFloat(long);
+    }
+    
     locateWidget.locate().then(function(event){
       var latLocation = event.coords.latitude;
       var longLocation = event.coords.longitude;
@@ -329,22 +361,18 @@ var x=[106.356817, 10.354037]
     }).catch(function(){
       warningAlert("Vui lòng cấp quyền truy cập vị trí cho trang web.")
     });
+    
   });
 
   $('#phongDen').on('click',function(){
     if(localStorage.getItem('lat')!== null && localStorage.getItem('long')!== null)
     {
       var lat =localStorage.getItem('lat');
-      var long = localStorage.getItem('long')
+      var long = localStorage.getItem('long');
+
       featureCenter = [parseFloat(long), parseFloat(lat)];
-      latFeature = parseFloat(lat);
-      longFeature = parseFloat(long);
-
-      localStorage.removeItem('lat');
-      localStorage.removeItem('long');
-      
     }
-
+ 
     view.goTo({
       center: featureCenter,
       zoom: view.zoom + 2

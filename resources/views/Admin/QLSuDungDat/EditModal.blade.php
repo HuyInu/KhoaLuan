@@ -19,21 +19,21 @@
                                 <input type="text" class="form-control" id="TenLoaiDatTheoDA" name="TenLoaiDatTheoDA">
                             </div>
                             <div class="form-group">
-                                <label for="largeInput">Diện tích:</label>
+                                <label for="largeInput">Diện tích*:</label>
                                 <input type="text" class="form-control" id="DienTich" name="DienTich">
                             </div>
                             <div class="form-group">
-                                <label for="largeInput">Hệ số sử dụng đất:</label>
+                                <label for="largeInput">Hệ số sử dụng đất*:</label>
                                 <input type="text" class="form-control" id="HeSoSuDungDat" name="HeSoSuDungDat" >
                             </div>
                             <div class="form-group">
-                                <label for="largeInput">Tầng cao xây dựng:</label>
+                                <label for="largeInput">Tầng cao xây dựng*:</label>
                                 <input type="text" class="form-control" id="TangCaoXayDung" name="TangCaoXayDung" >
                             </div>
                         </div>
                         <div class="col-md-6 .col-4">
                             <div class="form-group">
-                                <label for="largeInput">Mật dộ xây dựng xây dựng:</label>
+                                <label for="largeInput">Mật dộ xây dựng xây dựng*:</label>
                                 <input type="text" class="form-control" id="MatDoXayDung" name="MatDoXayDung" >
                             </div>
                             <div class="form-group">
@@ -41,14 +41,14 @@
                                 <select class="form-control" id="MaDuAnQuyHoach"  name="MaDuAnQuyHoach">
                                     <option value="">Chọn dự án quy hoạch</option>
                                     @foreach($DuAnQuyHoach_list as $item)
-                                    <option value="{{$item['MaDuAn']}}">{{$item['TenDuAn']}}</option>
+                                    <option value="{{$item['MaDuAn']}}">{{$item->TenDuAn}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="defaultSelect">Loại đất quy hoạch xây dựng*:</label>
                                 <select class="form-control" id="MaLoaiDatQHXD"  name="MaLoaiDatQHXD">
-                                    <option value="">Chọn dự án quy hoạch</option>
+                                    <option value="">Chọn loại đất QHXD</option>
                                     @foreach($DMLoaiDatQHXD_list as $item)
                                     <option value="{{$item['MaLoaiDat']}}">{{$item['TenLoaiDat']}}</option>
                                     @endforeach
@@ -62,6 +62,7 @@
                     </div>
                     @csrf
                 </form>
+                <div id='viewDiv' style="height: 239px;width: 100%;" ></div>
             </div>
         </div>
     </div>

@@ -66,7 +66,8 @@ require([
         visible: true,
         title:'Phường xã',
         listMode: "hide",
-        minScale:40000,
+        maxScale:35000,
+        minScale:70000,
       },
     ]
   });

@@ -24,7 +24,7 @@ function loadDataToModel(MaDuAn,
     $('#NgayKyQuyetDinh').val(NgayKyQuyetDinh);
     $('#QuyMoDanSo').val(QuyMoDanSo);
     $('#TyLeBanVe').val(TyLeBanVe);
-    $('#DienTich').val(DienTich);
+    $('#DienTich').val(DienTich.replace(".", ","));
     $('#ThoiGianXinPheDuyet').val(ThoiGianXinPheDuyet);
     $('#ThoiGianQuyHoach').val(ThoiGianQuyHoach);
     $('#ThoiGianLayYKien').val(ThoiGianLayYKien);

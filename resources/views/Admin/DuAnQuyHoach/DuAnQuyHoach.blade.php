@@ -33,7 +33,25 @@
                 @include('Admin.DuAnQuyHoach.InsertModal')
                 
             <!-- End Modal -->
-
+            <div class="row" style="padding-left: 15px;">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Loại quy hoạch:</label>
+                    <select class="form-control" id="LoaiQuyHoach_Sort">
+                        <option value>Tất cả</option>
+                        @foreach($dataLoaiQuyHoach as $item)
+                            <option value="{{$item['TenLoaiQuyHoach']}}">{{$item['TenLoaiQuyHoach']}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Tình trạng phê duyệt:</label>
+                    <select class="form-control" id="TinhTrangPheDuyet_Sort">
+                        <option value>Tất cả</option>
+                        <option value="Chưa phê duyệt">Chưa phê duyệt</option>
+                        <option value="Đã phê duyệt">Đã phê duyệt</option>
+                    </select>
+                </div>
+            </div>
             <div class="table-responsive">
                 <table id="DuAnQuyHoachTable" class="display table table-striped table-hover" style="width:100%">
                     <thead>

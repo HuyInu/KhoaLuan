@@ -618,3 +618,16 @@
         }
     
     })();
+
+function PublicFunction_UI_Block(IdDivBlock, fontAwsome, message)
+{
+    $(IdDivBlock).block({ 
+        message: ` <i style="font-size:30px; color:#f0f5ff;" class="`+fontAwsome+`"></i><b style="margin-left:10px;font-size:30px; color:#f0f5ff;">`+message+`</b>`, 
+        css: { border: 'none',
+                backgroundColor: 'transparent' } 
+    }); 
+}
+function PublicFunction_UI_UnBlock(IdDivBlock)
+{
+    $(IdDivBlock).unblock(); 
+}

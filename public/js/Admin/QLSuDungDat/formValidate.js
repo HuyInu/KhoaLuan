@@ -21,6 +21,9 @@ $('#EditForm').validate({
         TangCaoXayDung:{
             required: true,
         },
+        MatDoXayDung:{
+            required: true,
+        },
     },
     messages: {
         TenLoaiDatTheoDA: {
@@ -41,6 +44,9 @@ $('#EditForm').validate({
         TangCaoXayDung:{
             required: "Vui lòng nhập tầng cao xây dựng.",
         }, 
+        MatDoXayDung:{
+            required: "Vui lòng nhập mật độ xây dựng.",
+        },
     },
     errorElement: 'span',
     errorPlacement: function (error, element) {

@@ -18,6 +18,9 @@ $('#profile-form').validate({
         Email:{
             email:true,
         },
+        MaXa:{
+            required_select:true,
+        },
     },
     messages: {
         TenDangNhap: {
@@ -33,6 +36,9 @@ $('#profile-form').validate({
         },
         Email: {
             email: "Email không hợp lệ.",
+        },
+        MaXa: {
+            required_select: "Vui lòng chọn phường/xã.",
         },
     },
     errorElement: 'span',
@@ -54,3 +60,14 @@ $('#profile-form').validate({
 jQuery.validator.addMethod("Unicode", function(value, element) {
     return this.optional(element) || /^\w+$/i.test(value);
 }, "Tài khoản không được có dấu.");
+
+jQuery.validator.addMethod("required_select", function(value, element) {
+    if(value != "")
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    } 
+});

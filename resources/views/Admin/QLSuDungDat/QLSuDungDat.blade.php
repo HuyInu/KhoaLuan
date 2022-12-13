@@ -30,7 +30,7 @@
                         <option selected hidden disabled>Chọn dự án</option>
                         <option value>Tất cả</option>
                         @foreach($DuAnQuyHoach_list as $item)
-                        <option value="{{$item->TenDuAn}}">{{$item->TenDuAn}}</option>
+                        <option value="{{$item->TenDuAn}}">{{$item['TenDuAn']}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -40,7 +40,7 @@
                         <option selected hidden disabled>Chọn loại đất</option>
                         <option value>Tất cả</option>
                         @foreach($DMLoaiDatQHXD_list as $item)
-                        <option value="{{$item->TenLoaiDat}}">{{$item->TenLoaiDat}}</option>
+                        <option value="{{$item->TenLoaiDat}}">{{$item['TenLoaiDat']}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -69,11 +69,11 @@
                             <td>{{$item->OBJECTID}}</td>
                             <td>{{$item->TenLoaiDatTheoDA}}</td>
                             <td>{{($item->DienTich != .00 && $item->DienTich != null ) ? str_replace('.',',',$item->DienTich) : ''}}</td>
-                            <td>{{($item->HeSoSuDungDat != .0 && $item->HeSoSuDungDat != null ) ? str_replace('.',',',$item->HeSoSuDungDat) : ''}}</td>
+                            <td>{{($item->HeSoSuDungDat != .0 && $item->HeSoSuDungDat != null ) ? str_replace('.',',',(float)$item->HeSoSuDungDat) : ''}}</td>
                             <td>{{($item->TangCaoXayDung != 0 && $item->TangCaoXayDung != null ) ? $item->TangCaoXayDung : ''}}</td>
                             <td>{{($item->MatDoXayDung != 0 && $item->MatDoXayDung != null ) ? $item->MatDoXayDung : ''}}</td>
-                            <td>{{$item->DuAnQuyHoach->TenDuAn}}</td>
-                            <td>{{$item->DMLoaiDatQHXD->TenLoaiDat}}</td>
+                            <td>{{$item->DuAnQuyHoach['TenDuAn']}}</td>
+                            <td>{{$item->DMLoaiDatQHXD['TenLoaiDat']}}</td>
                             <td>
                                 <div class="form-button-action">
                                     <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary " data-original-title="Sửa" id="edit" OBJECTID="{{$item->OBJECTID}}">

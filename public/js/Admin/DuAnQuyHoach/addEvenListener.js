@@ -32,3 +32,27 @@ $('#insert').on('click',function(){
     XuLyGiaoDien_empty_Add_Form();
     openModal('#Add_Modal');
 });
+
+$('#DienTich').on('input',function(){
+    this.value = this.value.replace(/[^0-9 \,]/, '');
+})
+
+$('#Add_DienTich').on('input',function(){
+    this.value = this.value.replace(/[^0-9 \,]/, '');
+})
+
+$('#QuyMoDanSo').on('input',function(){
+    if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'');
+})
+
+$('#Add_QuyMoDanSo').on('input',function(){
+    if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'');
+})
+
+$('#LoaiQuyHoach_Sort').on('change',function(){
+    DataTable_Main_sort('#DuAnQuyHoachTable',this,3);
+})
+
+$('#TinhTrangPheDuyet_Sort').on('change',function(){
+    DataTable_Main_sort('#DuAnQuyHoachTable',this,4);
+})

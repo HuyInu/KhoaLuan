@@ -149,7 +149,8 @@ function them_Quyen_Vao_Nhom(MaNhomQuyen, NodeIDArray)
                 if(result.success)
                 {
                     successAlert(result.success); 
-                    
+                    get_Quyen_NhomQuyen_NguoiDung(MaNhomQuyen)
+
                     return 0;
                 }
             } 

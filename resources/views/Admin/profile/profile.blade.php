@@ -142,9 +142,9 @@
                         </div>
                         <div class="col-sm-12 col-md-4 col-xs-12">
                             <div class="form-group">
-                                <label for="xa">Phường/ xã:</label>
+                                <label for="xa">Phường/ xã*:</label>
                                 <select class="form-control form-control" id="MaXa" name="MaXa">
-                                    <option value="0">Chọn phường/ xã</option>
+                                    <option value="" >Chọn phường/ xã</option>
                                     @if($duLieuXa != 0)
                                         @foreach($duLieuXa as $data)
                                         <option value="{{$data['MaXa']}}">{{$data['TenXa']}}</option>
