@@ -8,8 +8,8 @@ function GiaoDien_contentPopup_DuongDayDien(LoaiDuongDayDien, Ten,TenDuAnQuyHoac
 function GiaoDien_contentPopup_DuongOngNuoc(LoaiOngNuoc,TenDuAnQuyHoach, DuongKinh, ChieuDai)
 {
   return `<span class = "headPopup" >Loại ống nước: </span> <span class = "contenPopup" >${LoaiOngNuoc}</span></br>
-        <span class = "headPopup" >Đường kính: </span> <span class = "contenPopup" >${DuongKinh}</span></br>
-        <span class = "headPopup" >Chiều dài: </span> <span class = "contenPopup" >${ChieuDai}</span></br>
+        <span class = "headPopup" >Đường kính: </span> <span class = "contenPopup" >${((DuongKinh != '0' && DuongKinh) ? DuongKinh.replace(".", ",") +' mm' : 'Chưa có dữ liệu')}</span></br>
+        <span class = "headPopup" >Chiều dài: </span> <span class = "contenPopup" >${((ChieuDai != '0' && ChieuDai) ? ChieuDai.replace(".", ",") +' mm' : 'Chưa có dữ liệu')}</span></br>
         <span class = "headPopup" >Thuộc dự án: </span> <span class = "contenPopup" >${TenDuAnQuyHoach}</span></br>`
 }
 

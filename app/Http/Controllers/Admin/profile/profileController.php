@@ -68,36 +68,42 @@ class profileController extends Controller
     
     public function editProfile(Request $req)
     {
-        $user = Auth::user();
-        $data = (object)Helper::unserialize_Ajax_Data($req->data);
-        $Validator = Validator::make((array)$data,[
-            'Email'=>"unique:NguoiDung,Email,$user->id,id"
-        ]);
+        try{
+            $user = Auth::user();
+            $data = (object)Helper::unserialize_Ajax_Data($req->data);
+            $Validator = Validator::make((array)$data,[
+                'Email'=>"unique:NguoiDung,Email,$user->id,id",
+                'DienThoai'=>"unique:NguoiDung,DienThoai,$user->id,id"
+            ],[
+                'Email.unique'=>"Email đã tồn tại.",
+                'DienThoai.unique'=>"Số điện thoại đã tồn tại."
+            ]);
 
-        if($Validator->passes())
-        {
-            $result = $this->profileService->updateProfile($user->id,$data);
-            if($result === true)
+            if($Validator->passes())
             {
-                return response()->json([
-                    'error'=>false,
-                    'validate'=>true,
-                    'success'=>true
-                ]);
+                $result = $this->profileService->updateProfile($user->id,$data);
+                
+                    return response()->json([
+                        'error'=>false,
+                        'validate'=>true,
+                        'success'=>true
+                    ]);
+                
             }
             else
             {
+                $validatorError=$Validator->errors()->toArray();
                 return response()->json([
-                    'error'=>true,
+                    'error'=>false,
+                    'validate'=>false,
+                    'validatorError' => $validatorError
                 ]);
             }
         }
-        else
+        catch(\Exception $err)
         {
             return response()->json([
-                'error'=>false,
-                'validate'=>false,
-                'message' => 'Email đã được dùng.'
+                'error'=>true,
             ]);
         }
     }

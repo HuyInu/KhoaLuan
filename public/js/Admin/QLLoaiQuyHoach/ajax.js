@@ -21,12 +21,20 @@ function Ajax_insert()
                 {
                     if(result.validateError.TenLoaiQuyHoach)
                     {
-                        $( "#Ten-form-group" ).append( '<span for="TenLoaiQuyHoach" class="error invalid-feedback" style="display: block;">'+result.validateError.TenLoaiQuyHoach+'</span>');
+                        show_error_validate_message_function_Main("#Ten-form-group",result.validateError.TenLoaiQuyHoach,'TenLoaiQuyHoach');
+                    }
+                    else
+                    {
+                        remove_error_validate_message_function_Main("#Ten-form-group");
                     }
 
                     if(result.validateError.MaLoaiQuyHoach)
                     {
-                        $( "#Ma-form-group" ).append( '<span for="MaLoaiQuyHoach" class="error invalid-feedback" style="display: block;">'+result.validateError.MaLoaiQuyHoach+'</span>');
+                        show_error_validate_message_function_Main( "#Ma-form-group",result.validateError.MaLoaiQuyHoach,'MaLoaiQuyHoach');
+                    }
+                    else
+                    {
+                        remove_error_validate_message_function_Main("#Ma-form-group");
                     }
                     return 0;
                 }
@@ -86,12 +94,20 @@ function Ajax_edit()
                 {
                     if(result.validateError.TenLoaiQuyHoach)
                     {
-                        $( "#TenEdit-form-group" ).append( '<span for="TenLoaiQuyHoach" class="error invalid-feedback" style="display: block;">'+result.validateError.TenLoaiQuyHoach+'</span>');
+                        show_error_validate_message_function_Main("#TenEdit-form-group",result.validateError.TenLoaiQuyHoach,'TenLoaiQuyHoach_Edit');
+                    }
+                    else
+                    {
+                        remove_error_validate_message_function_Main("#TenEdit-form-group");
                     }
 
                     if(result.validateError.MaLoaiQuyHoach)
                     {
-                        $( "#MaEdit-form-group" ).append( '<span for="MaLoaiQuyHoach" class="error invalid-feedback" style="display: block;">'+result.validateError.MaLoaiQuyHoach+'</span>');
+                        show_error_validate_message_function_Main( "#MaEdit-form-group",result.validateError.MaLoaiQuyHoach,'MaLoaiQuyHoach_Edit');
+                    }
+                    else
+                    {
+                        remove_error_validate_message_function_Main("#MaEdit-form-group");
                     }
                     return 0;
                 }

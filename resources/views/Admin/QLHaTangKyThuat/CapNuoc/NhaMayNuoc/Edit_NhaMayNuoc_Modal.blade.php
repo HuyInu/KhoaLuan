@@ -15,7 +15,7 @@
                     <div class="row">
                         <div class="col-md-6 .col-4">
                             <div class="form-group">
-                                <label for="largeInput">Tên đối tượng:</label>
+                                <label for="largeInput">Tên đối tượng*:</label>
                                 <input type="text" class="form-control" id="TenNhaMayNuoc" name="TenNhaMayNuoc">
                             </div>
                         </div>
@@ -29,7 +29,7 @@
                     <div class="row">
                         <div class="col-md-6 .col-4">
                             <div class="form-group">
-                                <label for="defaultSelect">Dự án quy hoạch:</label>
+                                <label for="defaultSelect">Dự án quy hoạch*:</label>
                                 <select class="form-control" id="DAQH_NhaMayNuoc"  name="DAQH_NhaMayNuoc">
                                     <option value="" selected hidden disablded>Chọn dự án quy hoạch</option>
                                     @foreach($DAQH_List as $item)
@@ -45,6 +45,7 @@
                     </div>
                     @csrf
                 </form>
+                <div id='viewDiv' style="height: 239px;width: 100%;" ></div>
             </div>
         </div>
     </div>

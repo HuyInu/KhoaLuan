@@ -8,6 +8,7 @@ $(document).on("click", '#edit', function(event) {
 });
 
 $('#edit_DuongCapNuoc_btn').on('click',function(){
+    
         Ajax_edit();
 })
 
@@ -30,4 +31,11 @@ $('#LoaiOngCapNuoc_Sort').on('change',function(){
 
 $('#DAQH_DuongCapNuoc_Sort').on('change',function(){
     DataTable_Main_sort('#table',this,3);
+})
+
+$('#DuongKinh').on('input',function(){
+    this.value = this.value.replace(/[^0-9 \,]/, '');
+})
+$('#ChieuDai').on('input',function(){
+    this.value = this.value.replace(/[^0-9 \,]/, '');
 })

@@ -108,7 +108,12 @@
 								</div>
 								<div class="form-group">
 									<label for="largeInput">Mật khẩu:</label>
-									<input type="password" class="form-control form-control" name="matKhau" id="matKhau">
+									<div class="input-group ">	
+										<input type="password" class="form-control" id="matKhau" name="matKhau" >
+										<div class="input-group-append" >
+											<span class="input-group-text" id="matKhau_btnShowPassword"><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
+										</div>
+									</div>
 								</div>
 								<div class="form-check">
 									<label class="form-check-label">
@@ -241,7 +246,7 @@
 							<div class="dropdown-menu">
 								<a class="dropdown-item" href="{{route('PhanQuyen')}}">Phân quyền</a>
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="{{route('user')}}">Quản lý tài khoản</a>
+								<a class="dropdown-item" href="{{route('user')}}">Quản lý người dùng</a>
 							</div>
 							@endif
 						@else

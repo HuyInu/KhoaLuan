@@ -53,13 +53,13 @@ class profileService{
 
     public function updateProfile($userId,$req)
     {
-        try{
+        
             $req->MaCoQuan = $this->setNullInput('0',$req->MaCoQuan);
             $req->MaXa = $this->setNullInput('0',$req->MaXa);
             $req->GioiTinh = $this->setNullInput(NULL,$req->GioiTinh);
 
             $this->NguoiDung->updateNguoiDung($userId,
-                                            (string)$req->TenDangNhap,
+                                            null,
                                             (string) $req->Ho,
                                             (string)$req->Ten,
                                             (string)$req->Email,
@@ -69,12 +69,6 @@ class profileService{
                                             $req->GioiTinh,
                                             (string)$req->DiaChi,
                                             null);
-            return true;
-        }
-        catch(\Exception $err)
-        {
-            return false;
-        }
     }
 
     public function layDuLieuHuyen()

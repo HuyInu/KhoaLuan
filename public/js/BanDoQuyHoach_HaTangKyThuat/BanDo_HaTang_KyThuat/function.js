@@ -29,10 +29,18 @@ function Function_Sort_HaTangKyThuat(index, layerArray, AttributeValue, features
 {   
     if(index == (layerArray.length -1))
     {
-        view.goTo({
-            target:featuresArray,
-            zoom:15
-        });
+        if(featuresArray.length >0)
+        {
+            view.goTo({
+                target:featuresArray,
+                zoom:15
+            });
+        }
+        else
+        {
+            successAlert('Không tìm thấy đối tượng hạ tầng kỹ thuật trên bản đồ.')
+        }
+        
     }
     else
     {

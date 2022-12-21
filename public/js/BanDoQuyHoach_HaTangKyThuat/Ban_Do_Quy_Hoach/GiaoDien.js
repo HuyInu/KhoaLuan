@@ -83,7 +83,14 @@ function GiaoDien_load_SuDungDat_to_leftInfo(SuDungDat)
     }
     else
     {
-        $('.di-item').append(`<h4 class="card-title">Thửa đất không nằm trên dự án nào.</h4>`);
+        if($('#selectDuAnQH').val()== '0')
+        {
+            $('.di-item').append(`<h4 class="card-title">Thửa đất không nằm trên dự án nào.</h4>`);
+        }
+        else
+        {
+            $('.di-item').append(`<h4 class="card-title">Thửa đất không nằm trên dự án <b>${$('#selectDuAnQH').find(":selected").text()}</b>.</h4>`);
+        }
     }
 }
 

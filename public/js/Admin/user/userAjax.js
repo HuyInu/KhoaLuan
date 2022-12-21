@@ -20,15 +20,28 @@ function insert()
                 {
                     if(result.validateError.Email)
                     {
-                        $( "#Email-form-group" ).append( '<span for="Email" class="error invalid-feedback" style="display: block;">'+result.validateError.Email+'</span>');
+                        show_error_validate_message_function_Main("#Email-form-group" ,result.validateError.Email,'Email');
                     }
+                    else
+                    {
+                        remove_error_validate_message_function_Main("#Email-form-group")
+                    }
+
                     if(result.validateError.DienThoai)
                     {
-                        $( "#DienThoai-form-group" ).append( '<span for="Email" class="error invalid-feedback" style="display: block;">'+result.validateError.DienThoai+'</span>');
+                        show_error_validate_message_function_Main("#DienThoai-form-group" ,result.validateError.DienThoai,'DienThoai');
+                    }else
+                    {
+                        remove_error_validate_message_function_Main("#DienThoai-form-group")
                     }
+
                     if(result.validateError.TenDangNhap)
                     {
-                        $( "#TenDangNhap-form-group" ).append( '<span for="Email" class="error invalid-feedback" style="display: block;">'+result.validateError.TenDangNhap+'</span>');
+                        show_error_validate_message_function_Main("#TenDangNhap-form-group" ,result.validateError.TenDangNhap,'TenDangNhap');
+                    }
+                    else
+                    {
+                        remove_error_validate_message_function_Main("#TenDangNhap-form-group")
                     }
 
                     return 0;
@@ -91,17 +104,32 @@ function edit(id)
             {
                 if(result.validateError)
                 {
-                    if(result.validateError.Email)
+                    console.log(result.validateError)
+                    if(result.validateError.Edit_Email)
                     {
-                        $( "#Edit_Email-form-group" ).append( '<span for="Edit_Email" class="error invalid-feedback" style="display: block;">'+result.validateError.Email+'</span>');
+                        show_error_validate_message_function_Main("#Edit_Email-form-group" ,result.validateError.Edit_Email[0],'Edit_Email');
                     }
-                    if(result.validateError.DienThoai)
+                    else
                     {
-                        $( "#Edit_DienThoai-form-group" ).append( '<span for="Edit_DienThoai" class="error invalid-feedback" style="display: block;">'+result.validateError.DienThoai+'</span>');
+                        remove_error_validate_message_function_Main("#Edit_Email-form-group")
                     }
-                    if(result.validateError.TenDangNhap)
+
+                    if(result.validateError.Edit_DienThoai)
                     {
-                        $( "#Edit_TenDangNhap-form-group" ).append( '<span for="Edit_TenDangNhap" class="error invalid-feedback" style="display: block;">'+result.validateError.TenDangNhap+'</span>');
+                        show_error_validate_message_function_Main("#Edit_DienThoai-form-group" ,result.validateError.Edit_DienThoai[0],'Edit_DienThoai');
+                    }
+                    else
+                    {
+                        remove_error_validate_message_function_Main("#Edit_DienThoai-form-group")
+                    }
+
+                    if(result.validateError.Edit_TenDangNhap)
+                    {
+                        show_error_validate_message_function_Main("#Edit_TenDangNhap-form-group" ,result.validateError.Edit_TenDangNhap[0],'Edit_TenDangNhap');
+                    }
+                    else
+                    {
+                        remove_error_validate_message_function_Main("#Edit_TenDangNhap-form-group")
                     }
 
                     return 0;

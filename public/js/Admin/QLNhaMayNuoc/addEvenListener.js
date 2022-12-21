@@ -8,7 +8,9 @@ $(document).on("click", '#edit', function(event) {
 });
 
 $('#edit_NhaMayNuoc_btn').on('click',function(){
+    if ( $('#Edit_NhaMayNuoc_Form').valid() ) {
         Ajax_edit();
+    }
 })
 
 $(document).on("click", '#delete', function(event) { 

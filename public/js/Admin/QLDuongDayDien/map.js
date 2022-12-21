@@ -39,22 +39,26 @@ require([
     )=> (async ()=> {
         const url= "https://localhost:6443";
 
-        const SuDungDat_Map = new MapImageLayer({
-            url: url+"/arcgis/rest/services/BanDoNen/Su_Dung_Dat/MapServer",
-            title:"Quy hoạch xây dựng",
-            opacity:0.7,
+        const CapDien_Map = new MapImageLayer({
+            url: url+"/arcgis/rest/services/HaTangKyThuat/CapDien/MapServer",
             sublayers: [
               {
-                id: 0,
-                title:" ",
+                id: 1,
+                title:"Đường dây điện",
                 listMode: "hide",
+              },
+              {
+                id: 0,
+                title:"Trạm biến áp",
+                listMode: "hide",
+                visible:false
               }],
           });
 
-          const SuDungDat_Map_sublayer = SuDungDat_Map.findSublayerById(0);
-          console.log(SuDungDat_Map_sublayer)
+          const DuongDayDien_sublayer = CapDien_Map.findSublayerById(1);
+    
           const map = new Map({
-            layers: [SuDungDat_Map],
+            layers: [CapDien_Map],
             basemap: "topo-vector",
           });
         
@@ -65,9 +69,9 @@ require([
             center: [106.356817, 10.354037],
           });
 
-          $(document).on("click", '#edit', function(event) { 
+             $(document).on("click", '#edit', function(event) { 
             const id = $(this).attr('OBJECTID');
 
-            FunctionMap_Main_sort_feature(SuDungDat_Map_sublayer,'OBJECTID', id,view);
+            FunctionMap_Main_sort_feature(DuongDayDien_sublayer,'OBJECTID', id,view);
           })
     })());

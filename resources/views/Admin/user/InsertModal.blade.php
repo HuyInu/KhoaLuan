@@ -4,7 +4,7 @@
             <div class="modal-header no-bd modal_main_head" style="color: white; background-color: #1269db;">
                 <h5 class="modal-title">
                     <h2 class="fw-mediumbold">
-                    Thêm mới dự án quy hoạch</h2> 
+                    Thêm mới người dùng</h2> 
                 </h5>
                 <button type="button" class="close modal_main_CloseBtn" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>

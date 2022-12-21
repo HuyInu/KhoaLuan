@@ -16,13 +16,13 @@
                         <div class="col-md-6 .col-4">
                             <div class="form-group">
                                 <label for="largeInput">Đường kính(mm):</label>
-                                <input type="number" class="form-control" id="DuongKinh" name="DuongKinh">
+                                <input type="text" class="form-control" id="DuongKinh" name="DuongKinh">
                             </div>
                         </div>
                         <div class="col-md-6 .col-4">
                             <div class="form-group">
                                 <label for="largeInput">Chiều dài(mm):</label>
-                                <input type="number" class="form-control" id="ChieuDai" name="ChieuDai">
+                                <input type="text" class="form-control" id="ChieuDai" name="ChieuDai">
                             </div>
                         </div>
                     </div>
@@ -56,6 +56,7 @@
                     </div>
                     @csrf
                 </form>
+                <div id='viewDiv' style="height: 239px;width: 100%;" ></div>
             </div>
         </div>
     </div>

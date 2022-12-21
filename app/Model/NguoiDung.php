@@ -90,7 +90,7 @@ class NguoiDung extends Authenticatable
     }
 
     public function updateNguoiDung($userId,
-                                    $TenDangNhap,
+                                    $TenDangNhap=null,
                                     $Ho,
                                     $Ten,
                                     $Email,
@@ -103,8 +103,11 @@ class NguoiDung extends Authenticatable
                                     $password=null)
     {
         $user = $this::find($userId);
-
-        $user->TenDangNhap = $TenDangNhap;
+        if($TenDangNhap != null)
+        {
+            $user->TenDangNhap = $TenDangNhap;
+        }
+       
         $user->Ho = $Ho;
         $user->Ten = $Ten;
         $user->Email = $Email;

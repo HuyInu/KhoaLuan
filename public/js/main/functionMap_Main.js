@@ -4,18 +4,17 @@ function FunctionMap_Main_sort_feature(Layer,layerAttribute, AttributeValue,view
     {
         PublicFunction_UI_Block('#viewDiv', 'fas fa-map', 'Đang tải bản đồ...');
 
-        var query = {
+       /* var query = {
             where:`${layerAttribute} = '${AttributeValue}'`,
             outFields:['*'],
             returnGeometry:true,
-        }
-    
+        }*/
+
         Layer.definitionExpression = `${layerAttribute} = '${AttributeValue}'`;
-        Layer.queryFeatures(query).then(function(response){
-            console.log(response)
+        Layer.queryFeatures().then(function(response){
             view.goTo({
                 target:response.features,
-                zoom:18
+                extent:response.features[0].geometry.extent
             })
             PublicFunction_UI_UnBlock('#viewDiv');
         })

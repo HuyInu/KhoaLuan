@@ -21,12 +21,20 @@ function Ajax_insert()
                 {
                     if(result.validateError.TenLoaiDuAn)
                     {
-                        $( "#Ten-form-group" ).append( '<span for="TenLoaiDuAn" class="error invalid-feedback" style="display: block;">'+result.validateError.TenLoaiDuAn+'</span>');
+                        show_error_validate_message_function_Main("#Ten-form-group",result.validateError.TenLoaiDuAn,'TenLoaiDuAn');
+                    }
+                    else
+                    {
+                        remove_error_validate_message_function_Main("#Ten-form-group")
                     }
 
                     if(result.validateError.MaLoaiDuAn)
                     {
-                        $( "#Ma-form-group" ).append( '<span for="MaLoaiDuAn" class="error invalid-feedback" style="display: block;">'+result.validateError.MaLoaiDuAn+'</span>');
+                        show_error_validate_message_function_Main("#Ma-form-group",result.validateError.MaLoaiDuAn,'MaLoaiDuAn');
+                    }
+                    else
+                    {
+                        remove_error_validate_message_function_Main("#Ma-form-group")
                     }
                     return 0;
                 }
@@ -86,12 +94,20 @@ function Ajax_edit()
                 {
                     if(result.validateError.TenLoaiDuAn)
                     {
-                        $( "#TenEdit-form-group" ).append( '<span for="TenLoaiDuAn" class="error invalid-feedback" style="display: block;">'+result.validateError.TenLoaiDuAn+'</span>');
+                        show_error_validate_message_function_Main("#TenEdit-form-group",result.validateError.TenLoaiDuAn,'TenLoaiDuAn_Edit');
+                    }
+                    else
+                    {
+                        remove_error_validate_message_function_Main("#TenEdit-form-group")
                     }
 
                     if(result.validateError.MaLoaiDuAn)
                     {
-                        $( "#MaEdit-form-group" ).append( '<span for="MaLoaiDuAn" class="error invalid-feedback" style="display: block;">'+result.validateError.MaLoaiDuAn+'</span>');
+                        show_error_validate_message_function_Main("#MaEdit-form-group",result.validateError.MaLoaiDuAn,'MaLoaiDuAn_Edit');
+                    }
+                    else
+                    {
+                        remove_error_validate_message_function_Main("#MaEdit-form-group")
                     }
                     return 0;
                 }

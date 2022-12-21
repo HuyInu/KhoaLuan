@@ -111,6 +111,9 @@ class BanDo_HaTang_KyThuatController extends Controller
     {
         try{
             $DuongOngNuoc_Data = $this->BanDo_HaTang_KyThuatService->getOngCapNuoc($req->odjectID);
+            $DuongOngNuoc_Data[0]->DuongKinh = (string)(float) $DuongOngNuoc_Data[0]->DuongKinh;
+            $DuongOngNuoc_Data[0]->ChieuDai =  (string)(float) $DuongOngNuoc_Data[0]->ChieuDai;
+            
             return response()->json([
                 'error'=>false,
                 'DuongOngNuoc_Data' =>$DuongOngNuoc_Data

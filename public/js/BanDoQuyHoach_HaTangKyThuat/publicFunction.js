@@ -147,7 +147,7 @@ function PublicFunction_extendLayer(layer, Query, view)
             color: [163, 122, 10],
             width: 2
           }},
-      });
+      });console.log(polylineGraphic)
     return polylineGraphic;
   }
 

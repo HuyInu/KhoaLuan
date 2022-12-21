@@ -39,22 +39,26 @@ require([
     )=> (async ()=> {
         const url= "https://localhost:6443";
 
-        const SuDungDat_Map = new MapImageLayer({
-            url: url+"/arcgis/rest/services/BanDoNen/Su_Dung_Dat/MapServer",
-            title:"Quy hoạch xây dựng",
-            opacity:0.7,
+        const CapNuoc_Map = new MapImageLayer({
+            url: url+"/arcgis/rest/services/HaTangKyThuat/CapNuoc/MapServer",
             sublayers: [
               {
-                id: 0,
-                title:" ",
+                id: 1,
+                title:"Đường ong nuoc",
                 listMode: "hide",
+              },
+              {
+                id: 0,
+                title:"Nha may nuoc",
+                listMode: "hide",
+                visible:false
               }],
           });
 
-          const SuDungDat_Map_sublayer = SuDungDat_Map.findSublayerById(0);
-          console.log(SuDungDat_Map_sublayer)
+          const DuongOngNuoc_sublayer = CapNuoc_Map.findSublayerById(1);
+    
           const map = new Map({
-            layers: [SuDungDat_Map],
+            layers: [CapNuoc_Map],
             basemap: "topo-vector",
           });
         
@@ -65,9 +69,9 @@ require([
             center: [106.356817, 10.354037],
           });
 
-          $(document).on("click", '#edit', function(event) { 
+             $(document).on("click", '#edit', function(event) { 
             const id = $(this).attr('OBJECTID');
 
-            FunctionMap_Main_sort_feature(SuDungDat_Map_sublayer,'OBJECTID', id,view);
+            FunctionMap_Main_sort_feature(DuongOngNuoc_sublayer,'OBJECTID', id,view);
           })
     })());

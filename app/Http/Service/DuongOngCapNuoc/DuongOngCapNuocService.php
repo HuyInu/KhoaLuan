@@ -25,7 +25,7 @@ class DuongOngCapNuocService{
         $DuongKinh = $this->checkNull($data->DuongKinh);
         $ChieuDai = $this->checkNull($data->ChieuDai);
 
-        $this->DuongOngCapNuoc->sua($req->OBJECTID, $DuongKinh, $ChieuDai, $data->LoaiOngCapNuoc, $data->DAQH_DuongCapNuoc);
+        $this->DuongOngCapNuoc->sua($req->OBJECTID, str_replace(',', '.', $DuongKinh), str_replace(',', '.', $ChieuDai), $data->LoaiOngCapNuoc, $data->DAQH_DuongCapNuoc);
     }
 
     public function checkNull($data)

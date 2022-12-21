@@ -18,7 +18,9 @@ $(document).on("click", '#edit', function(event) {
 });
 
 $('#edit_DuongDayDien_btn').on('click',function(){
+    if ( $('#Edit_DuongDayDien_Form').valid() ) {
         Ajax_edit();
+    }
 })
 
 $(document).on("click", '#delete', function(event) { 

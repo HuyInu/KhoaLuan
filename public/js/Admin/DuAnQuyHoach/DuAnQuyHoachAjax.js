@@ -54,7 +54,7 @@ function editDuAnQuyHoach()
             if (result.error === false) 
             {
                if(result.validateError){
-                    warningAlert(result.validateError);
+                    warningAlert(result.validateError.TenDuAn[0]);
                     return 0;
                }
 
@@ -120,15 +120,22 @@ function insert_DuAnQuyHoach()
                {
                     if(result.validateError.Add_MaDuAn)
                     {
-                        $( ".Add_MaDuAn_group" ).append( '<span for="Add_MaDuAn" class="error invalid-feedback" style="display: block;">'+result.validateError.Add_MaDuAn[0]+'</span>');
-                        return 0;
+                        show_error_validate_message_function_Main('.Add_MaDuAn_group',result.validateError.Add_MaDuAn[0],'Add_MaDuAn');
+                    }
+                    else
+                    {
+                        remove_error_validate_message_function_Main('.Add_MaDuAn_group');
                     }
 
                     if(result.validateError.Add_TenDuAn)
                     {
-                        $( ".Add_TenDuAn_group" ).append( '<span for="Add_TenDuAn" class="error invalid-feedback" style="display: block;">'+result.validateError.Add_TenDuAn[0]+'</span>');
-                        return 0;
+                        show_error_validate_message_function_Main(".Add_TenDuAn_group",result.validateError.Add_TenDuAn[0],'Add_TenDuAn');
                     }
+                    else
+                    {
+                        remove_error_validate_message_function_Main('.Add_TenDuAn_group');
+                    }
+                    return 0;
                }
 
                if(result.success)

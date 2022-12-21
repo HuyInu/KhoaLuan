@@ -13,7 +13,7 @@ function editProfile()
         data:{data},
         url: '/profile/edit',
         success: function (result) {
-            
+            console.log(result)
             if (result.error === false) 
             {
                 if(result.validate === true && result.success)
@@ -23,7 +23,26 @@ function editProfile()
                 }
                 else
                 {
-                    $( "#email-form-group" ).append( '<span for="Email" class="error invalid-feedback" style="display: block;">'+result.message+'</span>');
+                    if(result.validatorError)
+                    {
+                        if(result.validatorError.Email)
+                        {
+                            show_error_validate_message_function_Main("#email-form-group",result.validatorError.Email[0],'Email')
+                        }
+                        else
+                        {
+                            remove_error_validate_message_function_Main("#email-form-group")
+                        }
+
+                        if(result.validatorError.DienThoai)
+                        {
+                            show_error_validate_message_function_Main('#DienThoai-form-group',result.validatorError.DienThoai[0],'DienThoai')
+                        }
+                        else
+                        {
+                            remove_error_validate_message_function_Main('#DienThoai-form-group')
+                        }
+                    }
                     
                 }
             } 

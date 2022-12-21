@@ -30,15 +30,30 @@
                 <form method="POST" id="doiMatKhauForm">
                     <div class="form-group" >
                         <label for="passwordOld">Mật khẩu cũ:</label>
-                        <input type="password" class="form-control form-control" name="passwordOld" id="passwordOld">
+                        <div class="input-group ">	
+                            <input type="password" class="form-control" id="passwordOld" name="passwordOld" >
+                            <div class="input-group-append" >
+                                <span class="input-group-text" id="passwordOld_btnShowPassword"><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group" >
                         <label for="passwordNew">Mật khẩu mới:</label>
-                        <input type="password" class="form-control form-control" name="passwordNew" id="passwordNew">
+                        <div class="input-group ">	
+                            <input type="password" class="form-control" id="passwordNew" name="passwordNew" >
+                            <div class="input-group-append" >
+                                <span class="input-group-text" id="passwordNew_btnShowPassword"><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group" >
                         <label for="passwordNew_confirm">Nhập lại mật khẩu mới:</label>
-                        <input type="password" class="form-control form-control" name="passwordNew_confirm" id="passwordNew_confirm">
+                        <div class="input-group ">	
+                            <input type="password" class="form-control" id="passwordNew_confirm" name="passwordNew_confirm" >
+                            <div class="input-group-append" >
+                                <span class="input-group-text" id="passwordNew_confirm_btnShowPassword"><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer no-bd">
                         <button type="submit" id="login" class="btn btn-primary">Đổi mật khẩu</button>
@@ -76,7 +91,7 @@
                         <div class="col-sm-12 col-md-4 col-xs-12">
                             <div class="form-group">
                                 <label for="taiKhoan">Tên đăng nhập*</label>
-                                <input type="text" class="form-control" id="TenDangNhap" name="TenDangNhap" value="{{$userInfor['TenDangNhap']}}">
+                                <input type="text" class="form-control" id="TenDangNhap" name="TenDangNhap" value="{{$userInfor['TenDangNhap']}} "disabled>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-4 col-xs-12">
@@ -115,7 +130,7 @@
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-4 col-xs-12">
-                            <div class="form-group">
+                            <div class="form-group" id="DienThoai-form-group">
                                 <label for="soDienThoai">Số điện thoại:</label>
                                 <input type="text" class="form-control" id="DienThoai" name="DienThoai" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" value="{{$userInfor['DienThoai']}}">
                             </div>

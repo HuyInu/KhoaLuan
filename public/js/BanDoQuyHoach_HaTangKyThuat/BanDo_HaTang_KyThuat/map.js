@@ -259,11 +259,7 @@ require([
   //=======================================================VARIALBEL==============================
   var popup =new PopupTemplate();
   let highlight;
-  const editThisAction = {
-    title: "Chỉnh sửa",
-    id: "edit-this",
-    className: "esri-icon-edit"
-  }
+  const editThisAction = null;
   
   var clickedFeature={name:null,OBJECTID:null};
 
@@ -380,9 +376,15 @@ require([
         }
     });
   })
+  /*view.popup.watch("visible", (response) => {
+    if(response == false)
+    {
+      unselectFeature();
+    }
+  })*/
 
   
-  view.popup.on("trigger-action", (event) => {
+  /*view.popup.on("trigger-action", (event) => {
     if (event.action.id === "edit-this") {
       switch(clickedFeature.name) {
         case DuongDayDien_Title:
@@ -399,7 +401,7 @@ require([
         break;
       };
     }
-  });
+  });*/
 
   
 

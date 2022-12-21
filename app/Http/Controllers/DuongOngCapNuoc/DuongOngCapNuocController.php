@@ -50,6 +50,9 @@ class DuongOngCapNuocController extends Controller
         try{
             $DuongCapNuoc_Data =  $this->DuongOngCapNuocService->get_DuongCapNuoc_By_Id($req);
 
+            $DuongCapNuoc_Data[0]->DuongKinh = (string)(float) $DuongCapNuoc_Data[0]->DuongKinh;
+            $DuongCapNuoc_Data[0]->ChieuDai =  (string)(float) $DuongCapNuoc_Data[0]->ChieuDai;
+
             return response()->json([
                 'error' =>false,
                 'DuongCapNuoc_Data' => $DuongCapNuoc_Data

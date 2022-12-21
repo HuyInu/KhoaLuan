@@ -74,8 +74,8 @@ function Ajax_get_OngCapNuoc(odjectID, action, view, location)
             if (result.error === false) 
             {   
                 console.log(result)
-                var DuongKinh = result.DuongOngNuoc_Data[0].DuongKinh ? result.DuongOngNuoc_Data[0].DuongKinh +" mm" : "Chưa có dữ liệu";
-                var ChieuDai = result.DuongOngNuoc_Data[0].ChieuDai ? result.DuongOngNuoc_Data[0].ChieuDai +" mm": "Chưa có dữ liệu";
+                var DuongKinh = result.DuongOngNuoc_Data[0].DuongKinh ;
+                var ChieuDai = result.DuongOngNuoc_Data[0].ChieuDai;
 
                 var MaLoaiOngCapNuoc = null;
                 var TenLoaiOngNuoc = "Chưa có dữ liệu";

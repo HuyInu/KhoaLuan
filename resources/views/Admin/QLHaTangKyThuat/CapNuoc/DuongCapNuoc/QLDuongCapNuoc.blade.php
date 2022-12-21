@@ -69,8 +69,8 @@
                         @foreach($DuongCapOngNuoc as $item)
                         <tr>
                             <td>{{$item->LoaiDuongOngCapNuoc->TenLoai ?? ''}}</td>
-                            <td>{{$item->DuongKinh}}</td>
-                            <td>{{$item->ChieuDai}}</td>
+                            <td>{{($item->DuongKinh != .0 && $item->DuongKinh != null ) ? str_replace('.',',',(float)$item->DuongKinh) : ''}}</td>
+                            <td>{{($item->ChieuDai != .0 && $item->ChieuDai != null ) ? str_replace('.',',',(float)$item->ChieuDai) : ''}}</td>
                             <td>{{$item->DuAnQuyHoach->TenDuAn ?? ''}}</td>
                             <td>
                                 <div class="form-button-action">
