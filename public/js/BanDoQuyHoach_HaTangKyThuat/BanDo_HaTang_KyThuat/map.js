@@ -320,12 +320,10 @@ require([
 
   $('#select-DAQH').on('change',function(){
     var MaDAQH =  $(this).val();
-
+    PublicFunction_UI_Block('#viewDiv', 'fas fa-map', 'Đang tải bản đồ...');
     let myPromise = new Promise(function(resolve, reject) {
-      PublicFunction_UI_Block('#viewDiv', 'fas fa-map', 'Đang tải bản đồ...');
-    
       layerArray.forEach(function (value, index) {
-        Function_sort_HaTangKyThuat_By_DAQH(value.layer,value.DAQHCollum, MaDAQH);
+        Function_sort_HaTangKyThuat_By_DAQH(value.layer,value.DAQHCollum, MaDAQH); //definitionExpression
       });
       var featuresArray = [];
       

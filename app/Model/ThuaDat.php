@@ -63,6 +63,7 @@ class ThuaDat extends Model
         $where = "and THUADAT.MaXa='$MaXa' and THUADAT.SoThuTuThua='$SoThua' and THUADAT.SoHieuToBanDo='$SoTo'";
         $sql = $this->select_intersect_ThuaDat($where).$where;
         $sql.= $this->select_where_MaDuAn($MaDuAn);
+        $sql .=" ORDER BY SDDAT.MaDuAnQuyHoach DESC, DienTich DESC";
         
 
         return DB::select(DB::raw($sql));

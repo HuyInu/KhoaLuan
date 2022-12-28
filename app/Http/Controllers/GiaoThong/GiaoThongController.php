@@ -14,4 +14,20 @@ class GiaoThongController extends Controller
     {
         $this->GiaoThongService = $GiaoThongService;
     }
+
+    public function show()
+    {
+        try{
+            $GiaoThongList =  $this->GiaoThongService->getAll();
+            return view('Admin.QLHaTangKyThuat.GiaoThong.QLGiaoThong',[
+                'title' => 'Quản lý đường giao thông | HỆ THỐNG GIS QUẢN LÝ HẠ TẦNG KỸ THUẬT ĐÔ THỊ MỸ THO',
+                'GiaoThongList' => $GiaoThongList,
+            ]);
+        }
+        catch(\Excetion $err)
+        {
+
+        }
+    }
+
 }

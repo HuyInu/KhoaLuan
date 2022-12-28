@@ -97,7 +97,7 @@
                                         <div class="input-group ">	
                                             <input type="password" class="form-control" id="Edit_password_confirm" name="Edit_password_confirm" disabled>
                                             <div class="input-group-append" >
-                                                <span class="input-group-text" id="btnShowPassword_confirm"><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
+                                                <span class="input-group-text" id="Edit_btnShowPassword_confirm"><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
                                             </div>
                                         </div>
                                     </div>

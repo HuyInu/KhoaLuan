@@ -1,4 +1,7 @@
 $(document).on("click", '#edit', function(event) { 
+    $('#togglePassword').prop('checked', false);
+    GioaDien_togglePassword($('#togglePassword')[0]);
+
     const rowID = getRowID(this);
     $('#rowID').val(rowID);
     const id = $(this).attr('MaNguoiDung');

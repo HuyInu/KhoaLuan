@@ -10,4 +10,9 @@ class GiaoThongService{
     {
         $this->GiaoThong = $GiaoThong;
     }
+
+    public function getAll()
+    {
+        return $this->GiaoThong->getAll();
+    }
 }

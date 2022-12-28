@@ -103,6 +103,10 @@ Route::middleware('checklogin')->group(function(){
                 Route::post('/edit','NhaMayNuoc\NhaMayNuocController@sua')->name('EditNhaMayNuoc');
                 Route::post('/xoa','NhaMayNuoc\NhaMayNuocController@xoa')->name('xoaNhaMayNuoc');
             });
+
+            Route::group(['prefix'=>'GiaoThong'],function(){
+                Route::get('/','GiaoThong\GiaoThongController@show')->name('QLGiaoThong');
+            });
         });
     });
 

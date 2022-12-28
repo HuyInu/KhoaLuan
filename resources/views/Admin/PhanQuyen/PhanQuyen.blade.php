@@ -119,7 +119,7 @@
                                         <li id="0" class="folder">Phòng quản lý đô thị TP Mỹ Tho
                                         <ul role="group">
                                             @foreach($NguoiDung_list as $item)
-                                            <li id="{{$item->id }}">{{$item->Ho}}
+                                            <li id="{{$item->id }}">{{$item->Ho.' '.$item->Ten}}
                                             @endforeach
                                         </ul>
                                     </ul>
