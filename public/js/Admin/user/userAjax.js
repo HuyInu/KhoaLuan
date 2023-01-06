@@ -80,7 +80,7 @@ function getNguoiDung(id)
                                 result.NguoiDung.TenDangNhap,
                                 result.NguoiDung.MaCoQuan,
                                 result.NguoiDung.MaLoaiNguoiDung,
-                                result.NguoiDung.id,);
+                                result.NguoiDung.id);
                 openModal('#Edit_Modal');
             } 
             else {
