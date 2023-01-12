@@ -123,7 +123,7 @@ class DuAnQuyHoachController extends Controller
                 'success'=>'Thêm thành công',
             ]);
 
-        }catch(\Exceptions $err)
+        }catch(\Exception $err)
         {
             return response()->json([
                 'error'=>true,

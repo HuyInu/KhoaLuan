@@ -31,8 +31,9 @@ class CheckQuyenQLDAQH
         }
         else
         {
-            $NhomQuyen = $this->userService->get_NhomQUyen_NguoiDung(Auth()->user()->id)->toArray();
-            $check_Quyen = Helper::check_Quyen($NhomQuyen, 1);
+            $NguoiDung_Quyen = $this->userService->get_NguoiDung_Quyen(Auth()->user()->id)->toArray();
+            $Quyen = $NguoiDung_Quyen[0]['quyen'];
+            $check_Quyen = Helper::check_Quyen($Quyen, 1);
             
             if($check_Quyen)
             {

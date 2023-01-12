@@ -24,10 +24,10 @@ $(document).on("click", '#delete', function(event) {
     });
 });
 
-$(document).on("click", '#ShowNhomQuyen', function(event) { 
+$(document).on("click", '#ShowQuyen', function(event) { 
     const userID = $(this).attr('MaNguoiDung');
-    get_NhomQuyen_NguoiDung(userID);
-    openModal('#NhomQuyenList_Modal');
+    get_NguoiDung_Quyen(userID);
+    openModal('#QuyenList_Modal');
 });
 
 $('#togglePassword').on('change',function(){

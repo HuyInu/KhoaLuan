@@ -1,14 +1,13 @@
 <?php
 
 namespace App\Http\Middleware;
-
+use Illuminate\Support\Facades\Auth;
 use Closure;
 
-use Illuminate\Support\Facades\Auth;
-use Helper;
 use App\Http\Service\user\userService;
+use Helper;
 
-class CheckQuyenSuDungDat
+class CheckQuyenPhanQuyen
 {
     /**
      * Handle an incoming request.
@@ -26,7 +25,7 @@ class CheckQuyenSuDungDat
 
     public function handle($request, Closure $next)
     {
-        if(Auth()->user()->MaLoaiNguoiDung == 1 || Auth()->user()->MaLoaiNguoiDung == 2)
+        if(Auth()->user()->MaLoaiNguoiDung == 1)
         {
             return $next($request);
         }

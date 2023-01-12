@@ -10,25 +10,17 @@ class Helper{
         return $data;
     }
 
-    public static function check_Quyen($NguoiDung_NhomQuyen, $Quyen_ID)
+    public static function check_Quyen($NguoiDung_Quyen, $Quyen_ID)
     {
-        $NhomQuyen = $NguoiDung_NhomQuyen[0]['nhom_quyen'];
-        if(count($NhomQuyen) > 0)
-        {
-            foreach ($NhomQuyen as $NhomQuyen_item) {
-                $Quyen = $NhomQuyen_item['quyen'];
-                if(count($Quyen) > 0)
+ 
+        $Quyen = $NguoiDung_Quyen;
+
+            foreach ($Quyen as $Quyen_item) {
+                if($Quyen_item['MaQuyen'] == $Quyen_ID)
                 {
-                    foreach ($Quyen as $Quyen_item) {
-                        if($Quyen_item['MaQuyen'] == $Quyen_ID)
-                        {
-                            return 1;
-                        }
-                    }
+                    return 1;
                 }
             }
-        } 
-
         return 0;
     }
 }

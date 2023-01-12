@@ -82,7 +82,8 @@ class DuAnQuyHoachService{
                                     $ThoiGianXinPheDuyet,
                                     $ThoiGianQuyHoach,
                                     $ThoiGianLayYKien,
-                                    $ThoiGianCongBo)
+                                    $ThoiGianCongBo,
+                                    $DienTich)
     {
         $MaLoaiQuyHoach = $MaLoaiQuyHoach  ? $MaLoaiQuyHoach : null;
         $MaTienDoDuAn = $MaTienDoDuAn  ? $MaTienDoDuAn : null;
@@ -92,6 +93,7 @@ class DuAnQuyHoachService{
         $ThoiGianQuyHoach = $ThoiGianQuyHoach  ? $ThoiGianQuyHoach : null;
         $ThoiGianLayYKien = $ThoiGianLayYKien  ? $ThoiGianLayYKien : null;
         $ThoiGianCongBo = $ThoiGianCongBo  ? $ThoiGianCongBo : null;
+        $DienTich = $DienTich  ? str_replace(',', '.',$DienTich) : 0;
         
         $object = (object)[];
         $object->MaLoaiQuyHoach =$MaLoaiQuyHoach;
@@ -102,6 +104,7 @@ class DuAnQuyHoachService{
         $object->ThoiGianQuyHoach =$ThoiGianQuyHoach;
         $object->ThoiGianLayYKien =$ThoiGianLayYKien;
         $object->ThoiGianCongBo =$ThoiGianCongBo;
+        $object->DienTich =$DienTich;
         
         return $object;
         
@@ -123,7 +126,8 @@ class DuAnQuyHoachService{
                                             $req->ThoiGianXinPheDuyet,
                                             $req->ThoiGianQuyHoach,
                                             $req->ThoiGianLayYKien,
-                                            $req->ThoiGianCongBo);
+                                            $req->ThoiGianCongBo,
+                                            $req->DienTich);
                                             
         $this->DuAnQuyHoach->edit(
                                 $MaDuAn,
@@ -133,7 +137,7 @@ class DuAnQuyHoachService{
                                 $req->SoQuyetDinhPheDuyet,
                                 $req->QuyMoDanSo,
                                 $req->TyLeBanVe,
-                                str_replace(',', '.',$req->DienTich),
+                                $checkedData->DienTich,
                                 $checkedData->ThoiGianXinPheDuyet,
                                 $checkedData->ThoiGianQuyHoach,
                                 $checkedData->ThoiGianLayYKien,
@@ -173,7 +177,8 @@ class DuAnQuyHoachService{
                                             $req->Add_ThoiGianXinPheDuyet,
                                             $req->Add_ThoiGianQuyHoach,
                                             $req->Add_ThoiGianLayYKien,
-                                            $req->Add_ThoiGianCongBo);
+                                            $req->Add_ThoiGianCongBo,
+                                            $req->Add_DienTich);
                                           
 
         $this->DuAnQuyHoach->create($req->Add_MaDuAn,
@@ -183,7 +188,7 @@ class DuAnQuyHoachService{
                                     $req->Add_SoQuyetDinhPheDuyet,
                                     $req->Add_QuyMoDanSo,
                                     $req->Add_TyLeBanVe,
-                                    str_replace(',', '.',$req->Add_DienTich),
+                                    $checkedData->DienTich,
                                     $checkedData->ThoiGianXinPheDuyet,
                                     $checkedData->ThoiGianQuyHoach,
                                     $checkedData->ThoiGianLayYKien,

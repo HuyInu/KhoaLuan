@@ -122,15 +122,15 @@ function PublicFunction_extendLayer(layer, Query, view)
 
   function PublicFunction_get_colorArray()
   {
-    return ['#ff6459','#ff8b59','#ffaf59','#ffca59',
-            '#ffe959','#f4ff59','#d3ff59','#afff59',
-            '#7aff59','#49d128','#2af599','#2af5c6',
-            '#2adaf5','#2a96f5','#132dd6','#7922e3',
+    return ['rgba(255, 100, 89, 0.84)','rgba(255, 139, 89, 0.84)','rgba(255, 175, 89, 0.84)','rgba(207, 181, 113, 0.84)',
+            'rgba(228, 201, 65, 0.84)','rgba(244, 255, 89, 0.84)','rgba(211, 255, 89, 0.84)','rgba(175, 255, 89, 0.84)',
+            'rgba(122, 255, 89, 0.84)','rgba(73, 209, 40, 0.84)','rgba(42, 245, 153, 0.84)','rgba(42, 245, 198, 0.84)',
+            'rgba(42, 218, 245, 0.84)','#2a96f5','#132dd6','#7922e3',
             '#b922e3','#e322dd','#e322a9','#e32269'];
 
   }
 
-  function PublicFunction_Create_Polugon_Graphic(Graphic,color,rings, spatial)
+  function PublicFunction_Create_Polygon_Graphic(Graphic,color,rings, spatial)
   {
     polylineGraphic = new Graphic({
       geometry:
@@ -160,13 +160,13 @@ function PublicFunction_extendLayer(layer, Query, view)
     var spatial = PublicFunction_get_VN2000();
 
     rings = PublicFunction_Convert_geom_to_array(THUADATSHAPE);
-    polylineGraphic = PublicFunction_Create_Polugon_Graphic(Graphic,`#d4d2d2`,rings, spatial);
+    polylineGraphic = PublicFunction_Create_Polygon_Graphic(Graphic,`#d4d2d2`,rings, spatial);
     view.graphics.add(polylineGraphic);
 
     $.each(SUDUNGDAT,function(index, item){
         
         rings = PublicFunction_Convert_geom_to_array(item.SUDUNGDATSHAPE);
-        polylineGraphic = PublicFunction_Create_Polugon_Graphic(Graphic,color[index],rings, spatial);
+        polylineGraphic = PublicFunction_Create_Polygon_Graphic(Graphic,color[index],rings, spatial);
         view.graphics.add(polylineGraphic);
     })
   }  

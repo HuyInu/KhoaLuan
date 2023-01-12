@@ -40,6 +40,12 @@ class PhanQuyenService{
     {
         return $this->NhomQuyen->get_Quyen_by_NhomQuyen($req->MaNhomQuyen);
     }
+
+    public function get_Quyen_By_NguoiDung($req)//---------------------------------------------------------
+    {
+        return $this->NguoiDung->get_Quyen_by_NguoiDung($req->MaNguoiDung);
+    }
+
     public function get_ID_NguoiDung_by_NhomQuyen($req)
     {
         return $this->NhomQuyen->get_ID_NguoiDung_by_NhomQuyen($req->MaNhomQuyen);
@@ -77,6 +83,12 @@ class PhanQuyenService{
     public function them_NhomQuyen_Quyen($req)
     {
         $this->NhomQuyen->them_NhomQuyen_Quyen($req->MaNhomQuyen,$req->NodeIDArray);
+    }
+
+    public function them_Quyen_Cho_NguoiDung($req)
+    {
+        $this->NguoiDung->them_Quyen_Cho_NguoiDung($req->MaNguoiDung,$req->NodeIDArray);
+        
     }
 
     public function them_NhomQuyen_NguoiDung($req)

@@ -181,22 +181,22 @@ function User_destroy(userID, row)
     })
 }
 
-function get_NhomQuyen_NguoiDung(userID)
+function get_NguoiDung_Quyen(userID)
 {
     var MaNguoiDung =userID;
     $.ajax({
         type: 'POST',
         datatype: 'JSON',
         data:{MaNguoiDung},
-        url: '/user/get_NhomQuyen_NguoiDung',
+        url: '/user/get_NguoiDung_Quyen',
         success: function (result) {
             
             if (result.error === false) 
             {
-                if(result.NhomQuyen_NguoiDung)
+                if(result.Quyen_NguoiDung)
                 {
-                    const TenDangNhap = result.NhomQuyen_NguoiDung[0].TenDangNhap;
-                    GiaoDien_load_NhomQuyen_Vao_Modal(result.NhomQuyen_NguoiDung[0].nhom_quyen, TenDangNhap)
+                    const TenDangNhap = result.Quyen_NguoiDung[0].TenDangNhap;
+                    GiaoDien_load_Quyen_Vao_Modal(result.Quyen_NguoiDung[0].quyen, TenDangNhap)
                     return 0;
                 }
             } 

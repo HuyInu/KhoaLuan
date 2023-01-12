@@ -86,7 +86,7 @@ require([
         weight: "normal"
       }
     },
-    labelPlacement: "above-center",
+    labelPlacement: "always-horizontal",
     labelExpression: '[SoThuTuThua] CONCAT "(" CONCAT [SoHieuToBanDo] CONCAT ")"'
   };
 

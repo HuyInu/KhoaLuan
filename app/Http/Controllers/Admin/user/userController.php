@@ -114,7 +114,7 @@ class userController extends Controller
                 'success'=>"Sửa thành công người dùng mã $req->MaNguoiDung",
             ]);
 
-        }catch(\Exceptions $err)
+        }catch(\Exception $err)
         {
             return response()->json([
                 'error'=>true,
@@ -142,14 +142,14 @@ class userController extends Controller
         }
     }
 
-    public function get_NhomQuyen_NguoiDung(Request $req)
+    public function get_NguoiDung_Quyen(Request $req)
     {
         try{
-            $NhomQuyen_NguoiDung = $this->userService->get_NhomQUyen_NguoiDung($req->MaNguoiDung);
+            $Quyen_NguoiDung = $this->userService->get_NguoiDung_Quyen($req->MaNguoiDung);
             
             return response()->json([
                 'error'=>false,
-                'NhomQuyen_NguoiDung'=>$NhomQuyen_NguoiDung,
+                'Quyen_NguoiDung'=>$Quyen_NguoiDung,
             ]);
         }
         catch(\Exception $err)

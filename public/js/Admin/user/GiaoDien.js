@@ -82,19 +82,23 @@ function GiaoDien_DataToform(Ho,
 
 }
 
-function GiaoDien_load_NhomQuyen_Vao_Modal(NhomQuyen_NguoiDung, TenDangNhap)
+function GiaoDien_load_Quyen_Vao_Modal(Quyen_NguoiDung, TenDangNhap)
 {
-    $('#NhomQuyen_NguoiDung_bodyTable').html('');
+    $('#Quyen_NguoiDung_bodyTable').html('');
     $('#TenDangNhap_table_head').html(TenDangNhap)
-    $.each(NhomQuyen_NguoiDung, function( index, NhomQuyen ) {
-        var Quyen=NhomQuyen.quyen;
+        var Quyen=Quyen_NguoiDung;
+        if(Quyen.length == 0)
+        {
+            $('#Quyen_NguoiDung_bodyTable').append("Người dùng chưa được phân quyền.");
+        }
+        else
+        {
         $.each(Quyen, function( index, Quyen ) {
-            $('#NhomQuyen_NguoiDung_bodyTable').append(
+            $('#Quyen_NguoiDung_bodyTable').append(
                                                         "<tr>"+
-                                                            "<td>"+NhomQuyen.TenNhomQuyen+"</td>"+
                                                             "<td>"+Quyen.TenQuyen+"</td>"+
                                                         "</tr>"
                                                         );
-        });  
-    });
+        }); 
+    }
 }

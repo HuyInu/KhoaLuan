@@ -49,6 +49,43 @@ class PhanQuyenController extends Controller
         }
     }
 
+    public function get_Quyen_NguoiDung(Request $req)
+    {
+        try{
+            $Quyen = $this->PhanQuyenService->get_Quyen_By_NguoiDung($req);
+            
+            return response()->json([
+                'error'=>false,
+                'Quyen'=>$Quyen,
+            ]);
+        }catch(\Exception $err)
+        {
+            return response()->json([
+                'error'=>true,
+                'message'=>'Đã xảy ra lỗi.',
+            ]);
+        }
+    }
+
+    public function them_Quyen_Cho_NguoiDung(request $req)
+    {
+        try{
+            $this->PhanQuyenService->them_Quyen_Cho_NguoiDung($req);
+
+            return response()->json([
+                'error'=>false,
+                'success'=>"Cập nhật quyền thành công",
+            ]);
+        }
+        catch(\Exception $err)
+        {
+            return response()->json([
+                'error'=>true,
+                'message'=>'Đã xảy ra lỗi.',
+            ]);
+        }
+    }
+
     public function them_NhomQuyen(Request $req)
     {
         try{
@@ -156,7 +193,7 @@ class PhanQuyenController extends Controller
                 'success'=>"Phân nhóm quyền thành công",
             ]);
         }
-        catch(\Exceptions $err)
+        catch(\Exception $err)
         {
             return response()->json([
                 'error'=>true,

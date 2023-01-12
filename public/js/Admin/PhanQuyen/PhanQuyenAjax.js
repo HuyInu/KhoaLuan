@@ -4,14 +4,14 @@ $.ajaxSetup({
     }
 })
 
-function get_Quyen_NhomQuyen_NguoiDung(idNhomQuyen)
+function get_Quyen_NhomQuyen_NguoiDung(idNguoiDung)
 {
-    const MaNhomQuyen= idNhomQuyen;
+    const MaNguoiDung= idNguoiDung;
     $.ajax({
         type: 'POST',
         datatype: 'JSON',
-        data:{MaNhomQuyen},
-        url: '/phan_quyen/get_Quyen_NhomQuyen',
+        data:{MaNguoiDung},
+        url: '/phan_quyen/get_Quyen_NguoiDung',
         success: function (result) {
             if (result.error === false) 
             {
@@ -32,10 +32,6 @@ function get_Quyen_NhomQuyen_NguoiDung(idNhomQuyen)
                         $('#list-quyen').append('<li class="list-group-item" style="color: red;">Nhóm chưa được phân quyền</li>');
                     }
                     fancytree_checkTreeQuyen(listQuyen);    
-               }
-               if(result.IDNguoiDung)
-               {
-                    fancytree_checkTreeNguoiDung(result.IDNguoiDung[0]);
                }
                
             } 
@@ -168,6 +164,30 @@ function them_NguoiDung_Vao_NhomQuyen(MaNhomQuyen, NodeIDArray)
         datatype: 'JSON',
         data:{MaNhomQuyen,NodeIDArray},
         url: '/phan_quyen/them_NguoiDung_Vao_NhomQuyen',
+        success: function (result) {
+            if (result.error === false) 
+            {
+                if(result.success)
+                {
+                    successAlert(result.success); 
+                    
+                    return 0;
+                }
+            } 
+            else {
+                errorAlert(result.message);
+            }
+        }
+    })
+}
+
+function them_Quyen_Cho_NguoiDung(MaNguoiDung, NodeIDArray)
+{   
+    $.ajax({
+        type: 'POST',
+        datatype: 'JSON',
+        data:{MaNguoiDung,NodeIDArray},
+        url: '/phan_quyen/them_Quyen_Cho_NguoiDung',
         success: function (result) {
             if (result.error === false) 
             {

@@ -1,18 +1,18 @@
 var treeQuyen= $.ui.fancytree.getTree("#tree_Quyen");
 var treeNguoDung=$.ui.fancytree.getTree("#treeData_NguoiDung");
 
-$('#select-NhomQuyen').on('change',function(){
-    const MaNhomQuyen= $(this).val();
-    get_Quyen_NhomQuyen_NguoiDung(MaNhomQuyen);
-    show_CapNhat_checkbox();
+$('#select-NguoiDung').on('change',function(){
+    const MaNguoiDung= $(this).val();
+    get_Quyen_NhomQuyen_NguoiDung(MaNguoiDung);
+    
 });
 
-function check_NhomQuyen_Val()
+function check_NguoiDung_Val()
 {
-    const MaNhomQuyen = $('#select-NhomQuyen').val()
-    if(!MaNhomQuyen)
+    const MaNguoiDung = $('#select-NguoiDung').val()
+    if(!MaNguoiDung)
     {
-        warningAlert("Vui lòng chọn nhóm quyền.")
+        warningAlert("Vui lòng chọn người dùng.")
         return 0;
     }
     else
@@ -33,7 +33,7 @@ $('#Open_ThemNhomQuyenForm').on('click',function(){
 });
 
 $("#Open_SuaNhomQuyenForm").on('click',function(){
-    if(check_NhomQuyen_Val()==0)
+    if(check_NguoiDung_Val()==0)
     {
         return 0;
     }
@@ -45,11 +45,11 @@ $("#Open_SuaNhomQuyenForm").on('click',function(){
 
 $("#XoaNhomQuyen").on('click',function(){
     
-    if(check_NhomQuyen_Val()==0)
+    if(check_NguoiDung_Val()==0)
     {
         return 0;
     }
-    const MaNhomQuyen = $('#select-NhomQuyen').val();
+    const MaNhomQuyen = $('#select-NguoiDung').val();
     deleteAlert(MaNhomQuyen, 'nhóm quyền', function (confirmed) {
         if (confirmed == true) {
             xoa_NhomQuyen(MaNhomQuyen);
@@ -87,15 +87,15 @@ $('#save_NhomQuyen_Quyen').on('click',function(){
     show_hide_CapNhat_Div($("#CapNhat_checkbox"))
 })
 
-$('#save_NhomQuyen_NguoiDung').on('click',function(){
-    if(check_NhomQuyen_Val()==0)
+$('#save_Quyen_NguoiDung').on('click',function(){
+    if(check_NguoiDung_Val()==0)
     {
         return 0;
     }
-    const NodeIDArray = get_treeNguoiDung_selected_node();
-    const MaNhomQuyen = $('#select-NhomQuyen').val();
+    const NodeIDArray = get_treeQuyen_selected_node();
+    const MaNguoiDung = $('#select-NguoiDung').val();
 
-    them_NguoiDung_Vao_NhomQuyen(MaNhomQuyen, NodeIDArray);
+    them_Quyen_Cho_NguoiDung(MaNguoiDung, NodeIDArray);
 
     //get_Quyen_NhomQuyen_NguoiDung(MaNhomQuyen);
 

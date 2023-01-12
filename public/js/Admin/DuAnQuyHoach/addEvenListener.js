@@ -9,11 +9,11 @@ $(document).on("click", '#edit', function(event) {
 });
 
 $(document).on("click", '#delete', function(event) { 
-    
+    const rowID =  DataTable_Main_getRowID( '#DuAnQuyHoachTable',this);
     const MaDuAn = $(this).attr('MaDuAn');
     deleteAlert(MaDuAn, 'dự án', function (confirmed) {
         if (confirmed == true) {
-            delete_DuAnQuyHoach(MaDuAn);
+            delete_DuAnQuyHoach(MaDuAn, rowID);
         }
         else {
             
@@ -56,3 +56,4 @@ $('#LoaiQuyHoach_Sort').on('change',function(){
 $('#TinhTrangPheDuyet_Sort').on('change',function(){
     DataTable_Main_sort('#DuAnQuyHoachTable',this,4);
 })
+

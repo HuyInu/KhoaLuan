@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Model\NhomQuyen;
+use App\Model\NguoiDung;
 
 class Quyen extends Model
 {
@@ -14,6 +14,10 @@ class Quyen extends Model
     public function NhomQuyen()
     {
         return $this->belongsToMany(NhomQuyen::class,'NhomQuyen_Quyen','MaQuyen','MaNhomQuyen');
+    }
+    public function NguoiDung()
+    {
+        return $this->belongsToMany(NguoiDung::class,'NguoiDung_Quyen','MaQuyen','id');
     }
     ///*----
     

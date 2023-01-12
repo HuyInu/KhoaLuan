@@ -356,7 +356,7 @@
                                 <div class="KyHieu_item" style="float:left;">
                                     <img style="float:left;margin-top: 7px" src = "data:image/svg+xml;base64,{{$svg64}}" >
                                     
-                                    <p style="padding-top: 1pt;padding-left: 33pt;text-indent: 0pt;text-align: left; width:250px;">
+                                    <p style="padding-top: 1pt;padding-left: 33pt;text-indent: 0pt;text-align: left; width:175px;  word-wrap: break-word;  ">
                                         {{$item->TenLoaiDatTheoDA}}
                                     </p>
                                 </div>

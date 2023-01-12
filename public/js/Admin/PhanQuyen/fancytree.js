@@ -18,7 +18,7 @@ $("#tree_Quyen").fancytree({
 $("#treeData_NguoiDung").fancytree({
     checkbox: true,
     icon:false,
-    selectMode: 3,
+    selectMode: 1,
     autoScroll: true,
     quicksearch: true,
     extensions: ["filter"],
@@ -80,7 +80,6 @@ function fancytree_checkTreeNguoiDung(listNguoiDung) {
             node.parent.setExpanded();
             node.parent.parent.setExpanded();
         }
-        
     });
 };
 

@@ -20,12 +20,12 @@ class ThuaDat extends Model
 
     public function getThuaDat_By_OdjectID($odjectID)
     {
-        return $this::with(['DMXa.DMHuyen'])->where('OBJECTID','=',$odjectID)->get([DB::raw('SHAPE.ToString() as SHAPE'),'OBJECTID', 'MaXa','SoHieuToBanDo','SoThuTuThua','DienTich','DienTichPhapLy','TenChu','DiaChi']);
+        return $this::with(['DMXa.DMHuyen'])->where('OBJECTID','=',$odjectID)->get([DB::raw('SHAPE.ToString() as SHAPE'),'OBJECTID', 'MaXa','SoHieuToBanDo','SoThuTuThua','DienTich','TenChu','DiaChi']);
     }
     
     public function getThuaDat_By_MaXa_SoTo_SoThua($MaXa, $SoTo, $SoThua)
     {
-        return $this::with(['DMXa.DMHuyen'])->where([['MaXa','=',$MaXa],['SoHieuToBanDo','=',$SoTo],['SoThuTuThua','=',$SoThua]])->get([DB::raw('SHAPE.ToString() as SHAPE'),'OBJECTID','MaXa','SoHieuToBanDo','SoThuTuThua','DienTich','DienTichPhapLy','TenChu','DiaChi']);
+        return $this::with(['DMXa.DMHuyen'])->where([['MaXa','=',$MaXa],['SoHieuToBanDo','=',$SoTo],['SoThuTuThua','=',$SoThua]])->get([DB::raw('SHAPE.ToString() as SHAPE'),'OBJECTID','MaXa','SoHieuToBanDo','SoThuTuThua','DienTich','TenChu','DiaChi']);
     }
 
     public function select_intersect_ThuaDat($whereTongDienTich)

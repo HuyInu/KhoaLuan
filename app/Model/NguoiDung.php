@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Model\CoQuan;
 use App\Model\LoaiNguoiDung;
 use App\Model\DMXa;
-use App\Model\NhomQuyen;
+use App\Model\Quyen;
 
 
 class NguoiDung extends Authenticatable
@@ -34,14 +34,14 @@ class NguoiDung extends Authenticatable
         return $this->belongsTo(DMXa::class,'MaXa','MaXa');
     }
 
-    public function NhomQuyen()
+    public function Quyen()
     {
-        return $this->belongsToMany(NhomQuyen::class,'NguoiDung_NhomQuyen','id','MaNhomQuyen');
+        return $this->belongsToMany(Quyen::class,'NguoiDung_Quyen','id','MaQuyen');
     }
     //----------//
     public function getAll()
     {
-        return $this::with(['LoaiNguoiDung','CoQuan'])->where('MaLoaiNguoiDung','!=',1)->orderByRaw('-MaCoQuan DESC')->get(['id','TenDangNhap','Ho','Ten','Email','GioiTinh','MaLoaiNguoiDung','MaCoQuan','DienThoai']);
+        return $this::with(['LoaiNguoiDung','CoQuan'])->where('MaLoaiNguoiDung','!=',1)->get(['id','TenDangNhap','Ho','Ten','Email','GioiTinh','MaLoaiNguoiDung','MaCoQuan','DienThoai']);
     }
 
     public function getNguoiDung_CoQuan()
@@ -140,8 +140,19 @@ class NguoiDung extends Authenticatable
         $user->delete();
     }
 
-    public function get_NhomQuyen_NguoiDung($MaNguoiDung)
+    public function get_NguoiDung_Quyen($MaNguoiDung)
     {
-        return $this::with('NhomQuyen','NhomQuyen.Quyen')->where('id','=',$MaNguoiDung)->get(['id','TenDangNhap']);
+        return $this::with('Quyen')->where('id','=',$MaNguoiDung)->get(['id','TenDangNhap']);
+    }
+
+    public function get_Quyen_by_NguoiDung($MaNguoiDung)
+    {
+        return $this::with(['Quyen'])->where('id','=',$MaNguoiDung)->get();
+    }
+
+    public function them_Quyen_Cho_NguoiDung($MaNguoiDung,$QuyenIDArray)
+    {
+        $NguoiDung = $this::find($MaNguoiDung);
+        $NguoiDung->Quyen()->sync($QuyenIDArray);
     }
 }

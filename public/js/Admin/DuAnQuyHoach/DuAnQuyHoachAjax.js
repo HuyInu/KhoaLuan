@@ -80,7 +80,7 @@ function editDuAnQuyHoach()
     })
 }
 
-function delete_DuAnQuyHoach(DuAnID)
+function delete_DuAnQuyHoach(DuAnID, rowID)
 {
     const MaDuAn = DuAnID;
     $.ajax({
@@ -94,7 +94,7 @@ function delete_DuAnQuyHoach(DuAnID)
                if(result.success)
                {
                     successAlert(result.success);
-                    DataTable_Main_removeRow('#DuAnQuyHoachTable', $('#rowID').html());
+                    DataTable_Main_removeRow('#DuAnQuyHoachTable', rowID);
                     return 0;
                }
             } 

@@ -27,18 +27,20 @@ Route::middleware('checklogin')->group(function(){
             Route::post('/edit','Admin\user\userController@edit')->name('edittUser');
             Route::post('/delete','Admin\user\userController@delete')->name('deletetUser');
 
-            Route::post('/get_NhomQuyen_NguoiDung','Admin\user\userController@get_NhomQuyen_NguoiDung')->name('get_NhomQuyen_NguoiDung');
+            Route::post('/get_NguoiDung_Quyen','Admin\user\userController@get_NguoiDung_Quyen')->name('get_NguoiDung_Quyen');
         });
         
         Route::group(['prefix'=>'phan_quyen'],function(){
             Route::get('/','Admin\PhanQuyen\PhanQuyenController@show')->name('PhanQuyen');
             Route::post('/get_Quyen_NhomQuyen','Admin\PhanQuyen\PhanQuyenController@get_Quyen_NhomQuyen')->name('get_Quyen_NhomQuyen');
+            Route::post('/get_Quyen_NguoiDung','Admin\PhanQuyen\PhanQuyenController@get_Quyen_NguoiDung')->name('get_Quyen_NguoiDung');
             Route::post('/them_NhomQuyen','Admin\PhanQuyen\PhanQuyenController@them_NhomQuyen')->name('them_NhomQuyen');
             Route::post('/sua_NhomQuyen','Admin\PhanQuyen\PhanQuyenController@sua_NhomQuyen')->name('sua_NhomQuyen');
             Route::post('/xoa_NhomQuyen','Admin\PhanQuyen\PhanQuyenController@xoa_NhomQuyen')->name('xoa_NhomQuyen');
 
             Route::post('/them_Quyen_Vao_Nhom','Admin\PhanQuyen\PhanQuyenController@them_NhomQuyen_Quyen')->name('them_NhomQuyen_Quyen');
             Route::post('/them_NguoiDung_Vao_NhomQuyen','Admin\PhanQuyen\PhanQuyenController@them_NhomQuyen_NguoiDung')->name('them_NhomQuyen_NguoiDung');
+            Route::post('/them_Quyen_Cho_NguoiDung','Admin\PhanQuyen\PhanQuyenController@them_Quyen_Cho_NguoiDung')->name('them_Quyen_Cho_NguoiDung');
         });
     });
     

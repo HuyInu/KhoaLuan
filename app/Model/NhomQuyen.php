@@ -12,15 +12,15 @@ class NhomQuyen extends Model
     protected $primaryKey = 'MaNhomQuyen';
     public $timestamps = false;
 
-    public function NguoiDung()
+   /* public function NguoiDung()
     {
         return $this->belongsToMany(NguoiDung::class,'NguoiDung_NhomQuyen','MaNhomQuyen','id');
-    }
+    }*/
 
-    public function Quyen()
+   /* public function Quyen()
     {
         return $this->belongsToMany(Quyen::class,'NhomQuyen_Quyen','MaNhomQuyen','MaQuyen');
-    }
+    }*/
     //------
 
     public function getAll()

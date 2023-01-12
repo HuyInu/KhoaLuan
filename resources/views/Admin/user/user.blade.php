@@ -84,7 +84,7 @@
                                     <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary " data-original-title="Sửa" id="edit" MaNguoiDung="{{$item->id}}">
                                         <i class="fa fa-edit"></i>
                                     </button>
-                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-info btn-lg" data-original-title="Nhóm quyền" id="ShowNhomQuyen" MaNguoiDung="{{$item->id}}">
+                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-info btn-lg" data-original-title="Nhóm quyền" id="ShowQuyen" MaNguoiDung="{{$item->id}}">
                                         <i class="fas fa-user-circle"></i>
                                     </button>
                                     <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger " data-original-title="Xóa" id="delete" MaNguoiDung="{{$item->id}}">

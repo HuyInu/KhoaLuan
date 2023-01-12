@@ -1,5 +1,5 @@
-<div class="modal fade" id="NhomQuyenList_Modal" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
-    <div class="modal-dialog" role="document" style="max-width: 1000px;">
+<div class="modal fade" id="QuyenList_Modal" tabindex="-1" role="dialog" data-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="max-width: 500px;">
         <div class="modal-content">
             <div class="modal-header no-bd modal_main_head">
                 <h5 class="modal-title">
@@ -12,16 +12,15 @@
             <div class="modal-body">
                 <div class="card-body">
                     <div class="card-sub">									
-                        Tên đăng nhập : <span id="TenDangNhap_table_head" style="color:#2cabe3;">abc</span>
+                        Tên đăng nhập : <span id="TenDangNhap_table_head" style="color:#2cabe3;"></span>
                     </div>
                     <table class="table mt-3">
                         <thead>
                             <tr>
-                                <th scope="col">Nhóm quyền</th>
                                 <th scope="col">Quyền</th>
                             </tr>
                         </thead>
-                        <tbody id="NhomQuyen_NguoiDung_bodyTable">
+                        <tbody id="Quyen_NguoiDung_bodyTable">
 
                         </tbody>
                     </table>

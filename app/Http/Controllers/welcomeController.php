@@ -30,27 +30,20 @@ class welcomeController extends Controller
             //dd($NhomQuyen);
         if(Auth()->check() && Auth()->user()->MaLoaiNguoiDung != 1)
         {
-            $NguoiDung_NhomQuyen = $this->userService->get_NhomQUyen_NguoiDung(Auth()->user()->id)->toArray();
-            $NhomQuyen = $NguoiDung_NhomQuyen[0]['nhom_quyen'];
-            if(count($NhomQuyen) > 0)
-            {
-                foreach ($NhomQuyen as $NhomQuyen_item) {
-                    $Quyen = $NhomQuyen_item['quyen'];
-                    if(count($Quyen) > 0)
-                    {
-                        foreach ($Quyen as $Quyen_item) {
-                            if($Quyen_item['MaQuyen'] == 1)
-                            {
-                                $QuyenQLDAQH = 1;
-                                $QuyenQLDanhMuc = 1;
-                                $QuyenQLSuDungDat = 1;
-                                $QuyenQLHaTangKyThuat = 1;
-                                $QuyenQLNguoiDung = 1;
-                            }
-                        }
-                    }
+            $NguoiDung_Quyen = $this->userService->get_NguoiDung_Quyen(Auth()->user()->id)->toArray();
+            //dd($NguoiDung_Quyen);
+            $Quyen = $NguoiDung_Quyen[0]['quyen'];
+
+            foreach ($Quyen as $Quyen_item) {
+                if($Quyen_item['MaQuyen'] == 1)
+                {
+                    $QuyenQLDAQH = 1;
+                    $QuyenQLDanhMuc = 1;
+                    $QuyenQLSuDungDat = 1;
+                    $QuyenQLHaTangKyThuat = 1;
+                    $QuyenQLNguoiDung = 1;
                 }
-            }   
+            } 
         }
        
         return view('welcome',[
