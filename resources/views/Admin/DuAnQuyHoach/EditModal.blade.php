@@ -91,7 +91,7 @@
                         </div>
                         <div class="col-md-6 .col-4">
                             <div class="form-group">
-                                <label for="largeInput">Diện tích(m<sup>2</sup>):</label>
+                                <label for="largeInput">Diện tích (m<sup>2</sup>):</label>
                                 <input type="text" class="form-control" id="DienTich" name="DienTich">
                             </div>
                         </div>

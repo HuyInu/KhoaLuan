@@ -82,7 +82,7 @@ class PDF_ThongTinQuyHoachController extends Controller
                     $scale;
                     if($xMax >=450 ||$yMax >=450)
                     {
-                        $scale = 600;
+                        $scale = 550;
                     }
                     else if($xMax >=200 ||$yMax >=200)
                     {

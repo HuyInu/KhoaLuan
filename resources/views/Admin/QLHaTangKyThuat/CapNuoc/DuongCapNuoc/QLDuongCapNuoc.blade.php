@@ -56,8 +56,8 @@
                     <thead>
                         <tr>
                             <th>Loại đường cấp nước</th>
-                            <th>Đường kính(mm)</th>
-                            <th>Chiều dài(mm)</th>
+                            <th>Đường kính (mm)</th>
+                            <th>Chiều dài (mm)</th>
                             <th>Dự án quy hoạch</th>
                             <th style="width: 10%">Thao tác</th>
                         </tr>

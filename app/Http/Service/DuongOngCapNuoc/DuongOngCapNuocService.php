@@ -23,9 +23,9 @@ class DuongOngCapNuocService{
     public function edit_DuongOngNuoc($req, $data)
     {
         $DuongKinh = $this->checkNull($data->DuongKinh);
-        $ChieuDai = $this->checkNull($data->ChieuDai);
+        //$ChieuDai = $this->checkNull($data->ChieuDai);
 
-        $this->DuongOngCapNuoc->sua($req->OBJECTID, str_replace(',', '.', $DuongKinh), str_replace(',', '.', $ChieuDai), $data->LoaiOngCapNuoc, $data->DAQH_DuongCapNuoc);
+        $this->DuongOngCapNuoc->sua($req->OBJECTID, str_replace(',', '.', $DuongKinh),/* str_replace(',', '.', $ChieuDai),*/ $data->LoaiOngCapNuoc, $data->DAQH_DuongCapNuoc);
     }
 
     public function checkNull($data)

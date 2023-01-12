@@ -51,7 +51,7 @@
                         <tr>
                             <th>Mã lô đất</th>
                             <th>Tên loại đất theo dự án</th>
-                            <th>Diện tích</th>
+                            <th>Diện tích (m<sup>2</sup>)</th>
                             <th>Hệ số sử dụng đất</th>
                             <th>Tầng cao xây dựng</th>
                             <th>Mật độ xây dựng</th>
@@ -66,7 +66,7 @@
                     <tbody>
                         @foreach($SuDungDat_list as $item)
                         <tr>
-                            <td>{{$item->OBJECTID}}</td>
+                            <td>{{$item->MaLoDat}}</td>
                             <td>{{$item->TenLoaiDatTheoDA}}</td>
                             <td>{{($item->DienTich != .00 && $item->DienTich != null ) ? str_replace('.',',',$item->DienTich) : ''}}</td>
                             <td>{{($item->HeSoSuDungDat != .0 && $item->HeSoSuDungDat != null ) ? str_replace('.',',',(float)$item->HeSoSuDungDat) : ''}}</td>
@@ -76,10 +76,10 @@
                             <td>{{$item->DMLoaiDatQHXD['TenLoaiDat']}}</td>
                             <td>
                                 <div class="form-button-action">
-                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary " data-original-title="Sửa" id="edit" OBJECTID="{{$item->OBJECTID}}">
+                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary " data-original-title="Sửa" id="edit" OBJECTID="{{$item->MaLoDat}}">
                                         <i class="fa fa-edit"></i>
                                     </button>
-                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger " data-original-title="Xóa" id="delete" OBJECTID="{{$item->OBJECTID}}">
+                                    <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger " data-original-title="Xóa" id="delete" OBJECTID="{{$item->MaLoDat}}">
                                         <i class="fa fa-times"></i>
                                     </button>
                                 </div>

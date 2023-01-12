@@ -41,7 +41,7 @@ class QLDuDungDatService{
     public function sua_SuDungDat($req,$data)
     {
         $this->SuDungDat->sua($req->OBJECTID, $data->MaDuAnQuyHoach, $data->MaLoaiDatQHXD,
-                            $this->turn_comma_into_doc($data->DienTich),
+                            //$this->turn_comma_into_doc($data->DienTich),
                             $this->turn_comma_into_doc($data->HeSoSuDungDat),
                             $data->TangCaoXayDung,$data->MatDoXayDung,$data->TenLoaiDatTheoDA);
     }

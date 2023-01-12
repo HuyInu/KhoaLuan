@@ -21,8 +21,8 @@
                         </div>
                         <div class="col-md-6 .col-4">
                             <div class="form-group">
-                                <label for="largeInput">Chiều dài(mm):</label>
-                                <input type="text" class="form-control" id="ChieuDai" name="ChieuDai">
+                                <label for="largeInput">Chiều dài (mm):</label>
+                                <input type="text" class="form-control" id="ChieuDai" name="ChieuDai" disabled>
                             </div>
                         </div>
                     </div>

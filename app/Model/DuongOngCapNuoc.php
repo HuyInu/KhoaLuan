@@ -33,11 +33,11 @@ class DuongOngCapNuoc extends Model
         return $this::with(['DuAnQuyHoach' => function ($query) { $query->select('MaDuAn', 'TenDuAn');},'LoaiDuongOngCapNuoc'])->where('OBJECTID','=',$ODJECTID)->get(['DuongKinh','ChieuDai','LoaiOngCapNuoc','LoaiDuAnQuyHoach']);
     }
 
-    public function sua($OBJECTID, $DuongKinh, $ChieuDai, $LoaiOngCapNuoc, $LoaiDuAnQuyHoach)
+    public function sua($OBJECTID, $DuongKinh, /*$ChieuDai,*/ $LoaiOngCapNuoc, $LoaiDuAnQuyHoach)
     {
         $this::where('OBJECTID','=',$OBJECTID)->update([
             'DuongKinh' => $DuongKinh,
-            'ChieuDai' => $ChieuDai,
+            //'ChieuDai' => $ChieuDai,
             'LoaiOngCapNuoc' => $LoaiOngCapNuoc,
             'LoaiDuAnQuyHoach' => $LoaiDuAnQuyHoach,
         ]);

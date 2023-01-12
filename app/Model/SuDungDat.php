@@ -27,20 +27,20 @@ class SuDungDat extends Model
 
     public function get_All()
     {
-        return $this::with(['DuAnQuyHoach'  => function ($query) { $query->select('MaDuAn','TenDuAn');},'DMLoaiDatQHXD'])->get(['OBJECTID','MaDuAnQuyHoach','MaLoaiDatQHXD','DienTich','HeSoSuDungDat','TangCaoXayDung','MatDoXayDung','TenLoaiDatTheoDA']);
+        return $this::with(['DuAnQuyHoach'  => function ($query) { $query->select('MaDuAn','TenDuAn');},'DMLoaiDatQHXD'])->get(['OBJECTID','MaLoDat','MaDuAnQuyHoach','MaLoaiDatQHXD','DienTich','HeSoSuDungDat','TangCaoXayDung','MatDoXayDung','TenLoaiDatTheoDA']);
     }
 
     public function get_By_ID($OBJECTID)
     {
-        return $this::where('OBJECTID','=',$OBJECTID)->get(['OBJECTID','MaDuAnQuyHoach','MaLoaiDatQHXD','DienTich','HeSoSuDungDat','TangCaoXayDung','MatDoXayDung','TenLoaiDatTheoDA']);
+        return $this::where('OBJECTID','=',$OBJECTID)->get(['OBJECTID','MaLoDat','MaDuAnQuyHoach','MaLoaiDatQHXD','DienTich','HeSoSuDungDat','TangCaoXayDung','MatDoXayDung','TenLoaiDatTheoDA']);
     }
 
-    public function sua($OBJECTID, $MaDuAnQuyHoach, $MaLoaiDatQHXD,$DienTich,$HeSoSuDungDat,$TangCaoXayDung,$MatDoXayDung,$TenLoaiDatTheoDA)
+    public function sua($OBJECTID, $MaDuAnQuyHoach, $MaLoaiDatQHXD/*,$DienTich*/,$HeSoSuDungDat,$TangCaoXayDung,$MatDoXayDung,$TenLoaiDatTheoDA)
     {
         $this::where('OBJECTID','=',$OBJECTID)->update([
             'MaDuAnQuyHoach' => $MaDuAnQuyHoach,
             'MaLoaiDatQHXD' => $MaLoaiDatQHXD,
-            'DienTich' => $DienTich,
+            //'DienTich' => $DienTich,
             'HeSoSuDungDat' => $HeSoSuDungDat,
             'TangCaoXayDung' => $TangCaoXayDung,
             'MatDoXayDung' => $MatDoXayDung,

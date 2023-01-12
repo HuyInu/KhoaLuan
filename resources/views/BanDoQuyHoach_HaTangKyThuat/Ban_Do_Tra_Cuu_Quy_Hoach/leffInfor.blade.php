@@ -15,11 +15,12 @@
                     <b>m<sup>2</sup></b>
                 </div>
                 <div class="item-gi">
-                    <i class="fas fa-sticky-note text-info"></i> Số hiệu tờ bản đồ: <span class="font-bold SoHieuToBanDo"></span>
-                </div>
-                <div class="item-gi">
                     <i class="far fa-sticky-note text-info"></i> Số thứ tự thửa: <span class="font-bold SoThuTuThua"></span>
                 </div>
+                <div class="item-gi">
+                    <i class="fas fa-sticky-note text-info"></i> Số hiệu tờ bản đồ: <span class="font-bold SoHieuToBanDo"></span>
+                </div>
+                
                 
                 <!--<div class="noticeable-information" style="padding-top: 5px !important">
                     <span>Dữ liệu được cập nhật đến 08/02/2019 (Dữ liệu do Văn phòng đăng ký đất đai tỉnh Tiền Giang cung cấp)</span>

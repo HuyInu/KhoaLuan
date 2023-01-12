@@ -374,7 +374,7 @@
                                     $end = $index;
                                     
                                 @endphp
-                                <div class="PoLyGon" style="height: 600px;">
+                                <div class="PoLyGon" style="height: 600px; margin-top:120px">
                                 @for($i=$start; $i<=$end; $i++)
                                     @php
                                         $svgPolygon = $PoLygon_SVG_Array[$i];

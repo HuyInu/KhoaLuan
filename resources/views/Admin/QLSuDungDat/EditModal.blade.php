@@ -19,8 +19,8 @@
                                 <input type="text" class="form-control" id="TenLoaiDatTheoDA" name="TenLoaiDatTheoDA">
                             </div>
                             <div class="form-group">
-                                <label for="largeInput">Diện tích*:</label>
-                                <input type="text" class="form-control" id="DienTich" name="DienTich">
+                                <label for="largeInput">Diện tích (m<sup>2</sup>)*:</label>
+                                <input type="text" class="form-control" id="DienTich" name="DienTich" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="largeInput">Hệ số sử dụng đất*:</label>

@@ -52,7 +52,7 @@ require([
           });
 
           const SuDungDat_Map_sublayer = SuDungDat_Map.findSublayerById(0);
-          console.log(SuDungDat_Map_sublayer)
+    
           const map = new Map({
             layers: [SuDungDat_Map],
             basemap: "topo-vector",
