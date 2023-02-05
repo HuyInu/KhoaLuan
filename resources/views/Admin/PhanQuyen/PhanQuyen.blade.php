@@ -49,9 +49,9 @@
                             <h4 class="card-title">Quyền</h4>
                         </div>
                         <div class="card-body">
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <input type="text" class="form-control" id="tim_Quyen" placeholder="Tìm quyền">
-                            </div>
+                            </div> -->
                             <div class="form-group">
                             <div id="tree_Quyen" class="form-group">
                                     <ul id="treeData" style="display: none;">

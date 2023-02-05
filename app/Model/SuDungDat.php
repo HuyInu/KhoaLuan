@@ -32,12 +32,12 @@ class SuDungDat extends Model
 
     public function get_By_ID($OBJECTID)
     {
-        return $this::where('OBJECTID','=',$OBJECTID)->get(['OBJECTID','MaLoDat','MaDuAnQuyHoach','MaLoaiDatQHXD','DienTich','HeSoSuDungDat','TangCaoXayDung','MatDoXayDung','TenLoaiDatTheoDA']);
+        return $this::where('MaLoDat','=',$OBJECTID)->get(['OBJECTID','MaLoDat','MaDuAnQuyHoach','MaLoaiDatQHXD','DienTich','HeSoSuDungDat','TangCaoXayDung','MatDoXayDung','TenLoaiDatTheoDA']);
     }
 
     public function sua($OBJECTID, $MaDuAnQuyHoach, $MaLoaiDatQHXD/*,$DienTich*/,$HeSoSuDungDat,$TangCaoXayDung,$MatDoXayDung,$TenLoaiDatTheoDA)
     {
-        $this::where('OBJECTID','=',$OBJECTID)->update([
+        $this::where('MaLoDat','=',$OBJECTID)->update([
             'MaDuAnQuyHoach' => $MaDuAnQuyHoach,
             'MaLoaiDatQHXD' => $MaLoaiDatQHXD,
             //'DienTich' => $DienTich,
@@ -50,6 +50,6 @@ class SuDungDat extends Model
 
     public function xoa($OBJECTID)
     {
-        $this::where('OBJECTID','=',$OBJECTID)->delete();
+        $this::where('MaLoDat','=',$OBJECTID)->delete();
     }
 }
