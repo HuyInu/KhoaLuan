@@ -54,7 +54,7 @@ class QLLoaiDuAnService{
 
     public function get_LoaiDuAn_By_Id($req)
     {
-        return $this->LoaiDuAn->get_By_Id($req->MaLoaiDuAn);
+    return $this->LoaiDuAn->get_By_Id($req/*->MaLoaiDuAn*/);
     }
 
     public function sua_LoaiDuAn($req)
